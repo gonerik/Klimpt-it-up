@@ -6,7 +6,7 @@ public class Puddle : MonoBehaviour
     {
         if (other.tag == "Enemy") {
             PathFollower guardPath = other.GetComponent<PathFollower>();
-            GuardLight guardLight = other.GetComponent<GuardLight>();
+            GuardLight guardLight = other.GetComponentInChildren<GuardLight>();
             guardPath.StopMovement(3f);
             guardLight.StopMovement(3f);
             Destroy(gameObject);
