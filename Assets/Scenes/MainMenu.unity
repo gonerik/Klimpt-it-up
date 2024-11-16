@@ -311,7 +311,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2043199979}
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
         m_MethodName: StartGame
         m_Mode: 1
@@ -1138,7 +1138,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2043199979}
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
         m_MethodName: exit
         m_Mode: 1
@@ -1193,6 +1193,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5946244224955911114, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
   m_PrefabInstance: {fileID: 7439760792492945027}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2043199979 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4433470824088222360, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+  m_PrefabInstance: {fileID: 7439760792492945027}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2043199978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44153f67e4365cf468bba4ba8b2b8488, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2131191614
 GameObject:
   m_ObjectHideFlags: 0
@@ -1503,7 +1514,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4192148167961372188, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
