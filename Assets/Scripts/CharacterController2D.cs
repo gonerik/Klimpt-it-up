@@ -7,7 +7,8 @@ namespace Intertables
 {
     public class CharacterController2D : MonoBehaviour
     {
-        [Header("Movement")] public static CharacterController2D Instance;
+        [Header("Movement")] 
+        public static CharacterController2D Instance;
         private Rigidbody2D body;
         private bool canMove = true;
 
@@ -19,36 +20,45 @@ namespace Intertables
         [SerializeField] private float maxRunSpeed = 8f;
         [SerializeField] private float minRunSpeed = 4f;
 
-        [Header("Interactable Variables")] [SerializeField]
-        private float interactionRange = 2f; // How close you need to be to interact
-
+        [Header("Interactable Variables")]
+        [SerializeField] private float interactionRange = 2f; // How close you need to be to interact
         [SerializeField] private LayerMask interactableLayer; // Set this to the layer of interactable objects
         [SerializeField] private KeyCode interactionKey = KeyCode.E; // Key to press for interaction
         public Interactable currentInteractable;
 
-        [Header("PickUpObjects")] public PickUpObjects currentPickup;
+        [Header("PickUpObjects")]
+        public PickUpObjects currentPickup;
         public Vector3 offset = new Vector3(0, -1, 0);
         public float pickUpMoveSpeed = 5f;
         public float amplitude = 0.2f;
         private float floatTimer = 0f;
         public float floatSpeed = 2f;
 
-        [Header("MopUsage")] [SerializeField] private GameObject Puddle;
-        private GameObject CurrentPuddle;
+	[Header("MopUsage")]
+	[SerializeField] private GameObject Puddle;
+	private GameObject CurrentPuddle;
 
-        [Header("MopSignUsage")] [SerializeField]
-        private GameObject MopSign;
+	[Header("MopSignUsage")]
+	[SerializeField] private GameObject MopSign;
+	private GameObject CurrentMopSign;
 
-        private GameObject CurrentMopSign;
-
-        [SerializeField] private Tilemap tilemap;
-        [Header("Stealing")] private bool isHoldingPainting = false;
-
+	[SerializeField] private Tilemap tilemap;
+        [Header("Stealing")]
+        private bool isHoldingPainting = false;
+        
         public bool GetIsHoldingPainting() => isHoldingPainting;
         public void SetIsHoldingPainting(bool isHolding) => isHoldingPainting = isHolding;
+        [Header("Animation")]
+        private Animator animator;
+        private SpriteRenderer spriteRenderer;
+
+        private string lastDirection = "Front"; // Keeps track of the last direction
+        
+        
 
         void Start()
         {
+            animator = GetComponentInChildren<Animator>();
             if (Instance == null)
             {
                 Instance = this;
@@ -57,7 +67,6 @@ namespace Intertables
             {
                 Debug.LogError("CharacterController2D already exists!");
             }
-
             body = GetComponent<Rigidbody2D>();
             runSpeed = maxRunSpeed;
         }
@@ -88,22 +97,20 @@ namespace Intertables
                 HandleCarriedObject();
             }
 
-            if (Input.GetKeyDown("1"))
-            {
-                SpawnPuddle();
-            }
+			if (Input.GetKeyDown("1")) {
+				SpawnPuddle();
+			}
+			if (Input.GetKeyDown("2")) {
+				SpawnMopSign();
+			}
+            
+            HandleAnimation(); // Call animation handler
 
-            if (Input.GetKeyDown("2"))
-            {
-                SpawnMopSign();
-            }
-        }
-
+		}
         void DetectInteractable()
         {
             // Find objects within the interaction range
-            Collider2D[] hitColliders =
-                Physics2D.OverlapCircleAll(transform.position, interactionRange, interactableLayer);
+            Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, interactionRange, interactableLayer);
 
             if (hitColliders.Length > 0)
             {
@@ -152,15 +159,7 @@ namespace Intertables
                 offset.x = -0.6f;
             }
 
-            if (canMove)
-            {
-                body.velocity = new Vector2(horizontal * runSpeed, vertical * runSpeed);
-            }
-            else
-            {
-                body.velocity = Vector2.zero;
-            }
-                
+            body.velocity = new Vector2(horizontal * runSpeed, vertical * runSpeed);
         }
 
         void HandleInteraction()
@@ -208,8 +207,7 @@ namespace Intertables
             float distance = Vector3.Distance(currentPickup.transform.position, targetPosition);
             if (distance > 0.1f)
             {
-                currentPickup.transform.position = Vector3.Lerp(currentPickup.transform.position, targetPosition,
-                    pickUpMoveSpeed * Time.deltaTime);
+                currentPickup.transform.position = Vector3.Lerp(currentPickup.transform.position, targetPosition, pickUpMoveSpeed * Time.deltaTime);
             }
             else
             {
@@ -222,29 +220,27 @@ namespace Intertables
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(transform.position, interactionRange);
         }
+		
+		private void SpawnPuddle() {
+			if (CurrentPuddle != null)
+			{
+				Destroy(CurrentPuddle);
+			}
 
-        private void SpawnPuddle()
-        {
-            if (CurrentPuddle != null)
-            {
-                Destroy(CurrentPuddle);
-            }
+			Vector3Int cellPosition = tilemap.WorldToCell(transform.position); 
+			Vector3 tileCenterPosition = tilemap.GetCellCenterWorld(cellPosition);
 
-            Vector3Int cellPosition = tilemap.WorldToCell(transform.position);
-            Vector3 tileCenterPosition = tilemap.GetCellCenterWorld(cellPosition);
+			CurrentPuddle = Instantiate(Puddle, tileCenterPosition, Quaternion.identity);
+		}
 
-            CurrentPuddle = Instantiate(Puddle, tileCenterPosition, Quaternion.identity);
-        }
+		private void SpawnMopSign() {
+			if (CurrentMopSign != null)
+			{
+				Destroy(CurrentMopSign);
+			}
 
-        private void SpawnMopSign()
-        {
-            if (CurrentMopSign != null)
-            {
-                Destroy(CurrentMopSign);
-            }
-
-            Vector3Int cellPosition = tilemap.WorldToCell(transform.position);
-            Vector3 tileCenterPosition = tilemap.GetCellCenterWorld(cellPosition);
+			Vector3Int cellPosition = tilemap.WorldToCell(transform.position); 
+			Vector3 tileCenterPosition = tilemap.GetCellCenterWorld(cellPosition);
 
             CurrentMopSign = Instantiate(MopSign, tileCenterPosition, Quaternion.identity);
         }
@@ -253,5 +249,57 @@ namespace Intertables
         {
             canMove = value;
         }
+    private void HandleAnimation()
+    {
+        Debug.Log(horizontal+" " + vertical+" "+lastDirection);
+        if (horizontal < 0)
+        {
+            animator.Play("Player_walk_left"); // Play left walk animation
+            lastDirection = "Left";            // Remember last direction
+            
+        }
+        else if (horizontal > 0)
+        {
+            animator.Play("Player_walk_right"); // Play right walk animation
+            lastDirection = "Right";            // Remember last direction
+        }
+        else if (vertical > 0)
+        {
+            animator.Play("Player_walk_back"); // Play back walk animation
+            lastDirection = "Back";           // Remember last direction
+        }
+        else if (vertical < 0)
+        {
+            animator.Play("Walk_front_animation"); // Play front walk animation
+            lastDirection = "Front";               // Remember last direction
+        }
+        else
+        {
+            // If no movement, play idle animation
+            PlayIdleAnimation();
+        }
+    }
+
+    private void PlayIdleAnimation()
+    {
+        if (lastDirection == "Left")
+        {
+            animator.Play("Player_idle_left"); // Play left idle animation
+        }
+        else if (lastDirection == "Back")
+        {
+            animator.Play("Player_idle_back"); // Play back idle animation
+        }
+        else if (lastDirection == "Front")
+        {
+            animator.Play("Player_idle_front"); // Play front idle animation
+        }
+        else if (lastDirection == "Right")
+        {
+            animator.Play("Player_idle_right"); // Play front idle animation
+        }
+    }
+
+
 }
 }
