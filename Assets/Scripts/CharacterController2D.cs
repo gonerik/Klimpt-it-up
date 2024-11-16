@@ -143,6 +143,11 @@ namespace Intertables
 
                     Debug.Log("Stored the painting.");
                 }
+                else if (currentInteractable is HidingSpot)
+                {
+                    // Interact with storage to deposit or withdraw the painting
+                    currentInteractable.Interact();
+                }
             }
         }
 

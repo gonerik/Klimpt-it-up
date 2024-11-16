@@ -15,16 +15,16 @@ namespace Intertables
         void Start()
         {
             _currentSprite = GetComponent<SpriteRenderer>();
-            _currentSprite.sprite = hidingSpotSpritePainting;
+            _currentSprite.sprite = hidingSpotSpriteEmpty;
         }
         // Start is called before the first frame update
         public override void Interact()
         {
-            base.Interact();
             if (CharacterController2D.Instance.GetIsHoldingPainting() && !_containsPainting)
             {
                 _containsPainting = true;
                 _painting = CharacterController2D.Instance.currentPickup;
+                _painting.transform.localScale = new Vector3(0, 0, 0);
                 CharacterController2D.Instance.SetIsHoldingPainting(false);
                 CharacterController2D.Instance.currentPickup = null;
                 _currentSprite.sprite = hidingSpotSpritePainting;
@@ -32,6 +32,7 @@ namespace Intertables
             else if (!CharacterController2D.Instance.GetIsHoldingPainting() && _containsPainting)
             {
                 _containsPainting = false;
+                _painting.transform.localScale = new Vector3(1, 1, 1);
                 CharacterController2D.Instance.currentPickup = _painting;
                 CharacterController2D.Instance.SetIsHoldingPainting(true);
                 _painting = null;
