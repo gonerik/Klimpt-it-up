@@ -159,7 +159,14 @@ namespace Intertables
                 offset.x = -0.6f;
             }
 
-            body.velocity = new Vector2(horizontal * runSpeed, vertical * runSpeed);
+            if (canMove)
+            {
+                body.velocity = new Vector2(horizontal * runSpeed, vertical * runSpeed);
+            }
+            else
+            {
+                body.velocity = Vector2.zero;
+            }
         }
 
         void HandleInteraction()
