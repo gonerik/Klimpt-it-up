@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 public class CharacterController2D : MonoBehaviour
 {
+	public static CharacterController2D Instance;
 	private Rigidbody2D body;
 
 	private float horizontal;
@@ -12,6 +13,14 @@ public class CharacterController2D : MonoBehaviour
 
 	void Start ()
 	{
+		if (Instance == null)
+		{
+			Instance = this;
+		}
+		else
+		{
+			Debug.LogError("CharacterController2D already exists!");
+		}
 		body = GetComponentInChildren<Rigidbody2D>();
 	}
 
