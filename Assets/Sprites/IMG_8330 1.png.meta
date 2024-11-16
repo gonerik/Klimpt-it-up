@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0346ebc1fd33d0540bd820348e7c0081
+guid: 40db5f311d0da5241b5bbe1833c45a7b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -131,7 +131,7 @@ TextureImporter:
         width: 169
         height: 645
       alignment: 9
-      pivot: {x: 2, y: 0.5}
+      pivot: {x: -1, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
