@@ -11,25 +11,25 @@ public class CharacterController2D : MonoBehaviour
 	public static CharacterController2D Instance;
 	private Rigidbody2D body;
 
-	private float horizontal;
-	private float vertical;
-	private float moveLimiter = 0.7f;
+        private float horizontal;
+        private float vertical;
+        private float moveLimiter = 0.7f;
 
-	[SerializeField] private float runSpeed = 20.0f;
+        [SerializeField] private float runSpeed = 20.0f;
 
-	[Header("Interactable Variables")]
-	[SerializeField] private float interactionRange = 2f; // How close you need to be to interact
-	[SerializeField] private LayerMask interactableLayer; // Set this to the layer of interactable objects
-	[SerializeField] private KeyCode interactionKey = KeyCode.E; // Key to press for interaction
-	public Interactable currentInteractable;
+        [Header("Interactable Variables")]
+        [SerializeField] private float interactionRange = 2f; // How close you need to be to interact
+        [SerializeField] private LayerMask interactableLayer; // Set this to the layer of interactable objects
+        [SerializeField] private KeyCode interactionKey = KeyCode.E; // Key to press for interaction
+        public Interactable currentInteractable;
 
-	[Header("PickUpObjects")]
-	public PickUpObjects currentPickup;
-	public Vector3 offset = new Vector3(0, -1, 0);
-	public float pickUpMoveSpeed = 5f;
-	public float amplitude = 0.2f;
-	private float floatTimer = 0f;
-	public float floatSpeed = 2f;
+        [Header("PickUpObjects")]
+        public PickUpObjects currentPickup;
+        public Vector3 offset = new Vector3(0, -1, 0);
+        public float pickUpMoveSpeed = 5f;
+        public float amplitude = 0.2f;
+        private float floatTimer = 0f;
+        public float floatSpeed = 2f;
 
 	[Header("MopUsage")]
 	[SerializeField] private GameObject Puddle;
@@ -40,9 +40,12 @@ public class CharacterController2D : MonoBehaviour
 	private GameObject CurrentMopSign;
 
 	[SerializeField] private Tilemap tilemap;
-	[Header("Stealing")]
-	private bool isHoldingPainting = false;
-
+        [Header("Stealing")]
+        private bool isHoldingPainting = false;
+        
+        public bool GetIsHoldingPainting() => isHoldingPainting;
+        public void SetIsHoldingPainting(bool isHolding) => isHoldingPainting = isHolding;
+        
         void Start()
         {
             if (Instance == null)
@@ -159,6 +162,11 @@ public class CharacterController2D : MonoBehaviour
 
                     Debug.Log("Stored the painting.");
                 }
+                else if (currentInteractable is HidingSpot)
+                {
+                    // Interact with storage to deposit or withdraw the painting
+                    currentInteractable.Interact();
+                }
             }
         }
 
@@ -214,11 +222,6 @@ public class CharacterController2D : MonoBehaviour
 
 		public void SetSpeed(float newSpeed) {
 			runSpeed = newSpeed;
-		}
-
-		public bool IsHoldingAPainting() {
-			print(isHoldingPainting);
-			return isHoldingPainting;
 		}
 	}
 }
