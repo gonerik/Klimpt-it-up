@@ -1,4 +1,5 @@
 using Intertables;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 public class CharacterController2D : MonoBehaviour
@@ -29,6 +30,10 @@ public class CharacterController2D : MonoBehaviour
 
 	[Header("Stealing")]
 	private bool isHoldingAPainting = false;
+
+	[Header("MopUsage")]
+	[SerializeField] private GameObject Puddle;
+	private GameObject CurrentPuddle;
 
 	void Start ()
 	{
@@ -80,6 +85,10 @@ public class CharacterController2D : MonoBehaviour
 			}
 			
 		}
+
+		if (Input.GetKeyDown("1")) {
+			SpawnPuddle();
+		}
 	}
 	void DetectInteractable()
 	{
@@ -124,5 +133,14 @@ public class CharacterController2D : MonoBehaviour
 		}
 		
 		body.velocity = new Vector2(horizontal * runSpeed, vertical * runSpeed);
+	}
+
+	private void SpawnPuddle() {
+		if (CurrentPuddle != null)
+		{
+			Destroy(CurrentPuddle);
+		}
+
+		CurrentPuddle = Instantiate(Puddle, transform.position, Quaternion.identity);
 	}
 }

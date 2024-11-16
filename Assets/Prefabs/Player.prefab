@@ -167,6 +167,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runSpeed: 13
+  interactionRange: 2
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  interactionKey: 101
+  offset: {x: 0, y: -1, z: 0}
+  pickUpMoveSpeed: 5
+  amplitude: 0.2
+  floatSpeed: 2
+  Puddle: {fileID: 8962506655511679438, guid: 7aec096b8f577a8448f98c9da1698712, type: 3}
 --- !u!50 &2853890627550804203
 Rigidbody2D:
   serializedVersion: 4
