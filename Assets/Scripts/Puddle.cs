@@ -6,7 +6,6 @@ public class Puddle : MonoBehaviour
     {
         if (other.tag == "Enemy") {
             PathFollower guardPath = other.GetComponent<PathFollower>();
-            
             guardPath.StopMovement(3f);
         }
     }
