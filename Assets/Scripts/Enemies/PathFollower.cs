@@ -76,5 +76,6 @@ public class PathFollower : MonoBehaviour
 
     public void ReversePath() {
         isReversing = !isReversing;
+        currentWaypointIndex--;
     }
 }
