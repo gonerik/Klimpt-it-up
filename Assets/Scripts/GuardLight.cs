@@ -10,7 +10,7 @@ public class GuardLight : MonoBehaviour
     {
         if (other.tag == "Player") {
             print("hello");
-            if (CharacterController2D.Instance.IsHoldingAPainting()) {
+            if (CharacterController2D.Instance.GetIsHoldingPainting()) {
                 IEnumerator coroutine = ReloadScene(0.5f);
                 StartCoroutine(coroutine);
             }
