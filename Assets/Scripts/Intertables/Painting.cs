@@ -1,8 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using Intertables;
-using UnityEngine;
 
 public class Painting : PickUpObjects
 {
+    public override void Interact()
+    {
+        base.Interact();
+        CharacterController2D.Instance.SetSpeed(10f);
+    }
 }

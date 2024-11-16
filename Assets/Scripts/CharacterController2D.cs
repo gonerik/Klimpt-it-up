@@ -214,5 +214,9 @@ public class CharacterController2D : MonoBehaviour
 
 			CurrentMopSign = Instantiate(MopSign, tileCenterPosition, Quaternion.identity);
 		}
+
+		public void SetSpeed(float newSpeed) {
+			runSpeed = newSpeed;
+		}
 	}
 }

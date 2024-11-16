@@ -170,8 +170,10 @@ MonoBehaviour:
   interactionRange: 2
   interactableLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   interactionKey: 101
+  currentInteractable: {fileID: 0}
+  currentPickup: {fileID: 0}
   offset: {x: 0, y: -1, z: 0}
   pickUpMoveSpeed: 5
   amplitude: 0.2
