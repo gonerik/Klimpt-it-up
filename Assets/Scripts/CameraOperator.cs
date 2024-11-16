@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CameraOperator : MonoBehaviour
 {
-    public static CameraOperator Instance { get;  set; }
+    private static CameraOperator Instance { get;  set; }
 
     private void Awake() 
     { 
@@ -17,6 +17,8 @@ public class CameraOperator : MonoBehaviour
             Instance = this; 
         } 
     }
+    
+    public CameraOperator GetInstance() { return Instance; }
     
     [SerializeField] private float cameraSpeed = 1.5f;
     [SerializeField] private float zoomSpeed = 4f;
