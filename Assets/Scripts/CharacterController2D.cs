@@ -216,9 +216,9 @@ public class CharacterController2D : MonoBehaviour
 		}
 
 		private void SpawnMopSign() {
-			if (CurrentPuddle != null)
+			if (CurrentMopSign != null)
 			{
-				Destroy(CurrentPuddle);
+				Destroy(CurrentMopSign);
 			}
 
 			Vector3Int cellPosition = tilemap.WorldToCell(transform.position); 
