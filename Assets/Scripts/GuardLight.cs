@@ -34,6 +34,7 @@ public class GuardLight : MonoBehaviour
     }
 
     private IEnumerator ReloadScene(float duration) {
+        CharacterController2D.Instance.setPlayerMovement(false);
         yield return new WaitForSeconds(duration);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }

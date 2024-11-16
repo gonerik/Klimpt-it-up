@@ -10,6 +10,6 @@ public class MopSign : MonoBehaviour
 
     private IEnumerator Dispose(){
         yield return new WaitForSeconds(5);
-        Destroy(gameObject);
+        // Destroy(gameObject);
     }
 }
