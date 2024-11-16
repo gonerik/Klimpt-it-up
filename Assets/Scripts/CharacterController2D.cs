@@ -42,6 +42,7 @@ public class CharacterController2D : MonoBehaviour
 	[SerializeField] private Tilemap tilemap;
 	[Header("Stealing")]
 	private bool isHoldingPainting = false;
+        
 
         void Start()
         {
@@ -51,6 +52,8 @@ public class CharacterController2D : MonoBehaviour
             }
             else
             {
+                Destroy(Instance);
+                Instance = this;
                 Debug.LogError("CharacterController2D already exists!");
             }
             body = GetComponent<Rigidbody2D>();
@@ -58,6 +61,10 @@ public class CharacterController2D : MonoBehaviour
 
         void Update()
         {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                SettingsMenu.instance.Pause();
+            }
             // Movement input
             horizontal = Input.GetAxisRaw("Horizontal");
             vertical = Input.GetAxisRaw("Vertical");
