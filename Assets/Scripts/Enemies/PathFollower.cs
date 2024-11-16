@@ -45,12 +45,6 @@ public class PathFollower : MonoBehaviour
         Vector3 movementDirection = targetPosition - transform.position;
         transform.position += movementDirection.normalized * speed * Time.deltaTime;
 
-        if (movementDirection != Vector3.zero)
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(Vector3.forward, movementDirection);
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * speed);
-        }
-
         if (Vector3.Distance(transform.position, targetPosition) < reachDistance)
         {
             if (!isReversing)
