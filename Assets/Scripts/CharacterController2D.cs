@@ -31,9 +31,6 @@ public class CharacterController2D : MonoBehaviour
         private float floatTimer = 0f;
         public float floatSpeed = 2f;
 
-	[Header("Stealing")]
-	private bool isHoldingAPainting = false;
-
 	[Header("MopUsage")]
 	[SerializeField] private GameObject Puddle;
 	private GameObject CurrentPuddle;
