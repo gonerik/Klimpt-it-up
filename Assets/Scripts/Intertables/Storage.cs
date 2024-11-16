@@ -7,13 +7,11 @@ using UnityEngine.SceneManagement;
 
 public class Storage : Interactable
 {
-    private static int levelCount = 1;
     private static int paintingsCount = 0;
     private int paintingsCollected = 0;
     public void Awake()
     {
         paintingsCount = 0;
-        levelCount++;
         
     }
 
@@ -39,9 +37,9 @@ public class Storage : Interactable
 
     public IEnumerator GoToNextLevel(){
         //Play win animation here
+        CharacterController2D.Instance.setCanMove(false);
         Debug.Log(paintingsCollected);
-        CharacterController2D.Instance.settoMaxSpeed();
         yield return new WaitForSeconds(5);
-        SceneManager.LoadSceneAsync(levelCount);
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex +1);
     }
 }
