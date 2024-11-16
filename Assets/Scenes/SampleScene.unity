@@ -186,7 +186,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_EdgeRadius: 20
 --- !u!212 &410281044
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -227,9 +227,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 20
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.93962264, g: 0.2818867, b: 0.2818867, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -266,6 +266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39b426f150a2aea4d9ebd2e4e72b358b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickable: 1
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -607,28 +608,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16a75b6cdb613874e9b81d88f126e41f, type: 3}
---- !u!1 &927689211 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6111227965828955193, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
-  m_PrefabInstance: {fileID: 1565470773414085136}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &927689215
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 927689211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e614067e8bb89d498511890098b9eff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactionRange: 2
-  interactableLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  interactionKey: 101
 --- !u!1001 &1223448259
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -826,6 +805,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2515695683486998709, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
+      propertyPath: offset.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2515695683486998709, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
+      propertyPath: offset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2515695683486998709, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
+      propertyPath: amplitude
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2515695683486998709, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
+      propertyPath: floatSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2515695683486998709, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
+      propertyPath: pickUpMoveSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2515695683486998709, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
+      propertyPath: interactionRange
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2515695683486998709, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
+      propertyPath: interactableLayer.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
     - target: {fileID: 6111227965828955193, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
       propertyPath: m_Name
       value: Player
@@ -841,10 +848,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6111227965828955193, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 927689215}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
 --- !u!1001 &3023112327492608844
 PrefabInstance:
