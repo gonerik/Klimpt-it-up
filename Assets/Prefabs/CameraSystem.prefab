@@ -155,7 +155,7 @@ MonoBehaviour:
   size: 10
   player: {fileID: 0}
   cam: {fileID: 1707723479897719236}
-  enableBoundries: 0
+  enableBoundaries: 0
   enableMovement: 0
   minXBoundary: 0
   maxXBoundary: 0
