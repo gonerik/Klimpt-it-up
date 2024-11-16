@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class CameraOperator : MonoBehaviour
 {
-    public static CameraOperator Instance { get; private set; }
+    private static CameraOperator Instance { get;  set; }
 
     private void Awake() 
     { 
@@ -26,8 +23,8 @@ public class CameraOperator : MonoBehaviour
     [SerializeField] private float size = 10f;
     [SerializeField] private Transform player;
     [SerializeField] private Camera cam;
-    [SerializeField] private bool enableBoundries = false;
-    [SerializeField] private bool enableMovement = false;
+    [SerializeField] private bool enableBoundaries;
+    [SerializeField] private bool enableMovement;
     
     /// <summary>
     /// The following variables are used to set up camera boundaries for each stage, limiting its movement
@@ -67,15 +64,23 @@ public class CameraOperator : MonoBehaviour
             float x = player.position.x;
             float y = player.position.y;
             Vector3 newCameraPosition = new Vector3(transform.position.x,transform.position.y,transform.position.z);
-            if (enableBoundries)
+            if (enableBoundaries)
             {
                 if (x < minXBoundary) newCameraPosition.x = minXBoundary;
                 else if (x > maxXBoundary) newCameraPosition.x = maxXBoundary;
+                else newCameraPosition.x = x;
                 if (y < minYBoundary) newCameraPosition.y = minYBoundary;
                 else if (y > maxYBoundary) newCameraPosition.y = maxYBoundary;
+                else newCameraPosition.y = y;
+            }
+            else
+            {
+                newCameraPosition.x = x;
+                newCameraPosition.y = y;
             }
             transform.position = 
                 Vector3.SlerpUnclamped(transform.position, newCameraPosition, cameraSpeed * Time.fixedDeltaTime);
         }
+        ResizeCamera(size);
     }
 }
