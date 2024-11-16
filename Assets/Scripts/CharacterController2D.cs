@@ -258,7 +258,6 @@ namespace Intertables
         }
     private void HandleAnimation()
     {
-        Debug.Log(horizontal+" " + vertical+" "+lastDirection);
         if (horizontal < 0)
         {
             animator.Play("Player_walk_left"); // Play left walk animation
@@ -299,11 +298,16 @@ namespace Intertables
         }
         else if (lastDirection == "Front")
         {
-            animator.Play("Player_idle_front"); // Play front idle animation
+            animator.Play("Walk_front_animation"); // Play front idle animation
         }
         else if (lastDirection == "Right")
         {
             animator.Play("Player_idle_right"); // Play front idle animation
+        }
+        else
+        {
+            // If no movement, play idle animation
+            animator.Play("Player_idle");
         }
     }
 
