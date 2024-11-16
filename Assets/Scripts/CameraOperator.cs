@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CameraOperator : MonoBehaviour
 {
-    private static CameraOperator Instance { get;  set; }
+    public static CameraOperator Instance { get;  set; }
 
     private void Awake() 
     { 
