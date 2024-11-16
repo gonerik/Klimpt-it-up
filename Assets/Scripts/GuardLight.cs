@@ -11,7 +11,7 @@ public class GuardLight : MonoBehaviour
         if (other.tag == "Player") {
             
             if (CharacterController2D.Instance.GetIsHoldingPainting()) {
-                IEnumerator coroutine = ReloadScene(0.5f);
+                IEnumerator coroutine = ReloadScene(3f);
                 StartCoroutine(coroutine);
             }
         }
