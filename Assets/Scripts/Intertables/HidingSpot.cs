@@ -27,6 +27,7 @@ namespace Intertables
                 _painting.transform.localScale = new Vector3(0, 0, 0);
                 CharacterController2D.Instance.SetIsHoldingPainting(false);
                 CharacterController2D.Instance.currentPickup = null;
+                CharacterController2D.Instance.settoMaxSpeed();
                 _currentSprite.sprite = hidingSpotSpritePainting;
             }
             else if (!CharacterController2D.Instance.GetIsHoldingPainting() && _containsPainting)
@@ -35,6 +36,7 @@ namespace Intertables
                 _painting.transform.localScale = new Vector3(1, 1, 1);
                 CharacterController2D.Instance.currentPickup = _painting;
                 CharacterController2D.Instance.SetIsHoldingPainting(true);
+                CharacterController2D.Instance.settoMinSpeed();
                 _painting = null;
                 _currentSprite.sprite = hidingSpotSpriteEmpty;
             }
