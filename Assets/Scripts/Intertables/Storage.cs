@@ -1,13 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Intertables;
 
 public class Storage : Interactable
 {
     public override void Interact()
     {
         base.Interact();
-        Debug.Log("Painting stored in the storage!");
+        CharacterController2D.Instance.SetSpeed(20f);
     }
 }

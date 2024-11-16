@@ -1,12 +1,15 @@
+using Intertables;
+using Unity.VisualScripting;
 using UnityEngine;
-
+using UnityEngine.Tilemaps;
+using UnityEngine.Events;
 namespace Intertables
 {
-    public class CharacterController2D : MonoBehaviour
-    {
-        [Header("Movement")]
-        public static CharacterController2D Instance;
-        private Rigidbody2D body;
+public class CharacterController2D : MonoBehaviour
+{
+	[Header("Movement")]
+	public static CharacterController2D Instance;
+	private Rigidbody2D body;
 
         private float horizontal;
         private float vertical;
@@ -28,6 +31,18 @@ namespace Intertables
         private float floatTimer = 0f;
         public float floatSpeed = 2f;
 
+	[Header("Stealing")]
+	private bool isHoldingAPainting = false;
+
+	[Header("MopUsage")]
+	[SerializeField] private GameObject Puddle;
+	private GameObject CurrentPuddle;
+
+	[Header("MopSignUsage")]
+	[SerializeField] private GameObject MopSign;
+	private GameObject CurrentMopSign;
+
+	[SerializeField] private Tilemap tilemap;
         [Header("Stealing")]
         private bool isHoldingPainting = false;
         
@@ -62,7 +77,14 @@ namespace Intertables
             {
                 HandleCarriedObject();
             }
-        }
+
+			if (Input.GetKeyDown("1")) {
+				SpawnPuddle();
+			}
+			if (Input.GetKeyDown("2")) {
+				SpawnMopSign();
+			}
+		}
         void DetectInteractable()
         {
             // Find objects within the interaction range
@@ -176,5 +198,33 @@ namespace Intertables
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(transform.position, interactionRange);
         }
-    }
+		
+		private void SpawnPuddle() {
+			if (CurrentPuddle != null)
+			{
+				Destroy(CurrentPuddle);
+			}
+
+			Vector3Int cellPosition = tilemap.WorldToCell(transform.position); 
+			Vector3 tileCenterPosition = tilemap.GetCellCenterWorld(cellPosition);
+
+			CurrentPuddle = Instantiate(Puddle, tileCenterPosition, Quaternion.identity);
+		}
+
+		private void SpawnMopSign() {
+			if (CurrentPuddle != null)
+			{
+				Destroy(CurrentPuddle);
+			}
+
+			Vector3Int cellPosition = tilemap.WorldToCell(transform.position); 
+			Vector3 tileCenterPosition = tilemap.GetCellCenterWorld(cellPosition);
+
+			CurrentMopSign = Instantiate(MopSign, tileCenterPosition, Quaternion.identity);
+		}
+
+		public void SetSpeed(float newSpeed) {
+			runSpeed = newSpeed;
+		}
+	}
 }
