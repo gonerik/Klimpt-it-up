@@ -21,11 +21,6 @@ public class GuardLight : MonoBehaviour
         }
     }
 
-    public void StopMovement(float duration) {
-        IEnumerator coroutine = DisableLight(duration);
-        StartCoroutine(coroutine);
-    }
-
     public IEnumerator DisableLight(float duration) {
         PolygonCollider2D polygonCollider = GetComponent<PolygonCollider2D>();
         polygonCollider.enabled = false;
