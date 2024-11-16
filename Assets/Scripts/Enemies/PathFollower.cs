@@ -11,7 +11,7 @@ public class PathFollower : MonoBehaviour
     private float stopTimer = 0f;
     private float puddleImmunityTimer = 0f;
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (puddleImmunityTimer > 0f) {
             puddleImmunityTimer -= Time.deltaTime;
@@ -72,5 +72,9 @@ public class PathFollower : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void ReversePath() {
+        isReversing = !isReversing;
     }
 }

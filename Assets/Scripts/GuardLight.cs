@@ -9,6 +9,10 @@ public class GuardLight : MonoBehaviour
         if (other.tag == "Player") {
             print("Player detected");
         }
+        if (other.tag == "MopSign") {
+            PathFollower pathFollower = GetComponentInParent<PathFollower>();
+            pathFollower.ReversePath();
+        }
     }
 
     public void StopMovement(float duration) {
