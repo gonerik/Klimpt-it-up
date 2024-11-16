@@ -40,6 +40,8 @@ public class Storage : Interactable
         CharacterController2D.Instance.setCanMove(false);
         Debug.Log(paintingsCollected);
         yield return new WaitForSeconds(5);
-        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex +1);
+        if (SceneManager.GetActiveScene().buildIndex < SceneManager.sceneCount)
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+        else SceneManager.LoadSceneAsync(0);
     }
 }
