@@ -30,7 +30,10 @@ namespace Intertables
 
         [Header("Stealing")]
         private bool isHoldingPainting = false;
-
+        
+        public bool GetIsHoldingPainting() => isHoldingPainting;
+        public void SetIsHoldingPainting(bool isHolding) => isHoldingPainting = isHolding;
+        
         void Start()
         {
             if (Instance == null)
