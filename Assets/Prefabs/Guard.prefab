@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 8883474761054306675}
   - component: {fileID: -5255364410100771209}
   - component: {fileID: -30449546043969568}
-  - component: {fileID: 5356411247621355019}
+  - component: {fileID: 3485912045345989530}
+  - component: {fileID: 6084352068323768106}
   m_Layer: 0
   m_Name: Guard
   m_TagString: Enemy
@@ -183,7 +184,7 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!95 &5356411247621355019
+--- !u!95 &3485912045345989530
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -204,6 +205,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6084352068323768106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2703918716217202360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce424bc50c164b949945ec04c41e1228, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathFollower: {fileID: 8897211938680884663}
+  guardLight: {fileID: 1453301675859291189}
 --- !u!1 &8235905920955564538
 GameObject:
   m_ObjectHideFlags: 0

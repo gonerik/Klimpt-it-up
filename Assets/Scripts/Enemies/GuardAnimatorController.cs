@@ -13,6 +13,6 @@ public class GuardAnimatorController : MonoBehaviour
 
     void Update()
     {
-        animator.Play("Guard_walk_front");
+        animator.Play("Guard_walk_back");
     }
 }
