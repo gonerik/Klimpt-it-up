@@ -15,7 +15,9 @@ public class CharacterController2D : MonoBehaviour
         private float vertical;
         private float moveLimiter = 0.7f;
 
-        [SerializeField] private float runSpeed = 20.0f;
+        private float runSpeed;
+        [SerializeField] private float maxRunSpeed = 8f;
+        [SerializeField] private float minRunSpeed = 4f;
 
         [Header("Interactable Variables")]
         [SerializeField] private float interactionRange = 2f; // How close you need to be to interact
@@ -57,6 +59,17 @@ public class CharacterController2D : MonoBehaviour
                 Debug.LogError("CharacterController2D already exists!");
             }
             body = GetComponent<Rigidbody2D>();
+            runSpeed = maxRunSpeed;
+        }
+
+        public void settoMaxSpeed()
+        {
+            runSpeed = maxRunSpeed;
+        }
+
+        public void settoMinSpeed()
+        {
+            runSpeed = minRunSpeed;
         }
 
         void Update()
@@ -218,10 +231,6 @@ public class CharacterController2D : MonoBehaviour
 			Vector3 tileCenterPosition = tilemap.GetCellCenterWorld(cellPosition);
 
 			CurrentMopSign = Instantiate(MopSign, tileCenterPosition, Quaternion.identity);
-		}
-
-		public void SetSpeed(float newSpeed) {
-			runSpeed = newSpeed;
-		}
+            }
 	}
 }

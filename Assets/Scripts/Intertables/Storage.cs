@@ -21,7 +21,7 @@ public class Storage : Interactable
     {
         base.Interact();
         paintingsCollected++;
-        CharacterController2D.Instance.SetSpeed(CharacterController2D.Instance.maxRunSpeed);
+        CharacterController2D.Instance.settoMaxSpeed();
         Debug.Log(paintingsCollected);
         Debug.Log(paintingsCount);
         
@@ -40,7 +40,7 @@ public class Storage : Interactable
     public IEnumerator GoToNextLevel(){
         //Play win animation here
         Debug.Log(paintingsCollected);
-        CharacterController2D.Instance.setPlayerMovement(false);
+        CharacterController2D.Instance.settoMaxSpeed();
         yield return new WaitForSeconds(5);
         SceneManager.LoadSceneAsync(levelCount);
     }
