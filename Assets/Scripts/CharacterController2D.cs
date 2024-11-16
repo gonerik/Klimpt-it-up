@@ -2,6 +2,7 @@ using Intertables;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Tilemaps;
 public class CharacterController2D : MonoBehaviour
 {
 	[Header("Movement")]
@@ -34,6 +35,12 @@ public class CharacterController2D : MonoBehaviour
 	[Header("MopUsage")]
 	[SerializeField] private GameObject Puddle;
 	private GameObject CurrentPuddle;
+
+	[Header("MopSignUsage")]
+	[SerializeField] private GameObject MopSign;
+	private GameObject CurrentMopSign;
+
+	[SerializeField] private Tilemap tilemap;
 
 	void Start ()
 	{
@@ -89,6 +96,9 @@ public class CharacterController2D : MonoBehaviour
 		if (Input.GetKeyDown("1")) {
 			SpawnPuddle();
 		}
+		if (Input.GetKeyDown("2")) {
+			SpawnMopSign();
+		}
 	}
 	void DetectInteractable()
 	{
@@ -141,6 +151,21 @@ public class CharacterController2D : MonoBehaviour
 			Destroy(CurrentPuddle);
 		}
 
-		CurrentPuddle = Instantiate(Puddle, transform.position, Quaternion.identity);
+		Vector3Int cellPosition = tilemap.WorldToCell(transform.position); 
+		Vector3 tileCenterPosition = tilemap.GetCellCenterWorld(cellPosition);
+
+		CurrentPuddle = Instantiate(Puddle, tileCenterPosition, Quaternion.identity);
+	}
+
+	private void SpawnMopSign() {
+		if (CurrentPuddle != null)
+		{
+			Destroy(CurrentPuddle);
+		}
+
+		Vector3Int cellPosition = tilemap.WorldToCell(transform.position); 
+		Vector3 tileCenterPosition = tilemap.GetCellCenterWorld(cellPosition);
+
+		CurrentMopSign = Instantiate(MopSign, tileCenterPosition, Quaternion.identity);
 	}
 }
