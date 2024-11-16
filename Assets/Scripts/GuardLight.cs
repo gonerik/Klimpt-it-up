@@ -26,7 +26,7 @@ public class GuardLight : MonoBehaviour
         StartCoroutine(coroutine);
     }
 
-    private IEnumerator DisableLight(float duration) {
+    public IEnumerator DisableLight(float duration) {
         PolygonCollider2D polygonCollider = GetComponent<PolygonCollider2D>();
         polygonCollider.enabled = false;
         yield return new WaitForSeconds(duration);
