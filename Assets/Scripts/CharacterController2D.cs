@@ -30,6 +30,7 @@ namespace Intertables
 
         [Header("Stealing")]
         private bool isHoldingPainting = false;
+        
 
         void Start()
         {
@@ -39,6 +40,8 @@ namespace Intertables
             }
             else
             {
+                Destroy(Instance);
+                Instance = this;
                 Debug.LogError("CharacterController2D already exists!");
             }
             body = GetComponent<Rigidbody2D>();
@@ -46,6 +49,10 @@ namespace Intertables
 
         void Update()
         {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                SettingsMenu.instance.Pause();
+            }
             // Movement input
             horizontal = Input.GetAxisRaw("Horizontal");
             vertical = Input.GetAxisRaw("Vertical");
