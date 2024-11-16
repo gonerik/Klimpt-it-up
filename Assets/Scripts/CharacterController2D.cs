@@ -1,3 +1,4 @@
+using Intertables;
 using UnityEngine;
 using UnityEngine.Events;
 public class CharacterController2D : MonoBehaviour
@@ -13,11 +14,18 @@ public class CharacterController2D : MonoBehaviour
 	[SerializeField] private float runSpeed = 20.0f;
 	
 	[Header("Interactable Variables")]
-	public float interactionRange = 2f; // How close you need to be to interact
-	public LayerMask interactableLayer; // Set this to the layer of interactable objects
-	public KeyCode interactionKey = KeyCode.E; // Key to press for interaction
-
+	[SerializeField] private float interactionRange = 2f; // How close you need to be to interact
+	[SerializeField] private LayerMask interactableLayer; // Set this to the layer of interactable objects
+	[SerializeField] private KeyCode interactionKey = KeyCode.E; // Key to press for interaction
 	private Interactable currentInteractable;
+	
+	[Header("PickUpObjects")]
+	private Interactable currentPickup;
+	public Vector3 offset = new Vector3(0, -1, 0);
+	public float pickUpMoveSpeed = 5f;
+	public float amplitude = 0.2f;
+	private float floatTimer = 0f;
+	public float floatSpeed = 2f;
 
 	[Header("Stealing")]
 	private bool isHoldingAPainting = false;
@@ -44,11 +52,38 @@ public class CharacterController2D : MonoBehaviour
 
 		if (currentInteractable != null && Input.GetKeyDown(interactionKey))
 		{
+			if (currentInteractable.pickable)
+			{
+				currentPickup = currentInteractable;
+			}
 			currentInteractable.Interact();
+		}
+		
+		{
+			if (currentPickup != null)
+			{
+				// Smoothly move the object towards the player's back
+				Vector3 targetPosition = transform.position + offset;
+				floatTimer += Time.deltaTime * floatSpeed;
+				targetPosition.y = Mathf.Sin(floatTimer) * amplitude +targetPosition.y;
+				float distance = Vector3.Distance(transform.position, targetPosition);
+				
+
+				if (distance > 0.1f)
+				{
+					currentPickup.transform.position = Vector3.Lerp(currentPickup.transform.position, targetPosition, pickUpMoveSpeed * Time.deltaTime);
+				}
+				else
+				{
+					currentPickup.transform.position = targetPosition; // Snap to position once close enough
+				}
+			}
+			
 		}
 	}
 	void DetectInteractable()
 	{
+		if (currentPickup != null) return;
 		// Cast a small sphere to detect objects within interaction range
 		Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, interactionRange, interactableLayer);
 
@@ -77,8 +112,17 @@ public class CharacterController2D : MonoBehaviour
 			// limit movement speed diagonally, so you move at 70% speed
 			horizontal *= moveLimiter;
 			vertical *= moveLimiter;
-		} 
+		}
 
+		if (horizontal < 0)
+		{
+			offset.x = 0.6f;
+		}
+		else if (horizontal > 0)
+		{
+			offset.x = -0.6f;
+		}
+		
 		body.velocity = new Vector2(horizontal * runSpeed, vertical * runSpeed);
 	}
 }

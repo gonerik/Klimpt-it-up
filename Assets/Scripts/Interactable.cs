@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
+    public bool pickable = false;
     public void Interact()
     {
         Debug.Log("Interact");
