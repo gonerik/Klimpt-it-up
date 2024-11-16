@@ -21,7 +21,12 @@ public class GuardLight : MonoBehaviour
         }
     }
 
-    public IEnumerator DisableLight(float duration) {
+    public void StopMovement(float duration) {
+        IEnumerator coroutine = DisableLight(duration);
+        StartCoroutine(coroutine);
+    }
+
+    private IEnumerator DisableLight(float duration) {
         PolygonCollider2D polygonCollider = GetComponent<PolygonCollider2D>();
         polygonCollider.enabled = false;
         yield return new WaitForSeconds(duration);
@@ -29,7 +34,6 @@ public class GuardLight : MonoBehaviour
     }
 
     private IEnumerator ReloadScene(float duration) {
-        CharacterController2D.Instance.setPlayerMovement(false);
         yield return new WaitForSeconds(duration);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }

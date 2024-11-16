@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class Puddle : MonoBehaviour
@@ -7,9 +6,7 @@ public class Puddle : MonoBehaviour
     {
         if (other.tag == "Enemy") {
             PathFollower guardPath = other.GetComponent<PathFollower>();
-            GuardLight guardLight = other.GetComponentInChildren<GuardLight>();
             guardPath.StopMovement(3f);
-            StartCoroutine(guardLight.DisableLight(3f));
             Destroy(gameObject);
         }
     }
