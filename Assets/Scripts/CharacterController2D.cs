@@ -46,7 +46,9 @@ public class CharacterController2D : MonoBehaviour
         [Header("Stealing")]
         private bool isHoldingPainting = false;
         
-
+        public bool GetIsHoldingPainting() => isHoldingPainting;
+        public void SetIsHoldingPainting(bool isHolding) => isHoldingPainting = isHolding;
+        
         void Start()
         {
             if (Instance == null)
@@ -55,8 +57,6 @@ public class CharacterController2D : MonoBehaviour
             }
             else
             {
-                Destroy(Instance);
-                Instance = this;
                 Debug.LogError("CharacterController2D already exists!");
             }
             body = GetComponent<Rigidbody2D>();
@@ -64,10 +64,6 @@ public class CharacterController2D : MonoBehaviour
 
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                SettingsMenu.instance.Pause();
-            }
             // Movement input
             horizontal = Input.GetAxisRaw("Horizontal");
             vertical = Input.GetAxisRaw("Vertical");
@@ -168,6 +164,11 @@ public class CharacterController2D : MonoBehaviour
                     isHoldingPainting = false;
 
                     Debug.Log("Stored the painting.");
+                }
+                else if (currentInteractable is HidingSpot)
+                {
+                    // Interact with storage to deposit or withdraw the painting
+                    currentInteractable.Interact();
                 }
             }
         }
