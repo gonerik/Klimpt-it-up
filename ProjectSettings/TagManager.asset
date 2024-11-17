@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - MopSign
+  - GuardLight
   layers:
   - Default
   - TransparentFX

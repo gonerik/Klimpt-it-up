@@ -371,7 +371,7 @@ GameObject:
   - component: {fileID: 1453301675859291189}
   m_Layer: 0
   m_Name: GuardLight
-  m_TagString: Untagged
+  m_TagString: GuardLight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
