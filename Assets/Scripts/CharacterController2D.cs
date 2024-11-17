@@ -115,8 +115,7 @@ namespace Intertables
             animationController.PlayWalkAnimation(horizontal, vertical, ref lastDirection, canMove);
 
         }
-
-		}
+        
         void DetectInteractable()
         {
             // Find objects within the interaction range
