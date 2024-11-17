@@ -48,13 +48,14 @@ public class Storage : Interactable
 
     public IEnumerator GoToNextLevel(){
         //Play win animation here
+        CharacterController2D.Instance.setCanMove(false);
         PlayerAnimationController animationController = CharacterController2D.Instance.GetComponent<PlayerAnimationController>();
         if (animationController != null)
         {
             // Play the level completion animation
             yield return animationController.PlayAnimationForDuration("no_no_last", 2.0f); // Adjust duration as needed
         }
-        CharacterController2D.Instance.setCanMove(false);
+        
         Debug.Log(paintingsCollected);
         yield return new WaitForSeconds(0.52f);
         Debug.Log(SceneManager.GetActiveScene().buildIndex +" : "+ SceneManager.sceneCountInBuildSettings);
