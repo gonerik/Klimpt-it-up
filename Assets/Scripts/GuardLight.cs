@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GuardLight : MonoBehaviour
 {   
-    public Action FrauCaught;
+    public Action onFrauCaught; // Event to notify when the player is caught
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -16,7 +16,7 @@ public class GuardLight : MonoBehaviour
                 CharacterController2D.Instance.currentPickup is Painting) {
                 IEnumerator coroutine = ReloadScene(3f);
                 StartCoroutine(coroutine);
-                FrauCaught.Invoke();
+                onFrauCaught?.Invoke();
             }
         }
     }
@@ -26,16 +26,16 @@ public class GuardLight : MonoBehaviour
         StartCoroutine(coroutine);
     }
 
+    public IEnumerator ReloadScene(float duration) // Changed to public
+    {
+        yield return new WaitForSeconds(duration);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
     private IEnumerator DisableLight(float duration) {
         PolygonCollider2D polygonCollider = GetComponent<PolygonCollider2D>();
         polygonCollider.enabled = false;
         yield return new WaitForSeconds(duration);
         polygonCollider.enabled = true;
-    }
-
-    private IEnumerator ReloadScene(float duration) {
-        CharacterController2D.Instance.setCanMove(false);
-        yield return new WaitForSeconds(duration);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

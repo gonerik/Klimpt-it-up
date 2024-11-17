@@ -53,6 +53,7 @@ namespace Intertables
         private static bool introPlayed = false;
         private PlayerAnimationController animationController;
 
+
         void Start()
         {
             animationController = GetComponent<PlayerAnimationController>();
@@ -72,6 +73,13 @@ namespace Intertables
             {
                 DialogueManager.Instance.StartDialogue(DialogueManager.Instance.dialogueLines);
                 introPlayed = true;
+            }
+            
+            // Subscribe to the GuardLight's FrauCaught event
+            GuardLight guardLight = FindObjectOfType<GuardLight>();
+            if (guardLight != null)
+            {
+                guardLight.onFrauCaught += HandlePlayerCaught;
             }
 
         }
@@ -178,6 +186,26 @@ namespace Intertables
                 body.velocity = Vector2.zero;
             }
         }
+        
+        private void HandlePlayerCaught()
+        {
+            Debug.Log("Handling player caught in CharacterController2D!");
+
+            // Play the caught animation and lock movement
+            StartCoroutine(animationController.PlayGetCaughtAnimation(
+                () => setCanMove(false),  // Lock movement
+                () => StartCoroutine(GuardLightReload())  // Restart scene after animation
+            ));
+        }
+
+        private IEnumerator GuardLightReload()
+        {
+            GuardLight guardLight = FindObjectOfType<GuardLight>();
+            if (guardLight != null)
+            {
+                yield return guardLight.ReloadScene(1.30f); // Adjust the duration as needed
+            }
+        }
 
         void HandleInteraction()
         {
@@ -250,6 +278,7 @@ namespace Intertables
                 currentPickup.transform.position = targetPosition;
             }
         }
+
 
         private void SpawnPuddle() {
             Vector3Int cellPosition = tilemap.WorldToCell(transform.position);

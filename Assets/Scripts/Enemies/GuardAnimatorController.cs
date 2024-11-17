@@ -2,81 +2,115 @@ using UnityEngine;
 
 public class GuardAnimatorController : MonoBehaviour
 {
-    [SerializeField] private PathFollower pathFollower;
-    [SerializeField] private GameObject guardLightPivot;
-    [SerializeField] private GuardLight guardLight;
+    [SerializeField] private PathFollower pathFollower; // Reference to the path-following logic
+    [SerializeField] private GameObject guardLightPivot; // Pivot point for rotating the guard light
+    [SerializeField] private GuardLight guardLight; // Reference to the guard's light
     private Animator animator;
-    private string currentSide;
-    private bool frauCaught = false;
-    private bool slipping = false;
+    private string currentSide; // Tracks the guard's current facing direction
+    private bool isFrauCaught = false; // Tracks if the player (Frau) has been caught
+    private bool isSlipping = false; // Tracks if the guard is slipping
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        if (!animator) Debug.LogError("Animator component not found!");
     }
 
     private void OnEnable()
     {
-        guardLight.FrauCaught += PlayCatchFrau;
-        pathFollower.slip += Slip;
+        guardLight.onFrauCaught += PlayCatchFrau; // Subscribe to FrauCaught event
+        pathFollower.slip += PlaySlipAnimation; // Subscribe to slip event
     }
 
-    void OnDisable()
+    private void OnDisable()
     {
-        guardLight.FrauCaught -= PlayCatchFrau;
-        pathFollower.slip -= Slip;
+        guardLight.onFrauCaught -= PlayCatchFrau; // Unsubscribe from FrauCaught event
+        pathFollower.slip -= PlaySlipAnimation; // Unsubscribe from slip event
     }
 
-    void Update()
+    private void Update()
     {
-        if (!frauCaught && !slipping) {
-            GameObject currentGuardWaypoint = pathFollower.waypoints[pathFollower.GetCurrentWaypointIndex()];
-            float XAbs = Mathf.Abs(currentGuardWaypoint.transform.position.x - transform.position.x);
-            if (XAbs > 0.1) {
-                if (currentGuardWaypoint.transform.position.x > transform.position.x) {
-                    animator.Play("Guard_walt_right");
-                    currentSide = "Right";
-                    guardLightPivot.transform.rotation = Quaternion.Euler(0, 0, -90);
-                } else {
-                    animator.Play("Guard_walk_left");
-                    currentSide = "Left";
-                    guardLightPivot.transform.rotation = Quaternion.Euler(0, 0, 90);
-                }
-            } else {
-                if (currentGuardWaypoint.transform.position.y > transform.position.y) {
-                    animator.Play("Guard_walk_back");
-                    currentSide = "Back";
-                    guardLightPivot.transform.rotation = Quaternion.Euler(0, 0, 0);
-                } else {
-                    animator.Play("Guard_walk_front");
-                    currentSide = "Front";
-                    guardLightPivot.transform.rotation = Quaternion.Euler(0, 0, 180);
-                }
+        if (!isFrauCaught && !isSlipping)
+        {
+            UpdateGuardMovementAndAnimation();
+        }
+    }
+
+    private void UpdateGuardMovementAndAnimation()
+    {
+        // Get the current waypoint the guard is heading toward
+        GameObject currentGuardWaypoint = pathFollower.waypoints[pathFollower.GetCurrentWaypointIndex()];
+        Vector3 waypointPosition = currentGuardWaypoint.transform.position;
+        Vector3 guardPosition = transform.position;
+
+        // Determine whether to play horizontal or vertical walking animations
+        float horizontalDifference = Mathf.Abs(waypointPosition.x - guardPosition.x);
+
+        if (horizontalDifference > 0.1f) // Horizontal movement
+        {
+            if (waypointPosition.x > guardPosition.x)
+            {
+                PlayAnimation("Guard_walk_right", "Right", -90);
+            }
+            else
+            {
+                PlayAnimation("Guard_walk_left", "Left", 90);
+            }
+        }
+        else // Vertical movement
+        {
+            if (waypointPosition.y > guardPosition.y)
+            {
+                PlayAnimation("Guard_walk_back", "Back", 0);
+            }
+            else
+            {
+                PlayAnimation("Guard_walk_front", "Front", 180);
             }
         }
     }
 
-    private void PlayCatchFrau() {
-        pathFollower.stopTimer += 4f;
-        pathFollower.isStopped = true;
-        frauCaught = true;
-        if (currentSide == "Right") {
-            animator.Play("Guard_pointing_right");
-        } else if (currentSide == "Left") {
-            animator.Play("Guard_pointing_left");
-        } else if (currentSide == "Back") {
-            animator.Play("Guard_pointing_back");
-        } else {
-            animator.Play("Guard_pointing_front");
+    private void PlayAnimation(string animationName, string side, float lightRotationZ)
+    {
+        if (currentSide != side) // Avoid redundant animation plays
+        {
+            animator.Play(animationName);
+            currentSide = side;
+            guardLightPivot.transform.rotation = Quaternion.Euler(0, 0, lightRotationZ);
         }
     }
 
-    private void Slip() {
-        slipping = true;
+    private void PlayCatchFrau()
+    {
+        Debug.Log("Guard caught Frau!");
+
+        pathFollower.stopTimer += 4f; // Add delay to stopTimer
+        pathFollower.isStopped = true; // Stop guard movement
+        isFrauCaught = true;
+
+        // Play the correct "pointing" animation based on the current side
+        string pointingAnimation = currentSide switch
+        {
+            "Right" => "Guard_pointing_right",
+            "Left" => "Guard_pointing_left",
+            "Back" => "Guard_pointing_back",
+            _ => "Guard_pointing_front", // Default to front if side is undefined
+        };
+        animator.Play(pointingAnimation);
+    }
+
+    private void PlaySlipAnimation()
+    {
+        Debug.Log("Guard slipping!");
+
+        isSlipping = true;
         animator.Play("Guard_slippering_animation");
     }
 
-    private void OnSlipAnimationEnd() {
-        slipping = false;
+    // Called at the end of the slipping animation via Animation Event
+    private void OnSlipAnimationEnd()
+    {
+        Debug.Log("Guard finished slipping.");
+        isSlipping = false;
     }
 }
