@@ -192,7 +192,7 @@ namespace Intertables
         private void HandlePlayerCaught()
         {
             Debug.Log("Handling player caught in CharacterController2D!");
-
+            setCanMove(false);
             // Play the caught animation and lock movement
             StartCoroutine(animationController.PlayGetCaughtAnimation(
                 () => setCanMove(false),  // Lock movement
