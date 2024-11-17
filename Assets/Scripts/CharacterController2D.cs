@@ -80,6 +80,10 @@ namespace Intertables
 
         void Update()
         {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                SettingsMenu.instance.Pause();
+            }
             // Movement input
             horizontal = Input.GetAxisRaw("Horizontal");
             vertical = Input.GetAxisRaw("Vertical");
@@ -97,6 +101,8 @@ namespace Intertables
 			if (Input.GetKeyDown("1")) {
 				SpawnPuddle();
 			}
+
+            
             
             HandleAnimation(); // Call animation handler
 
