@@ -171,6 +171,7 @@ namespace Intertables
                     Debug.Log("Put down a mop sign.");
                     currentInteractable = currentPickup;
                     SpawnMopSign();
+                    if (!isHoldingPickUpObject) settoMaxSpeed();
                 }
                 else if (currentInteractable != null)
                 {
