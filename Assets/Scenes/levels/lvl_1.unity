@@ -1258,6 +1258,10 @@ PrefabInstance:
       value: Guard
       objectReference: {fileID: 0}
     - target: {fileID: 8897211938680884663, guid: ccf1cec2bfa8a0a4f97d81646603a795, type: 3}
+      propertyPath: waypoints.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897211938680884663, guid: ccf1cec2bfa8a0a4f97d81646603a795, type: 3}
       propertyPath: waypoints.Array.data[0]
       value: 
       objectReference: {fileID: 894631697}
@@ -3022,8 +3026,9 @@ GameObject:
   - component: {fileID: 1106820938}
   - component: {fileID: 1106820937}
   - component: {fileID: 1106820941}
+  - component: {fileID: 1106820942}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Dialogue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3133,33 +3138,126 @@ MonoBehaviour:
   dialogueLines:
   - speakerName: tyui
     text: Lieutenant, exact arrival time of the Russian troops?
-    voiceLine: {fileID: 0}
+    voiceLine: {fileID: 8300000, guid: dafa2ea93a642ad4dbb7d164c4b1208c, type: 3}
   - speakerName: tdsf
     text: "Hmmmmm\u2026.Understood. 24 hours to begin a total retreat. Very good.
       Lieutenant, order your commanders to prepare their men for immediate departure."
-    voiceLine: {fileID: 0}
-  - speakerName: tdsf
-    text: "Hmmmmm\u2026.Understood. 24 hours to begin a total retreat. Very good.
-      Lieutenant, order your commanders to prepare their men for immediate departure."
-    voiceLine: {fileID: 0}
+    voiceLine: {fileID: 8300000, guid: 4e39e8542bc5fd848ab61d67704cb236, type: 3}
   - speakerName: tdsf
     text: As soon as you have secured everything of value, gather your company in
       front of Immendorf Castle and begin the march to the given coordinates.
-    voiceLine: {fileID: 0}
+    voiceLine: {fileID: 8300000, guid: c896470786aabb444a35e56ac67d8436, type: 3}
   - speakerName: tdsf
     text: 'Before you leave, however, you will spread your entire fuel depot in the
       castle and set it on fire.
 
 '
-    voiceLine: {fileID: 0}
+    voiceLine: {fileID: 8300000, guid: ac3559479c77b6c40b1a5417ae052a94, type: 3}
   - speakerName: tdsf
     text: I don't care what happens to the paintings! You set these paintings on
       fire along with the castle, the rest doesn't bother me!
-    voiceLine: {fileID: 0}
+    voiceLine: {fileID: 8300000, guid: 0519ddceeb45a7643966d8cccf74d966, type: 3}
   - speakerName: tdsf
     text: We'll leave nothing but ashes, do you understand me, Lieutenant?
-    voiceLine: {fileID: 0}
+    voiceLine: {fileID: 8300000, guid: 979cfba2c0ff88c45b8554b8798da963, type: 3}
   playerController: {fileID: 2066104815}
+  audioSource: {fileID: 1106820942}
+--- !u!82 &1106820942
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106820936}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 5131d88995968694fb8dbac4096a1d20, type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1140696960
 GameObject:
   m_ObjectHideFlags: 0
@@ -3678,6 +3776,127 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74d7bc2362f71184b9ca94949567cdeb, type: 3}
+--- !u!1001 &1743347066
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2715095215212681526, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715095215212681526, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715095215212681526, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715095215212681526, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715095215212681526, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715095215212681526, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715095215212681526, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715095215212681526, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715095215212681526, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715095215212681526, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715095215212681526, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715095215212681526, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715095215212681526, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715095215212681526, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715095215212681526, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715095215212681526, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715095215212681526, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715095215212681526, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715095215212681526, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715095215212681526, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5853521417793617167, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5853521417793617167, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5946244224955911114, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_Name
+      value: SettingsMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399861050103989866, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399861050103989866, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399861050103989866, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8217974579812180102, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
 --- !u!1 &1850277344
 GameObject:
   m_ObjectHideFlags: 0
@@ -5507,3 +5726,4 @@ SceneRoots:
   - {fileID: 1945237177}
   - {fileID: 356281942}
   - {fileID: 327732134}
+  - {fileID: 1743347066}

@@ -3,6 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 namespace Intertables
@@ -65,7 +66,8 @@ namespace Intertables
             }
             body = GetComponent<Rigidbody2D>();
             runSpeed = maxRunSpeed;
-            DialogueManager.Instance.StartDialogue(DialogueManager.Instance.dialogueLines);
+            if (SceneManager.GetActiveScene().buildIndex == 1) 
+                DialogueManager.Instance.StartDialogue(DialogueManager.Instance.dialogueLines);
         }
 
         public void settoMaxSpeed()
