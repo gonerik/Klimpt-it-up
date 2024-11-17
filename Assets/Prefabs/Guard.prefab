@@ -143,6 +143,8 @@ MonoBehaviour:
   - {fileID: 0}
   speed: 7
   reachDistance: 0.1
+  puddleImmunityTimer: 0
+  slowDifference: 2
 --- !u!114 &8883474761054306675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,7 +294,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 6
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   m_Color: {r: 1, g: 1, b: 0.10980392, a: 0.07058824}
   m_FlipX: 0
