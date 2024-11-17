@@ -3,14 +3,15 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
+using System.Collections;
 
 namespace Intertables
 {
     public class CharacterController2D : MonoBehaviour
     {
-        [Header("Movement")] 
-        public static CharacterController2D Instance;
+        [Header("Movement")] public static CharacterController2D Instance;
         private Rigidbody2D body;
         private bool canMove = true;
 
@@ -22,40 +23,38 @@ namespace Intertables
         [SerializeField] private float maxRunSpeed = 8f;
         [SerializeField] private float minRunSpeed = 4f;
 
-        [Header("Interactable Variables")]
-        [SerializeField] private float interactionRange = 2f; // How close you need to be to interact
+        [Header("Interactable Variables")] [SerializeField]
+        private float interactionRange = 2f; // How close you need to be to interact
+
         [SerializeField] private LayerMask interactableLayer; // Set this to the layer of interactable objects
         [SerializeField] private KeyCode interactionKey = KeyCode.E; // Key to press for interaction
         public Interactable currentInteractable;
 
-        [Header("PickUpObjects")]
-        public PickUpObjects currentPickup;
+        [Header("PickUpObjects")] public PickUpObjects currentPickup;
         public Vector3 offset = new Vector3(0, -1, 0);
         public float pickUpMoveSpeed = 5f;
         public float amplitude = 0.2f;
         private float floatTimer = 0f;
         public float floatSpeed = 2f;
 
-	[FormerlySerializedAs("Puddle")]
-    [Header("MopUsage")]
-	[SerializeField] private GameObject puddle;
-	private GameObject CurrentPuddle;
+        [FormerlySerializedAs("Puddle")] [Header("MopUsage")] [SerializeField]
+        private GameObject puddle;
 
-	[SerializeField] private Tilemap tilemap;
-        [Header("Stealing")]
-        private bool isHoldingPickUpObject = false;
-        
+        private GameObject CurrentPuddle;
+        [SerializeField] private Tilemap tilemap;
+        [Header("Stealing")] private bool isHoldingPickUpObject = false;
+
         public bool GetIsHoldingPickUpObject() => isHoldingPickUpObject;
         public void SetIsHoldingPickUpObject(bool isHolding) => isHoldingPickUpObject = isHolding;
-        [Header("Animation")]
-        private Animator animator;
+        [Header("Animation")] private Animator animator;
         private SpriteRenderer spriteRenderer;
         private string lastDirection = "Front"; // Keeps track of the last direction
         private static bool introPlayed = false;
+        private PlayerAnimationController animationController;
 
         void Start()
         {
-            
+            animationController = GetComponent<PlayerAnimationController>();
             animator = GetComponentInChildren<Animator>();
             if (Instance == null)
             {
@@ -65,6 +64,7 @@ namespace Intertables
             {
                 Debug.LogError("CharacterController2D already exists!");
             }
+
             body = GetComponent<Rigidbody2D>();
             runSpeed = maxRunSpeed;
             if (SceneManager.GetActiveScene().buildIndex == 1 && !introPlayed)
@@ -72,7 +72,7 @@ namespace Intertables
                 DialogueManager.Instance.StartDialogue(DialogueManager.Instance.dialogueLines);
                 introPlayed = true;
             }
-            
+
         }
 
         public void settoMaxSpeed()
@@ -91,34 +91,33 @@ namespace Intertables
             {
                 SettingsMenu.instance.Pause();
             }
-            // Movement input
+
             horizontal = Input.GetAxisRaw("Horizontal");
             vertical = Input.GetAxisRaw("Vertical");
 
             DetectInteractable();
-            // Interaction
             HandleInteraction();
 
-            // Carrying the painting
             if (isHoldingPickUpObject && currentPickup != null)
             {
                 HandleCarriedObject();
             }
 
-            if (Input.GetKeyDown("1")&& currentPickup ==null)
+            if (Input.GetKeyDown("1") && currentPickup == null)
             {
                 SpawnPuddle();
             }
 
             // Delegate walking animation handling to PlayerAnimationController
             animationController.PlayWalkAnimation(horizontal, vertical, ref lastDirection, canMove);
+
         }
 
-		}
         void DetectInteractable()
         {
             // Find objects within the interaction range
-            Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, interactionRange, interactableLayer);
+            Collider2D[] hitColliders =
+                Physics2D.OverlapCircleAll(transform.position, interactionRange, interactableLayer);
 
             if (hitColliders.Length > 0)
             {
@@ -234,7 +233,8 @@ namespace Intertables
             float distance = Vector3.Distance(currentPickup.transform.position, targetPosition);
             if (distance > 0.1f)
             {
-                currentPickup.transform.position = Vector3.Lerp(currentPickup.transform.position, targetPosition, pickUpMoveSpeed * Time.deltaTime);
+                currentPickup.transform.position = Vector3.Lerp(currentPickup.transform.position, targetPosition,
+                    pickUpMoveSpeed * Time.deltaTime);
             }
             else
             {
@@ -242,7 +242,8 @@ namespace Intertables
             }
         }
 
-        private void SpawnPuddle() {
+        private void SpawnPuddle()
+        {
             Vector3Int cellPosition = tilemap.WorldToCell(transform.position);
             TileBase tileAtPosition = tilemap.GetTile(cellPosition);
 
@@ -255,32 +256,34 @@ namespace Intertables
             {
                 Destroy(CurrentPuddle);
             }
-               Vector3 tileCenterPosition = tilemap.GetCellCenterWorld(cellPosition);
-                CurrentPuddle = Instantiate(puddle, tileCenterPosition, Quaternion.identity);
 
-                // Start coroutine to play the animation and lock movement
-                StartCoroutine(PlayPuddleAnimationAndLockMovement());
-            }
+            Vector3 tileCenterPosition = tilemap.GetCellCenterWorld(cellPosition);
+            CurrentPuddle = Instantiate(puddle, tileCenterPosition, Quaternion.identity);
 
-            private IEnumerator PlayPuddleAnimationAndLockMovement()
-            {
-                // Lock movement
-                setCanMove(false);
+            // Start coroutine to play the animation and lock movement
+            StartCoroutine(PlayPuddleAnimationAndLockMovement());
+        }
 
-                // Play mopping animation
-                animationController.PlayMoppingAnimation(this, 1.1f); // Use 1.1 seconds for animation duration
+        private IEnumerator PlayPuddleAnimationAndLockMovement()
+        {
+            // Lock movement
+            setCanMove(false);
 
-                // Wait for animation to finish
-                yield return new WaitForSeconds(1.1f);
+            // Play mopping animation
+            animationController.PlayMoppingAnimation(this, 1.1f); // Use 1.1 seconds for animation duration
 
-                // Unlock movement
-                setCanMove(true);
-            }
+            // Wait for animation to finish
+            yield return new WaitForSeconds(1.1f);
+
+            // Unlock movement
+            setCanMove(true);
+        }
 
 
-		private void SpawnMopSign() {
+        private void SpawnMopSign()
+        {
             if (currentPickup is not MopSign) return;
-            Vector3Int cellPosition = tilemap.WorldToCell(transform.position); 
+            Vector3Int cellPosition = tilemap.WorldToCell(transform.position);
             Vector3 tileCenterPosition = tilemap.GetCellCenterWorld(cellPosition);
             currentPickup.GetComponent<Collider2D>().enabled = true;
             currentPickup.transform.position = tileCenterPosition;
@@ -293,7 +296,5 @@ namespace Intertables
         {
             canMove = value;
         }
-  
-
-}
-}
+    }
+}   
