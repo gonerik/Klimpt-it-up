@@ -141,7 +141,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
   speed: 7
   reachDistance: 0.1
   isStopped: 0
@@ -223,13 +222,6 @@ MonoBehaviour:
   pathFollower: {fileID: 8897211938680884663}
   guardLightPivot: {fileID: 2662556088070022396}
   guardLight: {fileID: 1453301675859291189}
-  catchFrauSounds:
-  - {fileID: 8300000, guid: bf5e3b55b2253b34e96b5c54f9d0c453, type: 3}
-  - {fileID: 8300000, guid: 2115025b45cac114aa9e778bef8131a5, type: 3}
-  - {fileID: 8300000, guid: c50ef991e47925c41b19b04b29208e8b, type: 3}
-  - {fileID: 8300000, guid: b5e0f7af64c04134fb83e0d1a5224fb6, type: 3}
-  audioSource: {fileID: 6003929754848362282}
-  currentSide: Back
 --- !u!1 &7237573303261798161
 GameObject:
   m_ObjectHideFlags: 0

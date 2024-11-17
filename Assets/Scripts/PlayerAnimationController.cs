@@ -11,6 +11,8 @@ namespace Intertables
 
         private string lastMovementDirection = "Front"; // Tracks the last movement direction for stealing animations
 
+        
+        
         private void Awake()
         {
             animator = GetComponentInChildren<Animator>();
@@ -70,6 +72,7 @@ namespace Intertables
                 currentAnimation = targetAnimation;
             }
         }
+        
 
         // Determines idle animation based on the last direction
         private string GetIdleAnimation(string lastDirection)
@@ -83,7 +86,54 @@ namespace Intertables
                 _ => "Player_idle", // Default idle animation
             };
         }
+        
+        public IEnumerator PlayGetCaughtAnimation(System.Action lockMovementCallback, System.Action unlockMovementCallback)
+        {
+            // Lock player movement
+            lockMovementCallback?.Invoke();
 
+            Debug.Log("Playing Player_get_caught animation");
+
+            // Ensure the animation state exists
+            if (!animator.HasState(0, Animator.StringToHash("Player_get_caught")))
+            {
+                Debug.LogError("Animation state 'Player_get_caught' not found!");
+                yield break;
+            }
+
+            // Play the get caught animation
+            animator.Play("Player_get_caught");
+
+            // Wait for the animation to complete (adjust the duration to match your animation clip)
+            yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+
+            // Unlock player movement
+            unlockMovementCallback?.Invoke();
+        }
+
+        public IEnumerator PlayLevelCompletionAnimation(System.Action lockMovementCallback, System.Action unlockMovementCallback)
+        {
+            // Lock player movement
+            lockMovementCallback?.Invoke();
+
+            Debug.Log("Playing level completion animation: no_no_last");
+
+            // Ensure the animation state exists
+            if (!animator.HasState(0, Animator.StringToHash("no_no_last")))
+            {
+                Debug.LogError("Animation state 'no_no_last' not found!");
+                yield break;
+            }
+
+            // Play the no_no_last animation
+            animator.Play("no_no_last");
+
+            // Wait for the animation to complete (adjust duration to match your clip)
+            yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+
+            // Unlock player movement
+            unlockMovementCallback?.Invoke();
+        }
         // Starts the stealing animation and locks movement for the duration
         public IEnumerator PlayStealingAnimation(System.Action lockMovementCallback, System.Action unlockMovementCallback)
         {
