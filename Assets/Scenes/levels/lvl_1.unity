@@ -38,6 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3025,6 +3026,7 @@ GameObject:
   - component: {fileID: 1106820938}
   - component: {fileID: 1106820937}
   - component: {fileID: 1106820942}
+  - component: {fileID: 1106820943}
   m_Layer: 5
   m_Name: Dialogue
   m_TagString: Untagged
@@ -3214,6 +3216,57 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1106820943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106820936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 548cb15358bebef42a58f5da20fa529a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialoguePanel: {fileID: 1106820936}
+  speakerNameText: {fileID: 1140696961}
+  dialogueText: {fileID: 1065753344}
+  dialogueLines:
+  - speakerName: General Hans Wurstvernichter
+    text: Lieutenant, exact arrival time of the Russian troops?
+    voiceLine: {fileID: 8300000, guid: dafa2ea93a642ad4dbb7d164c4b1208c, type: 3}
+  - speakerName: General Hans Wurstvernichter
+    text: "Hmmmmm\u2026.Understood. 24 hours to begin a total retreat. Very good.
+      Lieutenant, order your commanders to prepare their men for immediate departure."
+    voiceLine: {fileID: 8300000, guid: 4e39e8542bc5fd848ab61d67704cb236, type: 3}
+  - speakerName: General Hans Wurstvernichter
+    text: As soon as you have secured everything of value, gather your company in
+      front of Immendorf Castle and begin the march to the given coordinates.
+    voiceLine: {fileID: 8300000, guid: c896470786aabb444a35e56ac67d8436, type: 3}
+  - speakerName: General Hans Wurstvernichter
+    text: 'Before you leave, however, you will spread your entire fuel depot in the
+      castle and set it on fire.
+
+'
+    voiceLine: {fileID: 8300000, guid: ac3559479c77b6c40b1a5417ae052a94, type: 3}
+  - speakerName: General Hans Wurstvernichter
+    text: I don't care what happens to the paintings! You set these paintings on
+      fire along with the castle, the rest doesn't bother me!
+    voiceLine: {fileID: 8300000, guid: 0519ddceeb45a7643966d8cccf74d966, type: 3}
+  - speakerName: General Hans Wurstvernichter
+    text: We'll leave nothing but ashes, do you understand me, Lieutenant?
+    voiceLine: {fileID: 8300000, guid: 979cfba2c0ff88c45b8554b8798da963, type: 3}
+  - speakerName: "Gertrude-Britney J\xE4ger"
+    text: What? He is burning the castle?
+    voiceLine: {fileID: 0}
+  - speakerName: "Gertrude-Britney J\xE4ger"
+    text: I can`t let this happen! My arts professor wouldn`t forgive me.
+    voiceLine: {fileID: 0}
+  - speakerName: "Gertrude-Britney J\xE4ger"
+    text: Ah-ah! Not at my watch!
+    voiceLine: {fileID: 0}
+  playerController: {fileID: 2066104815}
+  audioSource: {fileID: 1106820942}
 --- !u!1 &1140696960
 GameObject:
   m_ObjectHideFlags: 0
@@ -3415,10 +3468,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6111227965828955193, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2066104816}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
 --- !u!1001 &1268738326
 PrefabInstance:
@@ -3715,11 +3765,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2710689298471802539, guid: d697dc2c9c5b84445b535aaebe99a1ce, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.713759
+      value: 2.82
       objectReference: {fileID: 0}
     - target: {fileID: 2710689298471802539, guid: d697dc2c9c5b84445b535aaebe99a1ce, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.9833274
+      value: 2.74
       objectReference: {fileID: 0}
     - target: {fileID: 2710689298471802539, guid: d697dc2c9c5b84445b535aaebe99a1ce, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5691,73 +5741,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2029408522}
   m_CullTransparentMesh: 1
---- !u!1 &2066104813 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6111227965828955193, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
-  m_PrefabInstance: {fileID: 1196489948}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2066104815 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2515695683486998709, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
   m_PrefabInstance: {fileID: 1196489948}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2066104813}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1356d226b9ee0f4192ae42ccfa3dd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2066104816
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2066104813}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 548cb15358bebef42a58f5da20fa529a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialoguePanel: {fileID: 1106820936}
-  speakerNameText: {fileID: 1140696961}
-  dialogueText: {fileID: 1065753344}
-  dialogueLines:
-  - speakerName: General Hans Wurstvernichter
-    text: Lieutenant, exact arrival time of the Russian troops?
-    voiceLine: {fileID: 8300000, guid: dafa2ea93a642ad4dbb7d164c4b1208c, type: 3}
-  - speakerName: General Hans Wurstvernichter
-    text: "Hmmmmm\u2026.Understood. 24 hours to begin a total retreat. Very good.
-      Lieutenant, order your commanders to prepare their men for immediate departure."
-    voiceLine: {fileID: 8300000, guid: 4e39e8542bc5fd848ab61d67704cb236, type: 3}
-  - speakerName: General Hans Wurstvernichter
-    text: As soon as you have secured everything of value, gather your company in
-      front of Immendorf Castle and begin the march to the given coordinates.
-    voiceLine: {fileID: 8300000, guid: c896470786aabb444a35e56ac67d8436, type: 3}
-  - speakerName: General Hans Wurstvernichter
-    text: 'Before you leave, however, you will spread your entire fuel depot in the
-      castle and set it on fire.
-
-'
-    voiceLine: {fileID: 8300000, guid: ac3559479c77b6c40b1a5417ae052a94, type: 3}
-  - speakerName: General Hans Wurstvernichter
-    text: I don't care what happens to the paintings! You set these paintings on
-      fire along with the castle, the rest doesn't bother me!
-    voiceLine: {fileID: 8300000, guid: 0519ddceeb45a7643966d8cccf74d966, type: 3}
-  - speakerName: General Hans Wurstvernichter
-    text: We'll leave nothing but ashes, do you understand me, Lieutenant?
-    voiceLine: {fileID: 8300000, guid: 979cfba2c0ff88c45b8554b8798da963, type: 3}
-  - speakerName: "Gertrude-Britney J\xE4ger"
-    text: What? He is burning the castle?
-    voiceLine: {fileID: 0}
-  - speakerName: "Gertrude-Britney J\xE4ger"
-    text: I can`t let this happen! My arts professor wouldn`t forgive me.
-    voiceLine: {fileID: 0}
-  - speakerName: "Gertrude-Britney J\xE4ger"
-    text: Ah-ah! Not at my watch!
-    voiceLine: {fileID: 0}
-  playerController: {fileID: 2066104815}
-  audioSource: {fileID: 1106820942}
 --- !u!1001 &1916770849317900576
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5821,9 +5815,9 @@ SceneRoots:
   m_Roots:
   - {fileID: 742752537}
   - {fileID: 1501619848}
+  - {fileID: 1106820940}
   - {fileID: 1196489948}
   - {fileID: 1445196726}
-  - {fileID: 1106820940}
   - {fileID: 719442549}
   - {fileID: 1268738326}
   - {fileID: 356281942}
