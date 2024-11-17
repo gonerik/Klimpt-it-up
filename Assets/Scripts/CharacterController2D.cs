@@ -52,9 +52,11 @@ namespace Intertables
         private Animator animator;
         private SpriteRenderer spriteRenderer;
         private string lastDirection = "Front"; // Keeps track of the last direction
+        private static bool introPlayed = false;
 
         void Start()
         {
+            
             animator = GetComponentInChildren<Animator>();
             if (Instance == null)
             {
@@ -66,8 +68,12 @@ namespace Intertables
             }
             body = GetComponent<Rigidbody2D>();
             runSpeed = maxRunSpeed;
-            if (SceneManager.GetActiveScene().buildIndex == 1) 
+            if (SceneManager.GetActiveScene().buildIndex == 1 && !introPlayed)
+            {
                 DialogueManager.Instance.StartDialogue(DialogueManager.Instance.dialogueLines);
+                introPlayed = true;
+            }
+            
         }
 
         public void settoMaxSpeed()
@@ -103,6 +109,8 @@ namespace Intertables
 			if (Input.GetKeyDown("1") && currentPickup ==null) {
 				SpawnPuddle();
 			}
+
+            
 
             
             
@@ -236,23 +244,24 @@ namespace Intertables
             }
         }
 
-        void OnDrawGizmosSelected()
-        {
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(transform.position, interactionRange);
+        private void SpawnPuddle() {
+            Vector3Int cellPosition = tilemap.WorldToCell(transform.position);
+            TileBase tileAtPosition = tilemap.GetTile(cellPosition);
+
+            if (tileAtPosition != null && tileAtPosition.name == "Carpet")
+            {
+                return;
+            }
+
+            if (CurrentPuddle != null)
+            {
+                Destroy(CurrentPuddle);
+            }
+
+            Vector3 tileCenterPosition = tilemap.GetCellCenterWorld(cellPosition);
+            CurrentPuddle = Instantiate(puddle, tileCenterPosition, Quaternion.identity);
         }
-		
-		private void SpawnPuddle() {
-			if (CurrentPuddle != null)
-			{
-				Destroy(CurrentPuddle);
-			}
 
-			Vector3Int cellPosition = tilemap.WorldToCell(transform.position); 
-			Vector3 tileCenterPosition = tilemap.GetCellCenterWorld(cellPosition);
-
-			CurrentPuddle = Instantiate(puddle, tileCenterPosition, Quaternion.identity);
-		}
 
 		private void SpawnMopSign() {
             if (currentPickup is not MopSign) return;
