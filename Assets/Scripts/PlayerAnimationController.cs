@@ -7,6 +7,9 @@ namespace Intertables
     {
         private Animator animator;
         private string currentAnimation = ""; // Tracks the current animation
+        private string lastDirection = "";   // Tracks the last direction for idle or stealing animations
+
+        private string lastMovementDirection = "Front"; // Tracks the last movement direction for stealing animations
 
         private void Awake()
         {
@@ -17,9 +20,9 @@ namespace Intertables
             }
         }
 
+        // Handles walking animations
         public void PlayWalkAnimation(float horizontal, float vertical, ref string lastDirection, bool canMove)
         {
-            // If movement is locked, play idle animation
             if (!canMove || (horizontal == 0 && vertical == 0))
             {
                 // Play idle animation based on last direction
@@ -39,24 +42,28 @@ namespace Intertables
             {
                 targetAnimation = "Player_walk_left";
                 lastDirection = "Left";
+                lastMovementDirection = "Left"; 
             }
             else if (horizontal > 0)
             {
                 targetAnimation = "Player_walk_right";
                 lastDirection = "Right";
+                lastMovementDirection = "Right"; 
             }
             else if (vertical > 0)
             {
                 targetAnimation = "Player_walk_back";
                 lastDirection = "Back";
+                lastMovementDirection = "Back"; 
             }
             else if (vertical < 0)
             {
                 targetAnimation = "Walk_front_animation";
                 lastDirection = "Front";
+                lastMovementDirection = "Front"; 
             }
 
-            // Only play animation if it's not already playing
+            // Only play the animation if it's not already playing
             if (currentAnimation != targetAnimation)
             {
                 animator.Play(targetAnimation);
@@ -64,6 +71,7 @@ namespace Intertables
             }
         }
 
+        // Determines idle animation based on the last direction
         private string GetIdleAnimation(string lastDirection)
         {
             return lastDirection switch
@@ -76,12 +84,45 @@ namespace Intertables
             };
         }
 
+        // Starts the stealing animation and locks movement for the duration
+        public IEnumerator PlayStealingAnimation(System.Action lockMovementCallback, System.Action unlockMovementCallback)
+        {
+            // Lock movement
+            lockMovementCallback?.Invoke();
+
+            // Determine which stealing animation to play
+            string stealingAnimation = GetStealingAnimation(lastMovementDirection);
+            Debug.Log("Playing stealing animation: " + stealingAnimation);
+            animator.Play(stealingAnimation);
+
+            yield return new WaitForSeconds(0.52f); // 52 milliseconds = 0.52 seconds
+
+            // Unlock movement
+            unlockMovementCallback?.Invoke();
+        }
+
+        // Determines stealing animation based on the last direction
+        private string GetStealingAnimation(string  lastMovementDirection)
+        {
+            Debug.Log("Determining stealing animation for lastMovementDirection: " + lastMovementDirection);
+            return lastMovementDirection switch
+            {
+                "Left" => "Stealing_left",
+                "Right" => "Stealing_right",
+                "Back" => "Stealing_back",
+                _ => "Stealing_back" // Default if undefined
+            };
+        }
+
+
+        // Plays a specific animation for a given duration
         public IEnumerator PlayAnimationForDuration(string animationName, float duration)
         {
             animator.Play(animationName); // Play the specified animation
             yield return new WaitForSeconds(duration); // Wait for the animation duration
         }
 
+        // Handles mopping animation
         public void PlayMoppingAnimation(MonoBehaviour caller, float duration)
         {
             caller.StartCoroutine(PlayAnimationForDuration("Player_mopping", duration));
