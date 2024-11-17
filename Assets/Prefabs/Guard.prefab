@@ -143,6 +143,10 @@ MonoBehaviour:
   - {fileID: 0}
   speed: 7
   reachDistance: 0.1
+  isStopped: 0
+  stopTimer: 0
+  puddleImmunityTimer: 0
+  slowDifference: 2
 --- !u!114 &8883474761054306675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,7 +236,7 @@ GameObject:
   - component: {fileID: 1453301675859291189}
   m_Layer: 0
   m_Name: GuardLight
-  m_TagString: Untagged
+  m_TagString: GuardLight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
