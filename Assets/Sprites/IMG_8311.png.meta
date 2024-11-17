@@ -126,12 +126,12 @@ TextureImporter:
       name: IMG_8311_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 1
         y: 0
         width: 639
-        height: 193
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 190
+      alignment: 9
+      pivot: {x: 0.5, y: 2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
