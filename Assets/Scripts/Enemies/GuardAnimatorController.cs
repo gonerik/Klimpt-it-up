@@ -6,7 +6,7 @@ public class GuardAnimatorController : MonoBehaviour
     [SerializeField] private GameObject guardLightPivot; // Pivot point for rotating the guard light
     [SerializeField] private GuardLight guardLight; // Reference to the guard's light
     private Animator animator;
-    public string currentSide; // Tracks the guard's current facing direction
+    private string currentSide; // Tracks the guard's current facing direction
     private bool isFrauCaught = false; // Tracks if the player (Frau) has been caught
     private bool isSlipping = false; // Tracks if the guard is slipping
 
@@ -39,11 +39,11 @@ public class GuardAnimatorController : MonoBehaviour
     private void UpdateGuardMovementAndAnimation()
     {
         // Get the current waypoint the guard is heading toward
-        if (pathFollower.waypoints.Length > 1) {
+        if (pathFollower.waypoints.Length > 1)
+        {
             GameObject currentGuardWaypoint = pathFollower.waypoints[pathFollower.GetCurrentWaypointIndex()];
             Vector3 waypointPosition = currentGuardWaypoint.transform.position;
             Vector3 guardPosition = transform.position;
-
             // Determine whether to play horizontal or vertical walking animations
             float horizontalDifference = Mathf.Abs(waypointPosition.x - guardPosition.x);
 
@@ -68,17 +68,6 @@ public class GuardAnimatorController : MonoBehaviour
                 {
                     PlayAnimation("Guard_walk_front", "Front", 180);
                 }
-            }
-        } else {
-            animator.Play("Guard_idle");
-            if (currentSide == "Left") {
-                guardLightPivot.transform.rotation = Quaternion.Euler(0, 0, -90);
-            } else if (currentSide == "Right") {
-                guardLightPivot.transform.rotation = Quaternion.Euler(0, 0, 90);
-            } else if (currentSide == "Back") {
-                guardLightPivot.transform.rotation = Quaternion.Euler(0, 0, 0);
-            } else {
-                guardLightPivot.transform.rotation = Quaternion.Euler(0, 0, 180);
             }
         }
     }
