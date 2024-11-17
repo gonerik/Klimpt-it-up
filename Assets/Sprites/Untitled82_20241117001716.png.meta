@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: aa52b45018ffbee4f9b0e6c16da5d5a4
+guid: 83d51975704e5a8409f8f4587d6e6727
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 640
+  spritePixelsToUnits: 500
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -123,22 +123,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: IMG_8311_0
+      name: Untitled82_20241117001716_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 0
-        width: 639
-        height: 190
-      alignment: 9
-      pivot: {x: 0.5, y: 2}
+        x: 71
+        y: 21
+        width: 1168
+        height: 574
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9ab46935b6814aa4b9cb850bc977f773
-      internalID: 398503877
+      spriteID: 1e646030695845a459999ba5e497bf2b
+      internalID: -1010622356
       vertices: []
       indices: 
       edges: []
@@ -154,8 +154,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      IMG_8311_0: 398503877
-      IMG_8311_1: -1226170606
+      Untitled82_20241117001716_0: -1010622356
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
