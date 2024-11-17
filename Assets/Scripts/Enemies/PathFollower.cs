@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PathFollower : MonoBehaviour
@@ -10,6 +11,7 @@ public class PathFollower : MonoBehaviour
     private bool isStopped = false;
     private float stopTimer = 0f;
     private float puddleImmunityTimer = 0f;
+    public Action slip;
 
     private void FixedUpdate()
     {
