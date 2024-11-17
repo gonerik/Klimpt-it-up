@@ -242,23 +242,24 @@ namespace Intertables
             }
         }
 
-        void OnDrawGizmosSelected()
-        {
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(transform.position, interactionRange);
+        private void SpawnPuddle() {
+            Vector3Int cellPosition = tilemap.WorldToCell(transform.position);
+            TileBase tileAtPosition = tilemap.GetTile(cellPosition);
+
+            if (tileAtPosition != null && tileAtPosition.name == "Carpet")
+            {
+                return;
+            }
+
+            if (CurrentPuddle != null)
+            {
+                Destroy(CurrentPuddle);
+            }
+
+            Vector3 tileCenterPosition = tilemap.GetCellCenterWorld(cellPosition);
+            CurrentPuddle = Instantiate(puddle, tileCenterPosition, Quaternion.identity);
         }
-		
-		private void SpawnPuddle() {
-			if (CurrentPuddle != null)
-			{
-				Destroy(CurrentPuddle);
-			}
 
-			Vector3Int cellPosition = tilemap.WorldToCell(transform.position); 
-			Vector3 tileCenterPosition = tilemap.GetCellCenterWorld(cellPosition);
-
-			CurrentPuddle = Instantiate(puddle, tileCenterPosition, Quaternion.identity);
-		}
 
 		private void SpawnMopSign() {
             if (currentPickup is not MopSign) return;
