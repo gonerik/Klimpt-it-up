@@ -1,15 +1,16 @@
 using System.Collections;
+using Intertables;
 using UnityEngine;
 
-public class MopSign : MonoBehaviour
+public class MopSign : PickUpObjects
 {
-    private void Awake()
+    public override void Interact()
     {
-        StartCoroutine("Dispose", 0f);
-    }
-
-    private IEnumerator Dispose(){
-        yield return new WaitForSeconds(5);
-        Destroy(gameObject);
+        base.Interact();
+        // Assign the player as the target
+        
+        // Optionally disable collider to avoid further interactions
+        GetComponent<Collider2D>().enabled = false;
+        CharacterController2D.Instance.settoMinSpeed();
     }
 }

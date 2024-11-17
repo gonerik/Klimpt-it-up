@@ -3,6 +3,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
+
 namespace Intertables
 {
     public class CharacterController2D : MonoBehaviour
@@ -34,27 +36,21 @@ namespace Intertables
         private float floatTimer = 0f;
         public float floatSpeed = 2f;
 
-	[Header("MopUsage")]
-	[SerializeField] private GameObject Puddle;
+	[FormerlySerializedAs("Puddle")]
+    [Header("MopUsage")]
+	[SerializeField] private GameObject puddle;
 	private GameObject CurrentPuddle;
-
-	[Header("MopSignUsage")]
-	[SerializeField] private GameObject MopSign;
-	private GameObject CurrentMopSign;
 
 	[SerializeField] private Tilemap tilemap;
         [Header("Stealing")]
-        private bool isHoldingPainting = false;
+        private bool isHoldingPickUpObject = false;
         
-        public bool GetIsHoldingPainting() => isHoldingPainting;
-        public void SetIsHoldingPainting(bool isHolding) => isHoldingPainting = isHolding;
+        public bool GetIsHoldingPickUpObject() => isHoldingPickUpObject;
+        public void SetIsHoldingPickUpObject(bool isHolding) => isHoldingPickUpObject = isHolding;
         [Header("Animation")]
         private Animator animator;
         private SpriteRenderer spriteRenderer;
-
         private string lastDirection = "Front"; // Keeps track of the last direction
-        
-        
 
         void Start()
         {
@@ -93,16 +89,13 @@ namespace Intertables
             HandleInteraction();
 
             // Carrying the painting
-            if (isHoldingPainting && currentPickup != null)
+            if (isHoldingPickUpObject && currentPickup != null)
             {
                 HandleCarriedObject();
             }
 
 			if (Input.GetKeyDown("1")) {
 				SpawnPuddle();
-			}
-			if (Input.GetKeyDown("2")) {
-				SpawnMopSign();
 			}
             
             HandleAnimation(); // Call animation handler
@@ -172,33 +165,45 @@ namespace Intertables
 
         void HandleInteraction()
         {
-            if (currentInteractable != null && Input.GetKeyDown(interactionKey))
+            if (Input.GetKeyDown(interactionKey))
             {
-                if (!isHoldingPainting && currentInteractable.pickable)
+                if (isHoldingPickUpObject && currentPickup is MopSign)
                 {
-                    // Pick up the object
-                    currentPickup = currentInteractable.GetComponent<PickUpObjects>();
-                    currentInteractable.Interact();
-                    isHoldingPainting = true;
-
-                    Debug.Log("Picked up a painting.");
+                    Debug.Log("Put down a mop sign.");
+                    currentInteractable = currentPickup;
+                    SpawnMopSign();
+                    if (!isHoldingPickUpObject) settoMaxSpeed();
                 }
-                else if (isHoldingPainting && currentInteractable is Storage)
+                else if (currentInteractable != null)
                 {
-                    // Interact with storage to drop the painting
-                    currentInteractable.Interact();
 
-                    // Make the painting disappear
-                    currentPickup.gameObject.SetActive(false);
-                    currentPickup = null;
-                    isHoldingPainting = false;
+                    if (isHoldingPickUpObject && currentInteractable is Storage)
+                    {
+                        // Interact with storage to drop the painting
+                        currentInteractable.Interact();
 
-                    Debug.Log("Stored the painting.");
-                }
-                else if (currentInteractable is HidingSpot)
-                {
-                    // Interact with storage to deposit or withdraw the painting
-                    currentInteractable.Interact();
+                        Debug.Log("Interacted with storage.");
+                    }
+                    else if (currentInteractable is HidingSpot)
+                    {
+                        // Interact with storage to deposit or withdraw the painting
+                        currentInteractable.Interact();
+                    }
+                    else if (!isHoldingPickUpObject && currentInteractable is Painting)
+                    {
+                        // Pick up the object
+                        currentPickup = currentInteractable.GetComponent<PickUpObjects>();
+                        currentInteractable.Interact();
+                        isHoldingPickUpObject = true;
+
+                        Debug.Log("Picked up a painting.");
+                    }
+                    else if (!isHoldingPickUpObject && currentInteractable is MopSign)
+                    {
+                        currentPickup = currentInteractable.GetComponent<MopSign>();
+                        currentInteractable.Interact();
+                        isHoldingPickUpObject = true;
+                    }
                 }
             }
         }
@@ -238,19 +243,18 @@ namespace Intertables
 			Vector3Int cellPosition = tilemap.WorldToCell(transform.position); 
 			Vector3 tileCenterPosition = tilemap.GetCellCenterWorld(cellPosition);
 
-			CurrentPuddle = Instantiate(Puddle, tileCenterPosition, Quaternion.identity);
+			CurrentPuddle = Instantiate(puddle, tileCenterPosition, Quaternion.identity);
 		}
 
 		private void SpawnMopSign() {
-			if (CurrentMopSign != null)
-			{
-				Destroy(CurrentMopSign);
-			}
-
-			Vector3Int cellPosition = tilemap.WorldToCell(transform.position); 
-			Vector3 tileCenterPosition = tilemap.GetCellCenterWorld(cellPosition);
-
-            CurrentMopSign = Instantiate(MopSign, tileCenterPosition, Quaternion.identity);
+            if (currentPickup is not MopSign) return;
+            Vector3Int cellPosition = tilemap.WorldToCell(transform.position); 
+            Vector3 tileCenterPosition = tilemap.GetCellCenterWorld(cellPosition);
+            currentPickup.GetComponent<Collider2D>().enabled = true;
+            currentPickup.transform.position = tileCenterPosition;
+            currentPickup.GameObject().layer = LayerMask.NameToLayer("Interactable");
+            currentPickup = null;
+            isHoldingPickUpObject = false;
         }
 
         public void setCanMove(bool value)

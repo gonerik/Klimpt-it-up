@@ -18,15 +18,23 @@ public class Storage : Interactable
     public override void Interact()
     {
         base.Interact();
-        paintingsCollected++;
-        CharacterController2D.Instance.settoMaxSpeed();
-        Debug.Log(paintingsCollected);
-        Debug.Log(paintingsCount);
-        
-        if (paintingsCollected == paintingsCount)
+        if (CharacterController2D.Instance.currentPickup != null
+            && CharacterController2D.Instance.currentPickup is Painting)
         {
-            StartCoroutine(GoToNextLevel());
+            paintingsCollected++;
+            CharacterController2D.Instance.settoMaxSpeed();
+            Debug.Log(paintingsCollected);
+            Debug.Log(paintingsCount);
+            if (paintingsCollected == paintingsCount)
+            {
+                StartCoroutine(GoToNextLevel());
+            }
+            // Make the painting disappear
+            CharacterController2D.Instance.currentPickup.gameObject.SetActive(false);
+            CharacterController2D.Instance.currentPickup = null;
+            CharacterController2D.Instance.SetIsHoldingPickUpObject(false);
         }
+        else Debug.Log("Cannot deposit mop sign");
     }
 
     public static void addPainting()
