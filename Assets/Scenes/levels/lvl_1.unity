@@ -3136,30 +3136,39 @@ MonoBehaviour:
   speakerNameText: {fileID: 1140696961}
   dialogueText: {fileID: 1065753344}
   dialogueLines:
-  - speakerName: tyui
+  - speakerName: General Hans Wurstvernichter
     text: Lieutenant, exact arrival time of the Russian troops?
     voiceLine: {fileID: 8300000, guid: dafa2ea93a642ad4dbb7d164c4b1208c, type: 3}
-  - speakerName: tdsf
+  - speakerName: General Hans Wurstvernichter
     text: "Hmmmmm\u2026.Understood. 24 hours to begin a total retreat. Very good.
       Lieutenant, order your commanders to prepare their men for immediate departure."
     voiceLine: {fileID: 8300000, guid: 4e39e8542bc5fd848ab61d67704cb236, type: 3}
-  - speakerName: tdsf
+  - speakerName: General Hans Wurstvernichter
     text: As soon as you have secured everything of value, gather your company in
       front of Immendorf Castle and begin the march to the given coordinates.
     voiceLine: {fileID: 8300000, guid: c896470786aabb444a35e56ac67d8436, type: 3}
-  - speakerName: tdsf
+  - speakerName: General Hans Wurstvernichter
     text: 'Before you leave, however, you will spread your entire fuel depot in the
       castle and set it on fire.
 
 '
     voiceLine: {fileID: 8300000, guid: ac3559479c77b6c40b1a5417ae052a94, type: 3}
-  - speakerName: tdsf
+  - speakerName: General Hans Wurstvernichter
     text: I don't care what happens to the paintings! You set these paintings on
       fire along with the castle, the rest doesn't bother me!
     voiceLine: {fileID: 8300000, guid: 0519ddceeb45a7643966d8cccf74d966, type: 3}
-  - speakerName: tdsf
+  - speakerName: General Hans Wurstvernichter
     text: We'll leave nothing but ashes, do you understand me, Lieutenant?
     voiceLine: {fileID: 8300000, guid: 979cfba2c0ff88c45b8554b8798da963, type: 3}
+  - speakerName: "Gertrude-Britney J\xE4ger"
+    text: What? He is burning the castle?
+    voiceLine: {fileID: 0}
+  - speakerName: "Gertrude-Britney J\xE4ger"
+    text: I can`t let this happen! My arts professor wouldn`t forgive me.
+    voiceLine: {fileID: 0}
+  - speakerName: "Gertrude-Britney J\xE4ger"
+    text: Ah-ah! Not at my watch!
+    voiceLine: {fileID: 0}
   playerController: {fileID: 2066104815}
   audioSource: {fileID: 1106820942}
 --- !u!82 &1106820942

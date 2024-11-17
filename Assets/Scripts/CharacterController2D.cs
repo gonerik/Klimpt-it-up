@@ -52,9 +52,11 @@ namespace Intertables
         private Animator animator;
         private SpriteRenderer spriteRenderer;
         private string lastDirection = "Front"; // Keeps track of the last direction
+        private static bool introPlayed = false;
 
         void Start()
         {
+            
             animator = GetComponentInChildren<Animator>();
             if (Instance == null)
             {
@@ -66,8 +68,12 @@ namespace Intertables
             }
             body = GetComponent<Rigidbody2D>();
             runSpeed = maxRunSpeed;
-            if (SceneManager.GetActiveScene().buildIndex == 1) 
+            if (SceneManager.GetActiveScene().buildIndex == 1 && !introPlayed)
+            {
                 DialogueManager.Instance.StartDialogue(DialogueManager.Instance.dialogueLines);
+                introPlayed = true;
+            }
+            
         }
 
         public void settoMaxSpeed()
