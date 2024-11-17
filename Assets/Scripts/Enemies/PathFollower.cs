@@ -9,8 +9,8 @@ public class PathFollower : MonoBehaviour
     public float reachDistance = 0.1f;
     private int currentWaypointIndex = 0;
     private bool isReversing = false;
-    private bool isStopped = false;
-    private float stopTimer = 0f;
+    public bool isStopped = false;
+    public float stopTimer = 0f;
     public float puddleImmunityTimer = 0f;
     public Action slip;
     public float slowDifference = 2f; 

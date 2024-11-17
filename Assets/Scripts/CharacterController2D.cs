@@ -66,7 +66,7 @@ namespace Intertables
             }
             body = GetComponent<Rigidbody2D>();
             runSpeed = maxRunSpeed;
-            if (SceneManager.GetActiveScene().buildIndex == 1) 
+            if (SceneManager.GetActiveScene().buildIndex == 1)
                 DialogueManager.Instance.StartDialogue(DialogueManager.Instance.dialogueLines);
         }
 
