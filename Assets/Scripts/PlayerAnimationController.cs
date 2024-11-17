@@ -111,7 +111,29 @@ namespace Intertables
             unlockMovementCallback?.Invoke();
         }
 
+        public IEnumerator PlayLevelCompletionAnimation(System.Action lockMovementCallback, System.Action unlockMovementCallback)
+        {
+            // Lock player movement
+            lockMovementCallback?.Invoke();
 
+            Debug.Log("Playing level completion animation: no_no_last");
+
+            // Ensure the animation state exists
+            if (!animator.HasState(0, Animator.StringToHash("no_no_last")))
+            {
+                Debug.LogError("Animation state 'no_no_last' not found!");
+                yield break;
+            }
+
+            // Play the no_no_last animation
+            animator.Play("no_no_last");
+
+            // Wait for the animation to complete (adjust duration to match your clip)
+            yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+
+            // Unlock player movement
+            unlockMovementCallback?.Invoke();
+        }
         // Starts the stealing animation and locks movement for the duration
         public IEnumerator PlayStealingAnimation(System.Action lockMovementCallback, System.Action unlockMovementCallback)
         {

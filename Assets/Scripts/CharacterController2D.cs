@@ -11,6 +11,8 @@ namespace Intertables
 {
     public class CharacterController2D : MonoBehaviour
     {
+        private bool isLevelCompleted = false;
+
         [Header("Movement")] public static CharacterController2D Instance;
         private Rigidbody2D body;
         private bool canMove = true;
@@ -123,7 +125,7 @@ namespace Intertables
             animationController.PlayWalkAnimation(horizontal, vertical, ref lastDirection, canMove);
 
         }
-        
+      
         void DetectInteractable()
         {
             // Find objects within the interaction range
