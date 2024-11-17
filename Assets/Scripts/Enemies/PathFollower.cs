@@ -69,14 +69,6 @@ public class PathFollower : MonoBehaviour
             }
         }
     }
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        
-        if (other.tag == "MopSign") {
-            print("hello");
-            ReversePath();
-        }
-    }
 
     public void ReversePath() {
         isReversing = !isReversing;
