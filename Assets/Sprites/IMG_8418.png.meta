@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: aa52b45018ffbee4f9b0e6c16da5d5a4
+guid: 1a0637debb577964e94adb0e749ecdf1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -123,22 +123,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: IMG_8311_0
+      name: IMG_8418_0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 0
         y: 0
-        width: 639
-        height: 190
+        width: 163
+        height: 640
       alignment: 9
-      pivot: {x: 0.5, y: 2}
+      pivot: {x: 2, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9ab46935b6814aa4b9cb850bc977f773
-      internalID: 398503877
+      spriteID: 83213f5d2921b1d4e97ead439eb5316a
+      internalID: 1512773189
       vertices: []
       indices: 
       edges: []
@@ -154,8 +154,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      IMG_8311_0: 398503877
-      IMG_8311_1: -1226170606
+      IMG_8418_0: 1512773189
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
