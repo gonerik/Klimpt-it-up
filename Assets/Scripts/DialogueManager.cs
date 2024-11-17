@@ -25,14 +25,7 @@ public class DialogueManager : MonoBehaviour
 
     void Start()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        Instance = this;
         dialoguePanel.SetActive(false); // Initially hide the dialogue panel
     }
 
