@@ -5,6 +5,8 @@ public class GuardAnimatorController : MonoBehaviour
     [SerializeField] private PathFollower pathFollower;
     [SerializeField] private GameObject guardLightPivot;
     [SerializeField] private GuardLight guardLight;
+    [SerializeField] private AudioClip[] catchFrauSounds; // Array of sounds to play when frau is caught
+    [SerializeField] private AudioSource audioSource; 
     private Animator animator;
     private string currentSide;
     private bool frauCaught = false;
@@ -60,6 +62,7 @@ public class GuardAnimatorController : MonoBehaviour
         pathFollower.stopTimer += 4f;
         pathFollower.isStopped = true;
         frauCaught = true;
+        
         if (currentSide == "Right") {
             animator.Play("Guard_pointing_right");
         } else if (currentSide == "Left") {
@@ -69,7 +72,21 @@ public class GuardAnimatorController : MonoBehaviour
         } else {
             animator.Play("Guard_pointing_front");
         }
+        PlayRandomCatchSound();
     }
+    private void PlayRandomCatchSound()
+    {
+        if (catchFrauSounds.Length > 0 && audioSource != null)
+        {
+            int randomIndex = Random.Range(0, catchFrauSounds.Length);
+            audioSource.PlayOneShot(catchFrauSounds[randomIndex]);
+        }
+        else
+        {
+            Debug.LogWarning("No sounds assigned or AudioSource is missing!");
+        }
+    }
+
 
     private void Slip() {
         slipping = true;
