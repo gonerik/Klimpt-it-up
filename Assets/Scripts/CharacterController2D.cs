@@ -3,19 +3,25 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
+
 namespace Intertables
 {
-public class CharacterController2D : MonoBehaviour
-{
-	[Header("Movement")]
-	public static CharacterController2D Instance;
-	private Rigidbody2D body;
+    public class CharacterController2D : MonoBehaviour
+    {
+        [Header("Movement")] 
+        public static CharacterController2D Instance;
+        private Rigidbody2D body;
+        private bool canMove = true;
 
         private float horizontal;
         private float vertical;
         private float moveLimiter = 0.7f;
 
-        [SerializeField] private float runSpeed = 20.0f;
+        private float runSpeed;
+        [SerializeField] private float maxRunSpeed = 8f;
+        [SerializeField] private float minRunSpeed = 4f;
 
         [Header("Interactable Variables")]
         [SerializeField] private float interactionRange = 2f; // How close you need to be to interact
@@ -31,23 +37,27 @@ public class CharacterController2D : MonoBehaviour
         private float floatTimer = 0f;
         public float floatSpeed = 2f;
 
-	[Header("MopUsage")]
-	[SerializeField] private GameObject Puddle;
+	[FormerlySerializedAs("Puddle")]
+    [Header("MopUsage")]
+	[SerializeField] private GameObject puddle;
 	private GameObject CurrentPuddle;
-
-	[Header("MopSignUsage")]
-	[SerializeField] private GameObject MopSign;
-	private GameObject CurrentMopSign;
 
 	[SerializeField] private Tilemap tilemap;
         [Header("Stealing")]
-        private bool isHoldingPainting = false;
+        private bool isHoldingPickUpObject = false;
         
-        public bool GetIsHoldingPainting() => isHoldingPainting;
-        public void SetIsHoldingPainting(bool isHolding) => isHoldingPainting = isHolding;
-        
+        public bool GetIsHoldingPickUpObject() => isHoldingPickUpObject;
+        public void SetIsHoldingPickUpObject(bool isHolding) => isHoldingPickUpObject = isHolding;
+        [Header("Animation")]
+        private Animator animator;
+        private SpriteRenderer spriteRenderer;
+        private string lastDirection = "Front"; // Keeps track of the last direction
+        private static bool introPlayed = false;
+
         void Start()
         {
+            
+            animator = GetComponentInChildren<Animator>();
             if (Instance == null)
             {
                 Instance = this;
@@ -57,10 +67,31 @@ public class CharacterController2D : MonoBehaviour
                 Debug.LogError("CharacterController2D already exists!");
             }
             body = GetComponent<Rigidbody2D>();
+            runSpeed = maxRunSpeed;
+            if (SceneManager.GetActiveScene().buildIndex == 1 && !introPlayed)
+            {
+                DialogueManager.Instance.StartDialogue(DialogueManager.Instance.dialogueLines);
+                introPlayed = true;
+            }
+            
+        }
+
+        public void settoMaxSpeed()
+        {
+            runSpeed = maxRunSpeed;
+        }
+
+        public void settoMinSpeed()
+        {
+            runSpeed = minRunSpeed;
         }
 
         void Update()
         {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                SettingsMenu.instance.Pause();
+            }
             // Movement input
             horizontal = Input.GetAxisRaw("Horizontal");
             vertical = Input.GetAxisRaw("Vertical");
@@ -70,17 +101,21 @@ public class CharacterController2D : MonoBehaviour
             HandleInteraction();
 
             // Carrying the painting
-            if (isHoldingPainting && currentPickup != null)
+            if (isHoldingPickUpObject && currentPickup != null)
             {
                 HandleCarriedObject();
             }
 
-			if (Input.GetKeyDown("1")) {
+			if (Input.GetKeyDown("1") && currentPickup ==null) {
 				SpawnPuddle();
 			}
-			if (Input.GetKeyDown("2")) {
-				SpawnMopSign();
-			}
+
+            
+
+            
+            
+            HandleAnimation(); // Call animation handler
+
 		}
         void DetectInteractable()
         {
@@ -134,38 +169,57 @@ public class CharacterController2D : MonoBehaviour
                 offset.x = -0.6f;
             }
 
-            body.velocity = new Vector2(horizontal * runSpeed, vertical * runSpeed);
+            if (canMove)
+            {
+                body.velocity = new Vector2(horizontal * runSpeed, vertical * runSpeed);
+            }
+            else
+            {
+                body.velocity = Vector2.zero;
+            }
         }
 
         void HandleInteraction()
         {
-            if (currentInteractable != null && Input.GetKeyDown(interactionKey))
+            if (Input.GetKeyDown(interactionKey))
             {
-                if (!isHoldingPainting && currentInteractable.pickable)
+                if (isHoldingPickUpObject && currentPickup is MopSign)
                 {
-                    // Pick up the object
-                    currentPickup = currentInteractable.GetComponent<PickUpObjects>();
-                    currentInteractable.Interact();
-                    isHoldingPainting = true;
-
-                    Debug.Log("Picked up a painting.");
+                    Debug.Log("Put down a mop sign.");
+                    currentInteractable = currentPickup;
+                    SpawnMopSign();
+                    if (!isHoldingPickUpObject) settoMaxSpeed();
                 }
-                else if (isHoldingPainting && currentInteractable is Storage)
+                else if (currentInteractable != null)
                 {
-                    // Interact with storage to drop the painting
-                    currentInteractable.Interact();
 
-                    // Make the painting disappear
-                    currentPickup.gameObject.SetActive(false);
-                    currentPickup = null;
-                    isHoldingPainting = false;
+                    if (isHoldingPickUpObject && currentInteractable is Storage)
+                    {
+                        // Interact with storage to drop the painting
+                        currentInteractable.Interact();
 
-                    Debug.Log("Stored the painting.");
-                }
-                else if (currentInteractable is HidingSpot)
-                {
-                    // Interact with storage to deposit or withdraw the painting
-                    currentInteractable.Interact();
+                        Debug.Log("Interacted with storage.");
+                    }
+                    else if (currentInteractable is HidingSpot)
+                    {
+                        // Interact with storage to deposit or withdraw the painting
+                        currentInteractable.Interact();
+                    }
+                    else if (!isHoldingPickUpObject && currentInteractable is Painting)
+                    {
+                        // Pick up the object
+                        currentPickup = currentInteractable.GetComponent<PickUpObjects>();
+                        currentInteractable.Interact();
+                        isHoldingPickUpObject = true;
+
+                        Debug.Log("Picked up a painting.");
+                    }
+                    else if (!isHoldingPickUpObject && currentInteractable is MopSign)
+                    {
+                        currentPickup = currentInteractable.GetComponent<MopSign>();
+                        currentInteractable.Interact();
+                        isHoldingPickUpObject = true;
+                    }
                 }
             }
         }
@@ -190,38 +244,95 @@ public class CharacterController2D : MonoBehaviour
             }
         }
 
-        void OnDrawGizmosSelected()
-        {
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(transform.position, interactionRange);
+        private void SpawnPuddle() {
+            Vector3Int cellPosition = tilemap.WorldToCell(transform.position);
+            TileBase tileAtPosition = tilemap.GetTile(cellPosition);
+
+            if (tileAtPosition != null && tileAtPosition.name == "Carpet")
+            {
+                return;
+            }
+
+            if (CurrentPuddle != null)
+            {
+                Destroy(CurrentPuddle);
+            }
+
+            Vector3 tileCenterPosition = tilemap.GetCellCenterWorld(cellPosition);
+            CurrentPuddle = Instantiate(puddle, tileCenterPosition, Quaternion.identity);
         }
-		
-		private void SpawnPuddle() {
-			if (CurrentPuddle != null)
-			{
-				Destroy(CurrentPuddle);
-			}
 
-			Vector3Int cellPosition = tilemap.WorldToCell(transform.position); 
-			Vector3 tileCenterPosition = tilemap.GetCellCenterWorld(cellPosition);
-
-			CurrentPuddle = Instantiate(Puddle, tileCenterPosition, Quaternion.identity);
-		}
 
 		private void SpawnMopSign() {
-			if (CurrentPuddle != null)
-			{
-				Destroy(CurrentPuddle);
-			}
+            if (currentPickup is not MopSign) return;
+            Vector3Int cellPosition = tilemap.WorldToCell(transform.position); 
+            Vector3 tileCenterPosition = tilemap.GetCellCenterWorld(cellPosition);
+            currentPickup.GetComponent<Collider2D>().enabled = true;
+            currentPickup.transform.position = tileCenterPosition;
+            currentPickup.GameObject().layer = LayerMask.NameToLayer("Interactable");
+            currentPickup = null;
+            isHoldingPickUpObject = false;
+        }
 
-			Vector3Int cellPosition = tilemap.WorldToCell(transform.position); 
-			Vector3 tileCenterPosition = tilemap.GetCellCenterWorld(cellPosition);
+        public void setCanMove(bool value)
+        {
+            canMove = value;
+        }
+    private void HandleAnimation()
+    {
+        if (horizontal < 0)
+        {
+            animator.Play("Player_walk_left"); // Play left walk animation
+            lastDirection = "Left";            // Remember last direction
+            
+        }
+        else if (horizontal > 0)
+        {
+            animator.Play("Player_walk_right"); // Play right walk animation
+            lastDirection = "Right";            // Remember last direction
+        }
+        else if (vertical > 0)
+        {
+            animator.Play("Player_walk_back"); // Play back walk animation
+            lastDirection = "Back";           // Remember last direction
+        }
+        else if (vertical < 0)
+        {
+            animator.Play("Walk_front_animation"); // Play front walk animation
+            lastDirection = "Front";               // Remember last direction
+        }
+        else
+        {
+            // If no movement, play idle animation
+            PlayIdleAnimation();
+        }
+    }
 
-			CurrentMopSign = Instantiate(MopSign, tileCenterPosition, Quaternion.identity);
-		}
+    private void PlayIdleAnimation()
+    {
+        if (lastDirection == "Left")
+        {
+            animator.Play("Player_idle_left"); // Play left idle animation
+        }
+        else if (lastDirection == "Back")
+        {
+            animator.Play("Player_idle_back"); // Play back idle animation
+        }
+        else if (lastDirection == "Front")
+        {
+            animator.Play("Walk_front_animation"); // Play front idle animation
+        }
+        else if (lastDirection == "Right")
+        {
+            animator.Play("Player_idle_right"); // Play front idle animation
+        }
+        else
+        {
+            // If no movement, play idle animation
+            animator.Play("Player_idle");
+        }
+    }
 
-		public void SetSpeed(float newSpeed) {
-			runSpeed = newSpeed;
-		}
-	}
+
+}
 }

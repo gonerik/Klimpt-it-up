@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Intertables;
 using UnityEngine;
@@ -5,19 +6,18 @@ using UnityEngine.SceneManagement;
 
 public class GuardLight : MonoBehaviour
 {   
+    public Action FrauCaught;
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player") {
-            print("hello");
-            if (CharacterController2D.Instance.GetIsHoldingPainting()) {
-                IEnumerator coroutine = ReloadScene(0.5f);
+            
+            if (CharacterController2D.Instance.currentPickup != null &&
+                CharacterController2D.Instance.currentPickup is Painting) {
+                IEnumerator coroutine = ReloadScene(3f);
                 StartCoroutine(coroutine);
+                FrauCaught.Invoke();
             }
-        }
-        if (other.tag == "MopSign") {
-            PathFollower pathFollower = GetComponentInParent<PathFollower>();
-            pathFollower.ReversePath();
         }
     }
 
@@ -34,6 +34,7 @@ public class GuardLight : MonoBehaviour
     }
 
     private IEnumerator ReloadScene(float duration) {
+        CharacterController2D.Instance.setCanMove(false);
         yield return new WaitForSeconds(duration);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
