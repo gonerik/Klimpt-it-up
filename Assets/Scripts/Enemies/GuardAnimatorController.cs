@@ -6,7 +6,7 @@ public class GuardAnimatorController : MonoBehaviour
     [SerializeField] private GameObject guardLightPivot; // Pivot point for rotating the guard light
     [SerializeField] private GuardLight guardLight; // Reference to the guard's light
     private Animator animator;
-    private string currentSide; // Tracks the guard's current facing direction
+    public string currentSide; // Tracks the guard's current facing direction
     private bool isFrauCaught = false; // Tracks if the player (Frau) has been caught
     private bool isSlipping = false; // Tracks if the guard is slipping
 
@@ -39,33 +39,46 @@ public class GuardAnimatorController : MonoBehaviour
     private void UpdateGuardMovementAndAnimation()
     {
         // Get the current waypoint the guard is heading toward
-        GameObject currentGuardWaypoint = pathFollower.waypoints[pathFollower.GetCurrentWaypointIndex()];
-        Vector3 waypointPosition = currentGuardWaypoint.transform.position;
-        Vector3 guardPosition = transform.position;
+        if (pathFollower.waypoints.Length > 1) {
+            GameObject currentGuardWaypoint = pathFollower.waypoints[pathFollower.GetCurrentWaypointIndex()];
+            Vector3 waypointPosition = currentGuardWaypoint.transform.position;
+            Vector3 guardPosition = transform.position;
 
-        // Determine whether to play horizontal or vertical walking animations
-        float horizontalDifference = Mathf.Abs(waypointPosition.x - guardPosition.x);
+            // Determine whether to play horizontal or vertical walking animations
+            float horizontalDifference = Mathf.Abs(waypointPosition.x - guardPosition.x);
 
-        if (horizontalDifference > 0.1f) // Horizontal movement
-        {
-            if (waypointPosition.x > guardPosition.x)
+            if (horizontalDifference > 0.1f) // Horizontal movement
             {
-                PlayAnimation("Guard_walk_right", "Right", -90);
+                if (waypointPosition.x > guardPosition.x)
+                {
+                    PlayAnimation("Guard_walk_right", "Right", -90);
+                }
+                else
+                {
+                    PlayAnimation("Guard_walk_left", "Left", 90);
+                }
             }
-            else
+            else // Vertical movement
             {
-                PlayAnimation("Guard_walk_left", "Left", 90);
+                if (waypointPosition.y > guardPosition.y)
+                {
+                    PlayAnimation("Guard_walk_back", "Back", 0);
+                }
+                else
+                {
+                    PlayAnimation("Guard_walk_front", "Front", 180);
+                }
             }
-        }
-        else // Vertical movement
-        {
-            if (waypointPosition.y > guardPosition.y)
-            {
-                PlayAnimation("Guard_walk_back", "Back", 0);
-            }
-            else
-            {
-                PlayAnimation("Guard_walk_front", "Front", 180);
+        } else {
+            animator.Play("Guard_idle");
+            if (currentSide == "Left") {
+                guardLightPivot.transform.rotation = Quaternion.Euler(0, 0, -90);
+            } else if (currentSide == "Right") {
+                guardLightPivot.transform.rotation = Quaternion.Euler(0, 0, 90);
+            } else if (currentSide == "Back") {
+                guardLightPivot.transform.rotation = Quaternion.Euler(0, 0, 0);
+            } else {
+                guardLightPivot.transform.rotation = Quaternion.Euler(0, 0, 180);
             }
         }
     }

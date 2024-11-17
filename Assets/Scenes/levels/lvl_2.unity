@@ -13411,6 +13411,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Guard
       objectReference: {fileID: 0}
+    - target: {fileID: 6084352068323768106, guid: ccf1cec2bfa8a0a4f97d81646603a795, type: 3}
+      propertyPath: currentSide
+      value: Front
+      objectReference: {fileID: 0}
     - target: {fileID: 8897211938680884663, guid: ccf1cec2bfa8a0a4f97d81646603a795, type: 3}
       propertyPath: waypoints.Array.size
       value: 0
