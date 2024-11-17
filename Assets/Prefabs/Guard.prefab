@@ -141,7 +141,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
   speed: 7
   reachDistance: 0.1
   isStopped: 0
@@ -223,7 +222,6 @@ MonoBehaviour:
   pathFollower: {fileID: 8897211938680884663}
   guardLightPivot: {fileID: 2662556088070022396}
   guardLight: {fileID: 1453301675859291189}
-  currentSide: Front
 --- !u!1 &7237573303261798161
 GameObject:
   m_ObjectHideFlags: 0
