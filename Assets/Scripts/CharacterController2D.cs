@@ -65,7 +65,7 @@ namespace Intertables
             }
             body = GetComponent<Rigidbody2D>();
             runSpeed = maxRunSpeed;
-            DialogueManager.instance.StartDialogue(DialogueManager.instance.dialogueLines);
+            DialogueManager.Instance.StartDialogue(DialogueManager.Instance.dialogueLines);
         }
 
         public void settoMaxSpeed()
