@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class PathFollower : MonoBehaviour
@@ -10,8 +11,9 @@ public class PathFollower : MonoBehaviour
     private bool isReversing = false;
     private bool isStopped = false;
     private float stopTimer = 0f;
-    private float puddleImmunityTimer = 0f;
+    public float puddleImmunityTimer = 0f;
     public Action slip;
+    public float slowDifference = 2f; 
 
     private void FixedUpdate()
     {
@@ -35,9 +37,9 @@ public class PathFollower : MonoBehaviour
     public void StopMovement(float duration) {
         isStopped = true;
         stopTimer = duration;
-        if (puddleImmunityTimer > 0f) {
-            isStopped = false;
-        } else puddleImmunityTimer = 10f;
+        puddleImmunityTimer = 10f;
+        speed -= slowDifference;
+        StartCoroutine("RestoreSpeed", 0f);
     }
 
     public void Move() {
@@ -86,5 +88,10 @@ public class PathFollower : MonoBehaviour
 
     public int GetCurrentWaypointIndex() {
         return currentWaypointIndex;
+    }
+
+    private IEnumerator RestoreSpeed() {
+        yield return new WaitForSeconds(10f);
+        speed += slowDifference;
     }
 }
