@@ -119,7 +119,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 0.6, y: 1.5}
   m_Direction: 0
 --- !u!95 &5148207951427567009
 Animator:
@@ -201,8 +201,7 @@ MonoBehaviour:
   pickUpMoveSpeed: 5
   amplitude: 0.2
   floatSpeed: 2
-  Puddle: {fileID: 8962506655511679438, guid: 7aec096b8f577a8448f98c9da1698712, type: 3}
-  MopSign: {fileID: 2285595691668984112, guid: a2aaf1b555fae844baf416d118e4b5a5, type: 3}
+  puddle: {fileID: 8962506655511679438, guid: 7aec096b8f577a8448f98c9da1698712, type: 3}
   tilemap: {fileID: 0}
 --- !u!50 &2853890627550804203
 Rigidbody2D:

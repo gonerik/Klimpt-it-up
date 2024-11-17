@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Klimpt-it-up.sln"
+    "dotnet.defaultSolution": "Klimt.sln"
 }
