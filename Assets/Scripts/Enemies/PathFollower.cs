@@ -49,7 +49,7 @@ public class PathFollower : MonoBehaviour
         Vector3 movementDirection = targetPosition - transform.position;
         transform.position += movementDirection.normalized * speed * Time.deltaTime;
 
-        if (Vector3.Distance(transform.position, targetPosition) < reachDistance)
+        if (Vector3.Distance(transform.position, targetPosition) < reachDistance && waypoints.Length > 1)
         {
             if (!isReversing)
             {
@@ -74,16 +74,16 @@ public class PathFollower : MonoBehaviour
 
     public void ReversePath() {
         isReversing = !isReversing;
-        if (isReversing && currentWaypointIndex > 0 )
-        {
-            currentWaypointIndex--;
+        if (waypoints.Length > 1) {
+            if (isReversing && currentWaypointIndex > 0 )
+            {
+                currentWaypointIndex--;
+            }
+            else
+            {
+                currentWaypointIndex++;
+            }
         }
-        else
-        {
-            currentWaypointIndex++;
-            
-        }
-        
     }
 
     public int GetCurrentWaypointIndex() {
