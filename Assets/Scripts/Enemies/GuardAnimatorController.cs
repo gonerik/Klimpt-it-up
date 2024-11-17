@@ -7,7 +7,8 @@ public class GuardAnimatorController : MonoBehaviour
     [SerializeField] private GuardLight guardLight;
     private Animator animator;
     private string currentSide;
-    private bool FrauCaught = false;
+    private bool frauCaught = false;
+    private bool slipping = false;
 
     private void Awake()
     {
@@ -17,16 +18,18 @@ public class GuardAnimatorController : MonoBehaviour
     private void OnEnable()
     {
         guardLight.FrauCaught += PlayCatchFrau;
+        pathFollower.slip += Slip;
     }
 
     void OnDisable()
     {
         guardLight.FrauCaught -= PlayCatchFrau;
+        pathFollower.slip -= Slip;
     }
 
     void Update()
     {
-        if (!FrauCaught) {
+        if (!frauCaught && !slipping) {
             GameObject currentGuardWaypoint = pathFollower.waypoints[pathFollower.GetCurrentWaypointIndex()];
             float XAbs = Mathf.Abs(currentGuardWaypoint.transform.position.x - transform.position.x);
             if (XAbs > 0.1) {
@@ -54,7 +57,7 @@ public class GuardAnimatorController : MonoBehaviour
     }
 
     private void PlayCatchFrau() {
-        FrauCaught = true;
+        frauCaught = true;
         if (currentSide == "Right") {
             animator.Play("Guard_pointing_right");
         } else if (currentSide == "Left") {
@@ -64,5 +67,14 @@ public class GuardAnimatorController : MonoBehaviour
         } else {
             animator.Play("Guard_pointing_front");
         }
+    }
+
+    private void Slip() {
+        slipping = true;
+        animator.Play("Guard_slippering_animation");
+    }
+
+    private void OnSlipAnimationEnd() {
+        slipping = false;
     }
 }

@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2662556088070022396}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.83333325, y: 0.83333325, z: 0.83333325}
   m_ConstrainProportionsScale: 0
@@ -140,6 +140,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   speed: 7
   reachDistance: 0.1
 --- !u!114 &8883474761054306675
@@ -250,7 +251,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathFollower: {fileID: 8897211938680884663}
-  guardLight: {fileID: 2662556088070022396}
+  guardLightPivot: {fileID: 2662556088070022396}
+  guardLight: {fileID: 1453301675859291189}
 --- !u!1 &8235905920955564538
 GameObject:
   m_ObjectHideFlags: 0
