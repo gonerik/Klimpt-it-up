@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Intertables;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GuardLight : MonoBehaviour
 {   
+    public Action FrauCaught;
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -13,6 +15,7 @@ public class GuardLight : MonoBehaviour
             if (CharacterController2D.Instance.GetIsHoldingPainting()) {
                 IEnumerator coroutine = ReloadScene(3f);
                 StartCoroutine(coroutine);
+                FrauCaught.Invoke();
             }
         }
     }
