@@ -98,7 +98,7 @@ namespace Intertables
                 HandleCarriedObject();
             }
 
-			if (Input.GetKeyDown("1")) {
+			if (Input.GetKeyDown("1") && currentPickup ==null) {
 				SpawnPuddle();
 			}
 
