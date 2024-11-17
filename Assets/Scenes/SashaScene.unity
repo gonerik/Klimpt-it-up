@@ -3990,34 +3990,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1672637914}
     m_Modifications:
-    - target: {fileID: 2504560124796414745, guid: ccf1cec2bfa8a0a4f97d81646603a795, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2504560124796414745, guid: ccf1cec2bfa8a0a4f97d81646603a795, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2504560124796414745, guid: ccf1cec2bfa8a0a4f97d81646603a795, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2504560124796414745, guid: ccf1cec2bfa8a0a4f97d81646603a795, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2504560124796414745, guid: ccf1cec2bfa8a0a4f97d81646603a795, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2504560124796414745, guid: ccf1cec2bfa8a0a4f97d81646603a795, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2504560124796414745, guid: ccf1cec2bfa8a0a4f97d81646603a795, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2653424746148101937, guid: ccf1cec2bfa8a0a4f97d81646603a795, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4061,14 +4033,6 @@ PrefabInstance:
     - target: {fileID: 2703918716217202360, guid: ccf1cec2bfa8a0a4f97d81646603a795, type: 3}
       propertyPath: m_Name
       value: Guard
-      objectReference: {fileID: 0}
-    - target: {fileID: 4185385573996131496, guid: ccf1cec2bfa8a0a4f97d81646603a795, type: 3}
-      propertyPath: m_FlipY
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8897211938680884663, guid: ccf1cec2bfa8a0a4f97d81646603a795, type: 3}
-      propertyPath: waypoints.Array.size
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8897211938680884663, guid: ccf1cec2bfa8a0a4f97d81646603a795, type: 3}
       propertyPath: waypoints.Array.data[0]
