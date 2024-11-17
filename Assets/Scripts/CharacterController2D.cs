@@ -46,7 +46,8 @@ namespace Intertables
 
         public bool GetIsHoldingPickUpObject() => isHoldingPickUpObject;
         public void SetIsHoldingPickUpObject(bool isHolding) => isHoldingPickUpObject = isHolding;
-        [Header("Animation")] private Animator animator;
+        [Header("Animation")]
+        private Animator animator;
         private SpriteRenderer spriteRenderer;
         private string lastDirection = "Front"; // Keeps track of the last direction
         private static bool introPlayed = false;
@@ -96,8 +97,10 @@ namespace Intertables
             vertical = Input.GetAxisRaw("Vertical");
 
             DetectInteractable();
+            // Interaction
             HandleInteraction();
 
+            // Carrying the painting
             if (isHoldingPickUpObject && currentPickup != null)
             {
                 HandleCarriedObject();
@@ -113,6 +116,7 @@ namespace Intertables
 
         }
 
+		}
         void DetectInteractable()
         {
             // Find objects within the interaction range
@@ -233,8 +237,7 @@ namespace Intertables
             float distance = Vector3.Distance(currentPickup.transform.position, targetPosition);
             if (distance > 0.1f)
             {
-                currentPickup.transform.position = Vector3.Lerp(currentPickup.transform.position, targetPosition,
-                    pickUpMoveSpeed * Time.deltaTime);
+                currentPickup.transform.position = Vector3.Lerp(currentPickup.transform.position, targetPosition, pickUpMoveSpeed * Time.deltaTime);
             }
             else
             {
@@ -242,8 +245,7 @@ namespace Intertables
             }
         }
 
-        private void SpawnPuddle()
-        {
+        private void SpawnPuddle() {
             Vector3Int cellPosition = tilemap.WorldToCell(transform.position);
             TileBase tileAtPosition = tilemap.GetTile(cellPosition);
 
