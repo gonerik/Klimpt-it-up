@@ -5,12 +5,14 @@ public class Puddle : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Enemy") {
-            PathFollower guardPath = other.GetComponent<PathFollower>();
-            GuardLight guardLight = other.GetComponentInChildren<GuardLight>();
-            guardPath.StopMovement(3f);
-            guardLight.StopMovement(3f);
-            guardPath.slip.Invoke();
-            Destroy(gameObject);
+            PathFollower guardPath = other.GetComponentInParent<PathFollower>();
+            GuardLight guardLight = guardPath.GetComponentInChildren<GuardLight>();
+            if (guardPath.puddleImmunityTimer <= 0f) {
+                guardPath.StopMovement(3f);
+                guardLight.StopMovement(3f);
+                guardPath.slip.Invoke();
+                Destroy(gameObject);
+            }
         }
     }
 }

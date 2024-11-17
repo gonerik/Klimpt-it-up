@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8502941533969208807}
   - component: {fileID: 3929261370213632610}
   - component: {fileID: 2012829445678360128}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MopSign
   m_TagString: MopSign
   m_Icon: {fileID: 0}

@@ -6,7 +6,7 @@ using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
-    public static DialogueManager instance;
+    public static DialogueManager Instance;
     [Header("UI Elements")]
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI speakerNameText;
@@ -20,11 +20,14 @@ public class DialogueManager : MonoBehaviour
     [Header("Player Control")]
     [SerializeField] private CharacterController2D playerController;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource; // Add an AudioSource component in the inspector
+
     void Start()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
         }
         else
         {
@@ -47,6 +50,12 @@ public class DialogueManager : MonoBehaviour
 
     public void DisplayNextLine()
     {
+        // Stop any currently playing audio before proceeding
+        if (audioSource.isPlaying)
+        {
+            audioSource.Stop();
+        }
+
         if (currentLineIndex < dialogueLines.Count)
         {
             DialogueLine line = dialogueLines[currentLineIndex];
@@ -56,7 +65,8 @@ public class DialogueManager : MonoBehaviour
             // If there is an audio clip, play it
             if (line.voiceLine != null)
             {
-                AudioSource.PlayClipAtPoint(line.voiceLine, Camera.main.transform.position);
+                audioSource.clip = line.voiceLine;
+                audioSource.Play();
             }
 
             currentLineIndex++;
@@ -71,6 +81,13 @@ public class DialogueManager : MonoBehaviour
     {
         isDialogueActive = false;
         dialoguePanel.SetActive(false);
+
+        // Stop any audio still playing
+        if (audioSource.isPlaying)
+        {
+            audioSource.Stop();
+        }
+
         playerController.setCanMove(true); // Re-enable player movement
     }
 
