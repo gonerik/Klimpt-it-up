@@ -89,4 +89,8 @@ public class PathFollower : MonoBehaviour
         }
         
     }
+
+    public int GetCurrentWaypointIndex() {
+        return currentWaypointIndex;
+    }
 }
