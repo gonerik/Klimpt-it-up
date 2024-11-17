@@ -57,6 +57,8 @@ public class GuardAnimatorController : MonoBehaviour
     }
 
     private void PlayCatchFrau() {
+        pathFollower.stopTimer += 4f;
+        pathFollower.isStopped = true;
         frauCaught = true;
         if (currentSide == "Right") {
             animator.Play("Guard_pointing_right");
