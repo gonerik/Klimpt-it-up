@@ -686,8 +686,8 @@ PlayerSettings:
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: Klimpt it up!
-  metroPackageVersion: 
+  metroPackageName: Klimptitup
+  metroPackageVersion: 1.0.0.0
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
@@ -695,7 +695,7 @@ PlayerSettings:
   metroCertificateNotAfter: 0000000000000000
   metroApplicationDescription: Klimpt it up!
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: Klimpt it up!
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0
