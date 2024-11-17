@@ -116,10 +116,10 @@ namespace Intertables
                 HandleCarriedObject();
             }
 
-            if (Input.GetKeyDown("1") && currentPickup == null)
-            {
+            if (Input.GetKeyDown(KeyCode.Q) && currentPickup == null) {
                 SpawnPuddle();
             }
+
 
             // Delegate walking animation handling to PlayerAnimationController
             animationController.PlayWalkAnimation(horizontal, vertical, ref lastDirection, canMove);
