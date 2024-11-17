@@ -51,7 +51,7 @@ public class GuardAnimatorController : MonoBehaviour
             {
                 if (waypointPosition.x > guardPosition.x)
                 {
-                    PlayAnimation("Guard_walk_right", "Right", -90);
+                    PlayAnimation("Guard_walt_right", "Right", -90);
                 }
                 else
                 {
