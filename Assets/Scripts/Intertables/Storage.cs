@@ -9,6 +9,8 @@ public class Storage : Interactable
 {
     private static int paintingsCount = 0;
     private int paintingsCollected = 0;
+    public static Action OnStorageFull;
+    
     public void Awake()
     {
         paintingsCount = 0;
@@ -27,6 +29,7 @@ public class Storage : Interactable
             Debug.Log(paintingsCount);
             if (paintingsCollected == paintingsCount)
             {
+                OnStorageFull?.Invoke();
                 StartCoroutine(GoToNextLevel());
             }
             // Make the painting disappear
@@ -45,9 +48,15 @@ public class Storage : Interactable
 
     public IEnumerator GoToNextLevel(){
         //Play win animation here
+        PlayerAnimationController animationController = CharacterController2D.Instance.GetComponent<PlayerAnimationController>();
+        if (animationController != null)
+        {
+            // Play the level completion animation
+            yield return animationController.PlayAnimationForDuration("no_no_last", 2.0f); // Adjust duration as needed
+        }
         CharacterController2D.Instance.setCanMove(false);
         Debug.Log(paintingsCollected);
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(0.52f);
         Debug.Log(SceneManager.GetActiveScene().buildIndex +" : "+ SceneManager.sceneCountInBuildSettings);
         if (SceneManager.GetActiveScene().buildIndex < SceneManager.sceneCountInBuildSettings)
             SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
