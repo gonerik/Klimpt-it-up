@@ -39,33 +39,35 @@ public class GuardAnimatorController : MonoBehaviour
     private void UpdateGuardMovementAndAnimation()
     {
         // Get the current waypoint the guard is heading toward
-        GameObject currentGuardWaypoint = pathFollower.waypoints[pathFollower.GetCurrentWaypointIndex()];
-        Vector3 waypointPosition = currentGuardWaypoint.transform.position;
-        Vector3 guardPosition = transform.position;
-
-        // Determine whether to play horizontal or vertical walking animations
-        float horizontalDifference = Mathf.Abs(waypointPosition.x - guardPosition.x);
-
-        if (horizontalDifference > 0.1f) // Horizontal movement
+        if (pathFollower.waypoints.Length > 1)
         {
-            if (waypointPosition.x > guardPosition.x)
+            GameObject currentGuardWaypoint = pathFollower.waypoints[pathFollower.GetCurrentWaypointIndex()];
+            Vector3 waypointPosition = currentGuardWaypoint.transform.position;
+            Vector3 guardPosition = transform.position;
+            // Determine whether to play horizontal or vertical walking animations
+            float horizontalDifference = Mathf.Abs(waypointPosition.x - guardPosition.x);
+
+            if (horizontalDifference > 0.1f) // Horizontal movement
             {
-                PlayAnimation("Guard_walk_right", "Right", -90);
+                if (waypointPosition.x > guardPosition.x)
+                {
+                    PlayAnimation("Guard_walk_right", "Right", -90);
+                }
+                else
+                {
+                    PlayAnimation("Guard_walk_left", "Left", 90);
+                }
             }
-            else
+            else // Vertical movement
             {
-                PlayAnimation("Guard_walk_left", "Left", 90);
-            }
-        }
-        else // Vertical movement
-        {
-            if (waypointPosition.y > guardPosition.y)
-            {
-                PlayAnimation("Guard_walk_back", "Back", 0);
-            }
-            else
-            {
-                PlayAnimation("Guard_walk_front", "Front", 180);
+                if (waypointPosition.y > guardPosition.y)
+                {
+                    PlayAnimation("Guard_walk_back", "Back", 0);
+                }
+                else
+                {
+                    PlayAnimation("Guard_walk_front", "Front", 180);
+                }
             }
         }
     }
