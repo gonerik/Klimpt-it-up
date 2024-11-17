@@ -207,13 +207,20 @@ namespace Intertables
                     }
                     else if (!isHoldingPickUpObject && currentInteractable is Painting)
                     {
-                        // Pick up the object
+                        // Pick up the painting
                         currentPickup = currentInteractable.GetComponent<PickUpObjects>();
                         currentInteractable.Interact();
                         isHoldingPickUpObject = true;
 
                         Debug.Log("Picked up a painting.");
+
+                        // Start stealing animation
+                        StartCoroutine(animationController.PlayStealingAnimation(
+                            () => setCanMove(false),  // Lock movement callback
+                            () => setCanMove(true)   // Unlock movement callback
+                        ));
                     }
+
                     else if (!isHoldingPickUpObject && currentInteractable is MopSign)
                     {
                         currentPickup = currentInteractable.GetComponent<MopSign>();
