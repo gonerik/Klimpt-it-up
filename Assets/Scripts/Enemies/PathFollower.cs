@@ -12,7 +12,6 @@ public class PathFollower : MonoBehaviour
     public bool isStopped = false;
     public float stopTimer = 0f;
     public float puddleImmunityTimer = 0f;
-    public Action slip;
     public float slowDifference = 2f; 
 
     private void FixedUpdate()
@@ -92,7 +91,7 @@ public class PathFollower : MonoBehaviour
     }
 
     private IEnumerator RestoreSpeed() {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(5f);
         speed += slowDifference;
     }
 }

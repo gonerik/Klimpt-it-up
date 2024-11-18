@@ -5,8 +5,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GuardLight : MonoBehaviour
-{   
-    public Action onFrauCaught; // Event to notify when the player is caught
+{
+    private PolygonCollider2D polygonCollider;
+    private void Start()
+    {
+        polygonCollider = GetComponent<PolygonCollider2D>();
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -21,16 +25,14 @@ public class GuardLight : MonoBehaviour
         }
     }
 
-    public void StopMovement(float duration) {
-        IEnumerator coroutine = DisableLight(duration);
-        StartCoroutine(coroutine);
-    }
     
 
-    private IEnumerator DisableLight(float duration) {
-        PolygonCollider2D polygonCollider = GetComponent<PolygonCollider2D>();
+    public void DisableLight() {
         polygonCollider.enabled = false;
-        yield return new WaitForSeconds(duration);
+    }
+
+    public void EnableLight()
+    {
         polygonCollider.enabled = true;
     }
 }
