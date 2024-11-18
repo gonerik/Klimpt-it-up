@@ -16,7 +16,9 @@ public class GuardLight : MonoBehaviour
                 CharacterController2D.Instance.currentPickup is Painting) {
                 IEnumerator coroutine = ReloadScene(3f);
                 StartCoroutine(coroutine);
-                onFrauCaught?.Invoke();
+                CharacterController2D.Instance.setCanMove(false);
+                CharacterController2D.Instance.animationController.PlayGetCaughtAnimation();
+                
             }
         }
     }

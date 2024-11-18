@@ -1,3 +1,4 @@
+using Intertables;
 using UnityEngine;
 
 public class GuardAnimatorController : MonoBehaviour
@@ -99,6 +100,7 @@ public class GuardAnimatorController : MonoBehaviour
             _ => "Guard_pointing_front", // Default to front if side is undefined
         };
         animator.Play(pointingAnimation);
+        
     }
 
     private void PlaySlipAnimation()

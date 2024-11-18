@@ -141,7 +141,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  speed: 7
+  speed: 4
   reachDistance: 0.1
   isStopped: 0
   stopTimer: 0

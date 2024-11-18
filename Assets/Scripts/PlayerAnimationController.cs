@@ -8,9 +8,12 @@ namespace Intertables
         private Animator animator;
         private string currentAnimation = ""; // Tracks the current animation
         private string lastDirection = "";   // Tracks the last direction for idle or stealing animations
-
+        
         private string lastMovementDirection = "Front"; // Tracks the last movement direction for stealing animations
-
+        private const string _horizontal = "Horizontal";
+        private const string _vertical = "Vertical";
+        private const string _lastVertical  = "LastVertical";
+        private const string _lastHorizontal = "LastHorizontal";
         
         
         private void Awake()
@@ -22,93 +25,41 @@ namespace Intertables
             }
         }
 
-        // Handles walking animations
-        public void PlayWalkAnimation(float horizontal, float vertical, ref string lastDirection, bool canMove)
+        public void setLastAxis(float horizontal, float vertical)
         {
-            if (!canMove || (horizontal == 0 && vertical == 0))
-            {
-                // Play idle animation based on last direction
-                string idleAnimation = GetIdleAnimation(lastDirection);
-                if (currentAnimation != idleAnimation)
-                {
-                    animator.Play(idleAnimation);
-                    currentAnimation = idleAnimation; // Update current animation state
-                }
-                return;
-            }
+            Debug.Log("setting last axis");
+            animator.SetFloat(_lastHorizontal, horizontal);
+            animator.SetFloat(_lastVertical, vertical);
+        }
 
-            // Determine which walking animation to play
-            string targetAnimation = "";
-
-            if (horizontal < 0)
-            {
-                targetAnimation = "Player_walk_left";
-                lastDirection = "Left";
-                lastMovementDirection = "Left"; 
-            }
-            else if (horizontal > 0)
-            {
-                targetAnimation = "Player_walk_right";
-                lastDirection = "Right";
-                lastMovementDirection = "Right"; 
-            }
-            else if (vertical > 0)
-            {
-                targetAnimation = "Player_walk_back";
-                lastDirection = "Back";
-                lastMovementDirection = "Back"; 
-            }
-            else if (vertical < 0)
-            {
-                targetAnimation = "Walk_front_animation";
-                lastDirection = "Front";
-                lastMovementDirection = "Front"; 
-            }
-
-            // Only play the animation if it's not already playing
-            if (currentAnimation != targetAnimation)
-            {
-                animator.Play(targetAnimation);
-                currentAnimation = targetAnimation;
-            }
+        public void setAxis(float horizontal, float vertical)
+        {
+            Debug.Log("setting axis");
+            animator.SetFloat(_horizontal, horizontal);
+            animator.SetFloat(_vertical, vertical);
         }
         
-
-        // Determines idle animation based on the last direction
-        private string GetIdleAnimation(string lastDirection)
-        {
-            return lastDirection switch
-            {
-                "Left" => "Player_idle_left",
-                "Right" => "Player_idle_right",
-                "Back" => "Player_idle_back",
-                "Front" => "Walk_front_animation", // Front idle animation
-                _ => "Player_idle", // Default idle animation
-            };
-        }
-        
-        public IEnumerator PlayGetCaughtAnimation(System.Action lockMovementCallback, System.Action unlockMovementCallback)
+        public void PlayGetCaughtAnimation()
         {
             // Lock player movement
-            lockMovementCallback?.Invoke();
 
-            Debug.Log("Playing Player_get_caught animation");
+            
 
             // Ensure the animation state exists
             if (!animator.HasState(0, Animator.StringToHash("Player_get_caught")))
             {
                 Debug.LogError("Animation state 'Player_get_caught' not found!");
-                yield break;
+                
             }
 
             // Play the get caught animation
             animator.Play("Player_get_caught");
 
             // Wait for the animation to complete (adjust the duration to match your animation clip)
-            yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+            
 
             // Unlock player movement
-            unlockMovementCallback?.Invoke();
+           
         }
 
         public IEnumerator PlayLevelCompletionAnimation(System.Action lockMovementCallback, System.Action unlockMovementCallback)

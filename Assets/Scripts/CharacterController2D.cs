@@ -51,7 +51,8 @@ namespace Intertables
         private SpriteRenderer spriteRenderer;
         private string lastDirection = "Front"; // Keeps track of the last direction
         private static bool introPlayed = false;
-        private PlayerAnimationController animationController;
+        public PlayerAnimationController animationController;
+        
 
         void Start()
         {
@@ -112,7 +113,7 @@ namespace Intertables
             }
 
             // Delegate walking animation handling to PlayerAnimationController
-            animationController.PlayWalkAnimation(horizontal, vertical, ref lastDirection, canMove);
+           
 
         }
         
@@ -152,33 +153,38 @@ namespace Intertables
 
         void FixedUpdate()
         {
-            // Movement logic
-            if (horizontal != 0 && vertical != 0)
-            {
-                horizontal *= moveLimiter;
-                vertical *= moveLimiter;
-            }
-
-            // Adjust offset for carried object based on player direction
-            if (horizontal < 0)
-            {
-                offset.x = 0.6f;
-            }
-            else if (horizontal > 0)
-            {
-                offset.x = -0.6f;
-            }
-
+            // Apply movement logic
             if (canMove)
             {
-                body.velocity = new Vector2(horizontal * runSpeed, vertical * runSpeed);
+                Vector2 movement = new Vector2(horizontal, vertical);
+
+                if (movement.magnitude > 1f)
+                {
+                    movement *= moveLimiter; // Normalize diagonal movement
+                }
+
+                movement *= runSpeed;
+
+                if (movement != Vector2.zero)
+                {
+                    animationController.setLastAxis(movement.x, movement.y);
+                }
+
+                animationController.setAxis(movement.x, movement.y);
+                body.velocity = movement;
             }
             else
             {
                 body.velocity = Vector2.zero;
+                animationController.setAxis(0, 0);
+                // Player can't move
             }
         }
 
+        private bool IsPlayerMoving()
+        {
+            return body.velocity.sqrMagnitude > 0.01f; // Check if velocity is close to zero
+        }
         void HandleInteraction()
         {
             if (Input.GetKeyDown(interactionKey))
