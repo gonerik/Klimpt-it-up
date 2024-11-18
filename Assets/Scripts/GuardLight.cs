@@ -14,8 +14,6 @@ public class GuardLight : MonoBehaviour
             
             if (CharacterController2D.Instance.currentPickup != null &&
                 CharacterController2D.Instance.currentPickup is Painting) {
-                IEnumerator coroutine = ReloadScene(3f);
-                StartCoroutine(coroutine);
                 CharacterController2D.Instance.setCanMove(false);
                 CharacterController2D.Instance.animationController.PlayGetCaughtAnimation();
                 
@@ -27,12 +25,7 @@ public class GuardLight : MonoBehaviour
         IEnumerator coroutine = DisableLight(duration);
         StartCoroutine(coroutine);
     }
-
-    public IEnumerator ReloadScene(float duration) // Changed to public
-    {
-        yield return new WaitForSeconds(duration);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
+    
 
     private IEnumerator DisableLight(float duration) {
         PolygonCollider2D polygonCollider = GetComponent<PolygonCollider2D>();

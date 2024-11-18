@@ -18,4 +18,9 @@ public class AnimationEvents : MonoBehaviour
             SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
         else SceneManager.LoadSceneAsync(0);
     }
+
+    public void resertLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 }

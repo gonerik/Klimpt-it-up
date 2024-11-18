@@ -55,5 +55,10 @@ namespace Intertables
         {
             animator.SetTrigger("Mop");
         }
+
+        public void PlayHidingAnimation()
+        {
+            animator.SetTrigger("Hide");
+        }
     }
 }

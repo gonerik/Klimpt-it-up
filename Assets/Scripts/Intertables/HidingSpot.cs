@@ -25,6 +25,8 @@ namespace Intertables
                 !_containsPainting)
             {
                 _containsPainting = true;
+                
+                CharacterController2D.Instance.animationController.PlayHidingAnimation();
                 _painting = CharacterController2D.Instance.currentPickup;
                 _painting.transform.localScale = new Vector3(0, 0, 0);
                 CharacterController2D.Instance.SetIsHoldingPickUpObject(false);
@@ -34,6 +36,7 @@ namespace Intertables
             }
             else if (!CharacterController2D.Instance.GetIsHoldingPickUpObject() && _containsPainting)
             {
+                
                 _containsPainting = false;
                 _painting.transform.localScale = new Vector3(1, 1, 1);
                 CharacterController2D.Instance.currentPickup = _painting;
