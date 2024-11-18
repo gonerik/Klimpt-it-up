@@ -152,12 +152,8 @@ namespace Intertables
             // Apply movement logic
             if (canMove)
             {
-                Vector2 movement = new Vector2(horizontal, vertical);
-
-                if (movement.magnitude > 1f)
-                {
-                    movement *= moveLimiter; // Normalize diagonal movement
-                }
+                Vector2 movement = new Vector2(horizontal, vertical).normalized;
+                
 
                 movement *= runSpeed;
 
@@ -204,7 +200,6 @@ namespace Intertables
                         // Pick up the painting
                         currentPickup = currentInteractable.GetComponent<PickUpObjects>();
                         currentInteractable.Interact();
-                        isHoldingPickUpObject = true;
 
                         setCanMove(false);
                         // Start stealing animation
@@ -223,7 +218,7 @@ namespace Intertables
 
         void HandleCarriedObject()
         {
-            if (currentPickup == null) return;
+            if (!currentPickup || !isHoldingPickUpObject) return;
 
             // Smoothly move the object towards the player's back
             Vector3 targetPosition = transform.position + offset;

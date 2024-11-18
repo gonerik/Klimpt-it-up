@@ -23,4 +23,10 @@ public class AnimationEvents : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    public void holdPainting()
+    {
+        CharacterController2D.Instance.setCanMove(true);
+        CharacterController2D.Instance.SetIsHoldingPickUpObject(true);
+    }
 }
