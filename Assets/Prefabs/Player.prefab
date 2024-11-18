@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8293449630587281243}
   - component: {fileID: 3611376852591975292}
   - component: {fileID: 5148207951427567009}
+  - component: {fileID: 8364957110357083843}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Player
@@ -142,6 +143,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8364957110357083843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6098853502915249307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54e72bcd8a0a3a84c8a6fda724f4e442, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6111227965828955193
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,6 +217,7 @@ MonoBehaviour:
   floatSpeed: 2
   puddle: {fileID: 8962506655511679438, guid: 7aec096b8f577a8448f98c9da1698712, type: 3}
   tilemap: {fileID: 0}
+  animationController: {fileID: 0}
 --- !u!50 &2853890627550804203
 Rigidbody2D:
   serializedVersion: 4

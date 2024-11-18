@@ -47,7 +47,6 @@ namespace Intertables
         public bool GetIsHoldingPickUpObject() => isHoldingPickUpObject;
         public void SetIsHoldingPickUpObject(bool isHolding) => isHoldingPickUpObject = isHolding;
         [Header("Animation")]
-        private Animator animator;
         private SpriteRenderer spriteRenderer;
         private string lastDirection = "Front"; // Keeps track of the last direction
         private static bool introPlayed = false;
@@ -57,7 +56,6 @@ namespace Intertables
         void Start()
         {
             animationController = GetComponent<PlayerAnimationController>();
-            animator = GetComponentInChildren<Animator>();
             if (Instance == null)
             {
                 Instance = this;
@@ -111,8 +109,6 @@ namespace Intertables
             {
                 SpawnPuddle();
             }
-
-            // Delegate walking animation handling to PlayerAnimationController
            
 
         }
@@ -180,18 +176,12 @@ namespace Intertables
                 // Player can't move
             }
         }
-
-        private bool IsPlayerMoving()
-        {
-            return body.velocity.sqrMagnitude > 0.01f; // Check if velocity is close to zero
-        }
         void HandleInteraction()
         {
             if (Input.GetKeyDown(interactionKey))
             {
                 if (isHoldingPickUpObject && currentPickup is MopSign)
                 {
-                    Debug.Log("Put down a mop sign.");
                     currentInteractable = currentPickup;
                     SpawnMopSign();
                     if (!isHoldingPickUpObject) settoMaxSpeed();
@@ -203,8 +193,6 @@ namespace Intertables
                     {
                         // Interact with storage to drop the painting
                         currentInteractable.Interact();
-
-                        Debug.Log("Interacted with storage.");
                     }
                     else if (currentInteractable is HidingSpot)
                     {
@@ -218,13 +206,9 @@ namespace Intertables
                         currentInteractable.Interact();
                         isHoldingPickUpObject = true;
 
-                        Debug.Log("Picked up a painting.");
-
+                        setCanMove(false);
                         // Start stealing animation
-                        StartCoroutine(animationController.PlayStealingAnimation(
-                            () => setCanMove(false),  // Lock movement callback
-                            () => setCanMove(true)   // Unlock movement callback
-                        ));
+                        animationController.PlayStealingAnimation();
                     }
 
                     else if (!isHoldingPickUpObject && currentInteractable is MopSign)
@@ -273,25 +257,11 @@ namespace Intertables
 
             Vector3 tileCenterPosition = tilemap.GetCellCenterWorld(cellPosition);
             CurrentPuddle = Instantiate(puddle, tileCenterPosition, Quaternion.identity);
-
-            // Start coroutine to play the animation and lock movement
-            StartCoroutine(PlayPuddleAnimationAndLockMovement());
-        }
-
-        private IEnumerator PlayPuddleAnimationAndLockMovement()
-        {
-            // Lock movement
             setCanMove(false);
-
-            // Play mopping animation
-            animationController.PlayMoppingAnimation(this, 1.1f); // Use 1.1 seconds for animation duration
-
-            // Wait for animation to finish
-            yield return new WaitForSeconds(1.1f);
-
-            // Unlock movement
-            setCanMove(true);
+            animationController.PlayMoppingAnimation();
         }
+
+        
 
 
         private void SpawnMopSign()
