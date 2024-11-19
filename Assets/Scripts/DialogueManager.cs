@@ -21,7 +21,7 @@ public class DialogueManager : MonoBehaviour
     [Header("Audio")]
     [SerializeField] private AudioSource audioSource; // Add an AudioSource component in the inspector
 
-    void Start()
+    void Awake()
     {
         Instance = this;
         dialoguePanel.SetActive(false); // Initially hide the dialogue panel
@@ -33,7 +33,7 @@ public class DialogueManager : MonoBehaviour
         currentLineIndex = 0;
         isDialogueActive = true;
         dialoguePanel.SetActive(true);
-
+        Debug.Log(dialogueLines[currentLineIndex].text);
         CharacterController2D.Instance.setCanMove(false); // Disable player movement during the cutscene
 
         DisplayNextLine();

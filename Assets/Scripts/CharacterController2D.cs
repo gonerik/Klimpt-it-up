@@ -65,15 +65,12 @@ namespace Intertables
             {
                 Debug.LogError("CharacterController2D already exists!");
             }
-
             body = GetComponent<Rigidbody2D>();
             runSpeed = maxRunSpeed;
-            if (SceneManager.GetActiveScene().buildIndex == 1 && !introPlayed)
+            if (SceneManager.GetActiveScene().buildIndex == 1)
             {
                 DialogueManager.Instance.StartDialogue(DialogueManager.Instance.dialogueLines);
-                introPlayed = true;
             }
-
         }
 
         public void settoMaxSpeed()
