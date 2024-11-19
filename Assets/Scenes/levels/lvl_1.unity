@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &116825290 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1446031103419879408, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
-  m_PrefabInstance: {fileID: 1196489948}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &219658418
 GameObject:
   m_ObjectHideFlags: 0
@@ -1257,7 +1252,7 @@ MonoBehaviour:
   - speakerName: "Gertrude-Britney J\xE4ger"
     text: Ah-ah! Not at my watch!
     voiceLine: {fileID: 0}
-  playerController: {fileID: 2066104815}
+  playerController: {fileID: 0}
   audioSource: {fileID: 1106820942}
 --- !u!1 &1140696960
 GameObject:
@@ -1483,6 +1478,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 201214675240029042, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 201214675240029042, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -10.85
+      objectReference: {fileID: 0}
     - target: {fileID: 1446031103419879408, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.59
@@ -1932,7 +1935,7 @@ PrefabInstance:
     - target: {fileID: 1651142000673976981, guid: d697dc2c9c5b84445b535aaebe99a1ce, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 116825290}
+      objectReference: {fileID: 0}
     - target: {fileID: 1651142000673976981, guid: d697dc2c9c5b84445b535aaebe99a1ce, type: 3}
       propertyPath: cameraSpeed
       value: 5
@@ -1943,7 +1946,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1707723479897719236, guid: d697dc2c9c5b84445b535aaebe99a1ce, type: 3}
       propertyPath: orthographic size
-      value: 10
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2710689298471802539, guid: d697dc2c9c5b84445b535aaebe99a1ce, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1990,8 +1993,16 @@ PrefabInstance:
       value: CameraSystem
       objectReference: {fileID: 0}
     - target: {fileID: 6182976760018964735, guid: d697dc2c9c5b84445b535aaebe99a1ce, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.173759
+      objectReference: {fileID: 0}
+    - target: {fileID: 6182976760018964735, guid: d697dc2c9c5b84445b535aaebe99a1ce, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.866673
+      objectReference: {fileID: 0}
+    - target: {fileID: 6182976760018964735, guid: d697dc2c9c5b84445b535aaebe99a1ce, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -20
+      value: -9.019093
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2514,17 +2525,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2029408522}
   m_CullTransparentMesh: 1
---- !u!114 &2066104815 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2515695683486998709, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
-  m_PrefabInstance: {fileID: 1196489948}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1356d226b9ee0f4192ae42ccfa3dd34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &81110289287130709
 GameObject:
   m_ObjectHideFlags: 0
