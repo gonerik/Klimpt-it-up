@@ -1,17 +1,22 @@
 using UnityEngine;
 using System.Collections;
+using Cinemachine;
 
 namespace Intertables
 {
     public class PlayerAnimationController : MonoBehaviour
     {
+        [Header("Animation Settings")]
         private Animator animator;
-        
         private string lastMovementDirection = "Front"; // Tracks the last movement direction for stealing animations
         private const string _horizontal = "Horizontal";
         private const string _vertical = "Vertical";
         private const string _lastVertical  = "LastVertical";
         private const string _lastHorizontal = "LastHorizontal";
+        
+        [Header("Camera Settings")]
+        [SerializeField] private CinemachineVirtualCamera EmojiCamera;
+        
         
         
         private void Awake()
@@ -39,11 +44,15 @@ namespace Intertables
         
         public void PlayGetCaughtAnimation()
         {
+            EmojiCamera.m_Lens.OrthographicSize = 3.5f;
+            EmojiCamera.Priority = 15;
             animator.SetTrigger("GetCaught");
         }
 
         public void PlayLevelCompletionAnimation()
         {
+            EmojiCamera.Priority = 15;
+            EmojiCamera.m_Lens.OrthographicSize = 2f;
             animator.SetTrigger("Win");
         }
         public void PlayStealingAnimation()
@@ -60,5 +69,13 @@ namespace Intertables
         {
             animator.SetTrigger("Hide");
         }
+
+        public void DisableEmojiCamera()
+        {
+            EmojiCamera.Priority = 0;
+            
+        }
+
+        
     }
 }

@@ -110,6 +110,7 @@ public class Guard : MonoBehaviour
 
     public void CatchFrau()
     {
+        CameraTargetSelector.Instance.setTargetGroup(transform);
         isStopped = true;
         animatorController.PlayCatchFrau();
     }

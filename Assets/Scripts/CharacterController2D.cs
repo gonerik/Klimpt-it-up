@@ -94,7 +94,7 @@ namespace Intertables
             }
 
             horizontal = Input.GetAxisRaw("Horizontal");
-            vertical = Input.GetAxisRaw("Vertical");
+            vertical = Input.GetAxisRaw("Vertical"); ;
 
             DetectInteractable();
             // Interaction
@@ -154,7 +154,7 @@ namespace Intertables
             if (canMove)
             {
                 Vector2 movement = new Vector2(horizontal, vertical).normalized;
-                
+                offset.x = -movement.x*0.4f;
 
                 movement *= runSpeed;
 

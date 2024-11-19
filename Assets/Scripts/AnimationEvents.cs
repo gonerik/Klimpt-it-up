@@ -14,6 +14,7 @@ public class AnimationEvents : MonoBehaviour
 
     public void finishLevel()
     {
+        CharacterController2D.Instance.animationController.DisableEmojiCamera();
         if (SceneManager.GetActiveScene().buildIndex < SceneManager.sceneCountInBuildSettings)
             SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
         else SceneManager.LoadSceneAsync(0);
@@ -21,6 +22,7 @@ public class AnimationEvents : MonoBehaviour
 
     public void resertLevel()
     {
+        CharacterController2D.Instance.animationController.DisableEmojiCamera();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
