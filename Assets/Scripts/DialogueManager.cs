@@ -17,8 +17,6 @@ public class DialogueManager : MonoBehaviour
     private int currentLineIndex = 0;
     private bool isDialogueActive = false;
 
-    [Header("Player Control")]
-    [SerializeField] private CharacterController2D playerController;
 
     [Header("Audio")]
     [SerializeField] private AudioSource audioSource; // Add an AudioSource component in the inspector
@@ -36,7 +34,7 @@ public class DialogueManager : MonoBehaviour
         isDialogueActive = true;
         dialoguePanel.SetActive(true);
 
-        playerController.setCanMove(false); // Disable player movement during the cutscene
+        CharacterController2D.Instance.setCanMove(false); // Disable player movement during the cutscene
 
         DisplayNextLine();
     }
@@ -81,7 +79,7 @@ public class DialogueManager : MonoBehaviour
             audioSource.Stop();
         }
 
-        playerController.setCanMove(true); // Re-enable player movement
+        CharacterController2D.Instance.setCanMove(true); // Re-enable player movement
     }
 
     void Update()
