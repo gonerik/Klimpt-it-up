@@ -2117,6 +2117,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -30449546043969568, guid: ccf1cec2bfa8a0a4f97d81646603a795, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2653424746148101937, guid: ccf1cec2bfa8a0a4f97d81646603a795, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3
@@ -2185,7 +2189,8 @@ PrefabInstance:
       propertyPath: waypoints.Array.data[3]
       value: 
       objectReference: {fileID: 1798603374}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8883474761054306675, guid: ccf1cec2bfa8a0a4f97d81646603a795, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -14873,9 +14878,17 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: -0.25
       objectReference: {fileID: 0}
+    - target: {fileID: 6098853502915249307, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6111227965828955193, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6111227965828955193, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

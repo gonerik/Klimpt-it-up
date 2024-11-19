@@ -11,7 +11,8 @@ namespace Intertables
 {
     public class CharacterController2D : MonoBehaviour
     {
-        [Header("Movement")] public static CharacterController2D Instance;
+        [Header("Movement")] 
+        public static CharacterController2D Instance;
         private Rigidbody2D body;
         private bool canMove = true;
 

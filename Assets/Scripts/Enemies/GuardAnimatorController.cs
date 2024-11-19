@@ -25,12 +25,12 @@ public class GuardAnimatorController : MonoBehaviour
         animator.SetFloat(_lastHorizontal, lastVertical);
     }
 
-    private void PlayCatchFrau()
+    public void PlayCatchFrau()
     {
         animator.SetTrigger("Catch");
     }
 
-    private void PlaySlipAnimation()
+    public void PlaySlipAnimation()
     {
         animator.SetTrigger("Slip");
     }
