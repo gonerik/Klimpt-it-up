@@ -273,5 +273,10 @@ namespace Intertables
         {
             canMove = value;
         }
+
+        public void getCaught()
+        {
+            runSpeed = 0f;
+        }
     }
 }   

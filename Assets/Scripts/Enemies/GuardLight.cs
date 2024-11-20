@@ -19,7 +19,7 @@ public class GuardLight : MonoBehaviour
             
             if (CharacterController2D.Instance.currentPickup != null &&
                 CharacterController2D.Instance.currentPickup is Painting) {
-                CharacterController2D.Instance.setCanMove(false);
+                CharacterController2D.Instance.getCaught();
                 CharacterController2D.Instance.animationController.PlayGetCaughtAnimation();
                 guard.CatchFrau();
                 
