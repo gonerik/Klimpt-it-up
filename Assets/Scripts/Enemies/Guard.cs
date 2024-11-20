@@ -3,6 +3,7 @@ using System.Collections;
 using Intertables.Enemies;
 using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Guard : MonoBehaviour
 {
@@ -20,9 +21,15 @@ public class Guard : MonoBehaviour
     [SerializeField] private GameObject lightPivot;
     private GuardLight light;   
     private GuardAnimatorController animatorController;
+    private bool seenSign;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip[] guardSoundsHuh;
+    [SerializeField] private AudioClip[] guardSoundsStop;
+    [SerializeField] private AudioClip[] guardSoundsSlip;
 
     private void Start()
     {
+        MopSign.OnPickUp += MopSignOnOnPickUp;
         body = GetComponent<Rigidbody2D>();
         animatorController = GetComponent<GuardAnimatorController>();
         light = lightPivot.GetComponentInChildren<GuardLight>();
@@ -45,6 +52,11 @@ public class Guard : MonoBehaviour
         
     }
 
+    private void MopSignOnOnPickUp(object sender, EventArgs e)
+    {
+        seenSign = false;
+    }
+
     private void FixedUpdate()
     {
         if (puddleImmunityTimer > 0f) {
@@ -63,9 +75,14 @@ public class Guard : MonoBehaviour
         isStopped = true;
         puddleImmunityTimer = 10f;
         speed -= slowDifference;
-        StartCoroutine("RestoreSpeed", 0f);
+        StartCoroutine("RestoreSpeed");
         animatorController.PlaySlipAnimation();
         light.DisableLight();
+        if (guardSoundsSlip.Length > 0 && audioSource != null)
+        {
+            int randomIndex = Random.Range(0, guardSoundsSlip.Length);
+            audioSource.PlayOneShot(guardSoundsSlip[randomIndex]);
+        }
     }
 
     public void Move() {
@@ -125,6 +142,12 @@ public class Guard : MonoBehaviour
                 currentWaypointIndex++;
             }
         }
+        if (guardSoundsHuh.Length > 0 && audioSource != null && !seenSign)
+        {
+            int randomIndex = Random.Range(0, guardSoundsHuh.Length);
+            audioSource.PlayOneShot(guardSoundsHuh[randomIndex]);
+            seenSign = true;
+        }
     }
 
     public void CatchFrau()
@@ -132,6 +155,15 @@ public class Guard : MonoBehaviour
         CameraTargetSelector.Instance.setTargetGroup(transform);
         isStopped = true;
         animatorController.PlayCatchFrau();
+        if (guardSoundsStop.Length > 0 && audioSource != null)
+        {
+            int randomIndex = Random.Range(0, guardSoundsStop.Length);
+            audioSource.PlayOneShot(guardSoundsStop[randomIndex]);
+        }
+        else
+        {
+            Debug.LogWarning("No sounds assigned or AudioSource is missing!");
+        }
     }
 
     private IEnumerator RestoreSpeed() {

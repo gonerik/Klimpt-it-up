@@ -148,6 +148,19 @@ MonoBehaviour:
   puddleImmunityTimer: 0
   slowDifference: 2
   lightPivot: {fileID: 1026552005786326100}
+  audioSource: {fileID: 6003929754848362282}
+  guardSoundsHuh:
+  - {fileID: 8300000, guid: c712862a2517b0e47882b1eb24714357, type: 3}
+  - {fileID: 8300000, guid: dbb2f83683d983c4e8cc43cf30680896, type: 3}
+  guardSoundsStop:
+  - {fileID: 8300000, guid: bf5e3b55b2253b34e96b5c54f9d0c453, type: 3}
+  - {fileID: 8300000, guid: 2115025b45cac114aa9e778bef8131a5, type: 3}
+  - {fileID: 8300000, guid: 93570323f6e218f4bbd3c9e67e7aa7f3, type: 3}
+  - {fileID: 8300000, guid: 851ff06eea5fd2745bc9e115a8e8e815, type: 3}
+  - {fileID: 8300000, guid: c50ef991e47925c41b19b04b29208e8b, type: 3}
+  - {fileID: 8300000, guid: b5e0f7af64c04134fb83e0d1a5224fb6, type: 3}
+  guardSoundsSlip:
+  - {fileID: 8300000, guid: 0b107de9c9d0f514cb40a52a764a9633, type: 3}
 --- !u!50 &-30449546043969568
 Rigidbody2D:
   serializedVersion: 4
