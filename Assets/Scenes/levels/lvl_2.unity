@@ -14420,6 +14420,54 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 14083927290454388, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
+      propertyPath: m_ScreenX
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 14083927290454388, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
+      propertyPath: m_XDamping
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 14083927290454388, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
+      propertyPath: m_YDamping
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 14083927290454388, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
+      propertyPath: m_ZDamping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 14083927290454388, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
+      propertyPath: m_DeadZoneWidth
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 14083927290454388, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
+      propertyPath: m_SoftZoneWidth
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 14083927290454388, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
+      propertyPath: m_DeadZoneHeight
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 14083927290454388, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
+      propertyPath: m_SoftZoneHeight
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 14083927290454388, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
+      propertyPath: m_UnlimitedSoftZone
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 14083927290454388, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
+      propertyPath: m_TargetMovementOnly
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 14083927290454388, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
+      propertyPath: m_TrackedObjectOffset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 14083927290454388, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
+      propertyPath: m_TrackedObjectOffset.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 201214675240029042, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.26
@@ -14427,6 +14475,14 @@ PrefabInstance:
     - target: {fileID: 201214675240029042, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 1437651424840234368, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1437651424840234368, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.00000023841858
       objectReference: {fileID: 0}
     - target: {fileID: 1446031103419879408, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14478,11 +14534,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4343442868857496832, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.00000023841858
       objectReference: {fileID: 0}
     - target: {fileID: 4343442868857496832, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
       propertyPath: m_LocalPosition.z
       value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5347792834927354317, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
+      propertyPath: m_DefaultBlend.m_Time
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 6111227965828955193, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
       propertyPath: m_Name
