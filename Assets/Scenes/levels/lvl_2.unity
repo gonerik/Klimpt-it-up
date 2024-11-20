@@ -450,8 +450,8 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 662455703
+  m_SortingLayer: 1
   m_SortingOrder: 6
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -565,6 +565,18 @@ PrefabInstance:
     - target: {fileID: 1086933502857194986, guid: f3bf694227ff13d40b5ab306c70f963f, type: 3}
       propertyPath: m_Name
       value: GlobalSceneLight
+      objectReference: {fileID: 0}
+    - target: {fileID: 2592850859548731638, guid: f3bf694227ff13d40b5ab306c70f963f, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2592850859548731638, guid: f3bf694227ff13d40b5ab306c70f963f, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[1]
+      value: -1069086589
+      objectReference: {fileID: 0}
+    - target: {fileID: 2592850859548731638, guid: f3bf694227ff13d40b5ab306c70f963f, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[2]
+      value: 662455703
       objectReference: {fileID: 0}
     - target: {fileID: 4180513190784648567, guid: f3bf694227ff13d40b5ab306c70f963f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -685,7 +697,7 @@ MonoBehaviour:
   m_Intensity: 3
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 0000000097457c27830847c0
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -13883,9 +13895,9 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingLayerID: -1069086589
+  m_SortingLayer: 2
+  m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.91166663, y: 0.5283333, z: 0}
   m_MaxChunkCount: 16
@@ -14313,7 +14325,7 @@ MonoBehaviour:
   m_Intensity: 3
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 0000000097457c27830847c0
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -14688,7 +14700,7 @@ MonoBehaviour:
   m_Intensity: 4
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 0000000097457c27830847c0
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
