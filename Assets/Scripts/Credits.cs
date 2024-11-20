@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,14 @@ public class Credits : MonoBehaviour
         animator = GetComponent<Animator>();
         visual.gameObject.GetComponent<Animator>().Play("VisualForCredits");
         animator.Play("CreditsAnimation");
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            LoadMainMenu();
+        }
     }
 
     // Update is called once per frame
