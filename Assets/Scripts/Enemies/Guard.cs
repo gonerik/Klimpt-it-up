@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Intertables.Enemies;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ public class Guard : MonoBehaviour
     [SerializeField] private float speed = 2f;
     [SerializeField] private float reachDistance = 0.1f;
     [SerializeField] private float rotationSpeed = 1f;
+    [SerializeField] private Direction direction = Direction.Right;
     private int currentWaypointIndex = 0;
     private bool isReversing = false;
     public bool isStopped = false;
@@ -24,6 +26,23 @@ public class Guard : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         animatorController = GetComponent<GuardAnimatorController>();
         light = lightPivot.GetComponentInChildren<GuardLight>();
+        Vector2 directionVector = Vector2.right;
+        switch (direction)
+        {
+            case Direction.Right: directionVector = new Vector2(0, 1);
+                break;
+            case Direction.Left: directionVector = new Vector2(0,-1);
+                break;
+            case Direction.Front: directionVector = new Vector2(-1,0);
+                break;
+            case Direction.Back: directionVector = new Vector2(1,0);
+                break;
+            
+        }
+        animatorController.setLastAxis(directionVector.x,directionVector.y);
+        float angle = Mathf.Atan2(directionVector.x, directionVector.y) * Mathf.Rad2Deg;
+        lightPivot.transform.rotation = Quaternion.Euler(0, 0, angle - 90f);
+        
     }
 
     private void FixedUpdate()
@@ -40,7 +59,7 @@ public class Guard : MonoBehaviour
         }
     }
 
-    public void StopMovement(float duration) {
+    public void StopMovement() {
         isStopped = true;
         puddleImmunityTimer = 10f;
         speed -= slowDifference;

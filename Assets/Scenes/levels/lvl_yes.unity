@@ -6211,6 +6211,10 @@ PrefabInstance:
       value: Back
       objectReference: {fileID: 0}
     - target: {fileID: 8897211938680884663, guid: ccf1cec2bfa8a0a4f97d81646603a795, type: 3}
+      propertyPath: direction
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897211938680884663, guid: ccf1cec2bfa8a0a4f97d81646603a795, type: 3}
       propertyPath: waypoints.Array.size
       value: 0
       objectReference: {fileID: 0}
@@ -7567,6 +7571,14 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: -0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4343442868857496832, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4343442868857496832, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6111227965828955193, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
       propertyPath: m_Name
       value: Player
@@ -7643,6 +7655,18 @@ PrefabInstance:
     - target: {fileID: 6129900176477843367, guid: f3bf694227ff13d40b5ab306c70f963f, type: 3}
       propertyPath: m_PointLightOuterRadius
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6129900176477843367, guid: f3bf694227ff13d40b5ab306c70f963f, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6129900176477843367, guid: f3bf694227ff13d40b5ab306c70f963f, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[1]
+      value: 662455703
+      objectReference: {fileID: 0}
+    - target: {fileID: 6129900176477843367, guid: f3bf694227ff13d40b5ab306c70f963f, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[2]
+      value: -1069086589
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8302,6 +8326,10 @@ PrefabInstance:
     - target: {fileID: 6084352068323768106, guid: ccf1cec2bfa8a0a4f97d81646603a795, type: 3}
       propertyPath: currentSide
       value: Right
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897211938680884663, guid: ccf1cec2bfa8a0a4f97d81646603a795, type: 3}
+      propertyPath: direction
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8897211938680884663, guid: ccf1cec2bfa8a0a4f97d81646603a795, type: 3}
       propertyPath: waypoints.Array.size

@@ -8,9 +8,7 @@ public class Puddle : MonoBehaviour
             Guard guardPath = other.GetComponentInParent<Guard>();
             GuardLight guardLight = guardPath.GetComponentInChildren<GuardLight>();
             if (guardPath.puddleImmunityTimer <= 0f) {
-                guardPath.StopMovement(3f);
-                
-                
+                guardPath.StopMovement();
                 Destroy(gameObject);
             }
         }
