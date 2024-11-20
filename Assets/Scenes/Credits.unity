@@ -317,7 +317,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -920}
+  m_AnchoredPosition: {x: 0, y: -1045}
   m_SizeDelta: {x: 600, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &732000753
@@ -589,12 +589,16 @@ MonoBehaviour:
 
 
 
+
+
+
     Artists
 
 
 
 
     Game Designers
+
 
 
     Voice Actors
@@ -628,8 +632,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 34
-  m_fontSizeBase: 34
+  m_fontSize: 34.4
+  m_fontSizeBase: 34.4
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -735,8 +739,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Ivan Havrylenko\nMarek Kisieli\u0144ski\n\nZuzanna Sowul\nMariia Sorokina\nIrina
-    Goere \n\nBurak Akdogan\n\nFabian Nussbaumer\n\nMicha\u0142 Po\u015Bwiata"
+  m_text: "Ivan Havrylenko\nMarek Kisieli\u0144ski\nAntoni Michalec\nOleksandr Rozlutskyi\nOleh
+    Serhiienko \n\nZuzanna Sowul\nMariia Sorokina\nIrina Goere \n\nBurak Akdogan\nElia
+    Novikova \n\nFabian Nussbaumer\n\nMicha\u0142 Po\u015Bwiata"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 692f8b126633fa84db8e3a79d78e63fb, type: 2}
   m_sharedMaterial: {fileID: -6433245730425159546, guid: 692f8b126633fa84db8e3a79d78e63fb, type: 2}
@@ -1447,7 +1452,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -850}
+  m_AnchoredPosition: {x: 0, y: -975}
   m_SizeDelta: {x: 600, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2113859028
