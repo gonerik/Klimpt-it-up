@@ -2430,6 +2430,22 @@ PrefabInstance:
       propertyPath: tilemap
       value: 
       objectReference: {fileID: 3677277482386165457}
+    - target: {fileID: 8473556797588831192, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
+      propertyPath: decayTime
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8473556797588831192, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
+      propertyPath: attackTime
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8473556797588831192, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
+      propertyPath: releaseTime
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8473556797588831192, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
+      propertyPath: sustainSpeed
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
