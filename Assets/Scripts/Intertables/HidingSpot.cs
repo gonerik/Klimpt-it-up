@@ -21,10 +21,11 @@ namespace Intertables
         public override void Interact()
         {
             if (CharacterController2D.Instance.GetIsHoldingPickUpObject() && 
-                CharacterController2D.Instance.currentPickup is not MopSign && 
+                CharacterController2D.Instance.currentPickup is Painting && 
                 !_containsPainting)
             {
                 _containsPainting = true;
+                CharacterController2D.Instance.animationController.PlayHidingAnimation();
                 _painting = CharacterController2D.Instance.currentPickup;
                 _painting.transform.localScale = new Vector3(0, 0, 0);
                 CharacterController2D.Instance.SetIsHoldingPickUpObject(false);
@@ -34,6 +35,7 @@ namespace Intertables
             }
             else if (!CharacterController2D.Instance.GetIsHoldingPickUpObject() && _containsPainting)
             {
+                
                 _containsPainting = false;
                 _painting.transform.localScale = new Vector3(1, 1, 1);
                 CharacterController2D.Instance.currentPickup = _painting;

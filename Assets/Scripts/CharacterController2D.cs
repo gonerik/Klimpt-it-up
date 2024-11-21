@@ -11,9 +11,8 @@ namespace Intertables
 {
     public class CharacterController2D : MonoBehaviour
     {
-        private bool isLevelCompleted = false;
-
-        [Header("Movement")] public static CharacterController2D Instance;
+        [Header("Movement")] 
+        public static CharacterController2D Instance;
         private Rigidbody2D body;
         private bool canMove = true;
 
@@ -49,17 +48,15 @@ namespace Intertables
         public bool GetIsHoldingPickUpObject() => isHoldingPickUpObject;
         public void SetIsHoldingPickUpObject(bool isHolding) => isHoldingPickUpObject = isHolding;
         [Header("Animation")]
-        private Animator animator;
         private SpriteRenderer spriteRenderer;
         private string lastDirection = "Front"; // Keeps track of the last direction
         private static bool introPlayed = false;
-        private PlayerAnimationController animationController;
-
+        public PlayerAnimationController animationController;
+        
 
         void Start()
         {
             animationController = GetComponent<PlayerAnimationController>();
-            animator = GetComponentInChildren<Animator>();
             if (Instance == null)
             {
                 Instance = this;
@@ -68,22 +65,12 @@ namespace Intertables
             {
                 Debug.LogError("CharacterController2D already exists!");
             }
-
             body = GetComponent<Rigidbody2D>();
             runSpeed = maxRunSpeed;
-            if (SceneManager.GetActiveScene().buildIndex == 1 && !introPlayed)
+            if (SceneManager.GetActiveScene().buildIndex == 1)
             {
                 DialogueManager.Instance.StartDialogue(DialogueManager.Instance.dialogueLines);
-                introPlayed = true;
             }
-            
-            // Subscribe to the GuardLight's FrauCaught event
-            GuardLight guardLight = FindObjectOfType<GuardLight>();
-            if (guardLight != null)
-            {
-                guardLight.onFrauCaught += HandlePlayerCaught;
-            }
-
         }
 
         public void settoMaxSpeed()
@@ -104,7 +91,7 @@ namespace Intertables
             }
 
             horizontal = Input.GetAxisRaw("Horizontal");
-            vertical = Input.GetAxisRaw("Vertical");
+            vertical = Input.GetAxisRaw("Vertical"); ;
 
             DetectInteractable();
             // Interaction
@@ -116,16 +103,14 @@ namespace Intertables
                 HandleCarriedObject();
             }
 
-            if (Input.GetKeyDown("1") && currentPickup == null)
+            if (Input.GetKeyDown(KeyCode.Q) && currentPickup == null)
             {
                 SpawnPuddle();
             }
-
-            // Delegate walking animation handling to PlayerAnimationController
-            animationController.PlayWalkAnimation(horizontal, vertical, ref lastDirection, canMove);
+           
 
         }
-      
+        
         void DetectInteractable()
         {
             // Find objects within the interaction range
@@ -162,60 +147,35 @@ namespace Intertables
 
         void FixedUpdate()
         {
-            // Movement logic
-            if (horizontal != 0 && vertical != 0)
-            {
-                horizontal *= moveLimiter;
-                vertical *= moveLimiter;
-            }
-
-            // Adjust offset for carried object based on player direction
-            if (horizontal < 0)
-            {
-                offset.x = 0.6f;
-            }
-            else if (horizontal > 0)
-            {
-                offset.x = -0.6f;
-            }
-
+            // Apply movement logic
             if (canMove)
             {
-                body.velocity = new Vector2(horizontal * runSpeed, vertical * runSpeed);
+                Vector2 movement = new Vector2(horizontal, vertical).normalized;
+                offset.x = -movement.x*0.4f;
+
+                movement *= runSpeed;
+
+                if (movement != Vector2.zero)
+                {
+                    animationController.setLastAxis(movement.x, movement.y);
+                }
+
+                animationController.setAxis(movement.x, movement.y);
+                body.velocity = movement;
             }
             else
             {
                 body.velocity = Vector2.zero;
+                animationController.setAxis(0, 0);
+                // Player can't move
             }
         }
-        
-        private void HandlePlayerCaught()
-        {
-            Debug.Log("Handling player caught in CharacterController2D!");
-            setCanMove(false);
-            // Play the caught animation and lock movement
-            StartCoroutine(animationController.PlayGetCaughtAnimation(
-                () => setCanMove(false),  // Lock movement
-                () => StartCoroutine(GuardLightReload())  // Restart scene after animation
-            ));
-        }
-
-        private IEnumerator GuardLightReload()
-        {
-            GuardLight guardLight = FindObjectOfType<GuardLight>();
-            if (guardLight != null)
-            {
-                yield return guardLight.ReloadScene(1.30f); // Adjust the duration as needed
-            }
-        }
-
         void HandleInteraction()
         {
             if (Input.GetKeyDown(interactionKey))
             {
                 if (isHoldingPickUpObject && currentPickup is MopSign)
                 {
-                    Debug.Log("Put down a mop sign.");
                     currentInteractable = currentPickup;
                     SpawnMopSign();
                     if (!isHoldingPickUpObject) settoMaxSpeed();
@@ -227,8 +187,6 @@ namespace Intertables
                     {
                         // Interact with storage to drop the painting
                         currentInteractable.Interact();
-
-                        Debug.Log("Interacted with storage.");
                     }
                     else if (currentInteractable is HidingSpot)
                     {
@@ -240,15 +198,10 @@ namespace Intertables
                         // Pick up the painting
                         currentPickup = currentInteractable.GetComponent<PickUpObjects>();
                         currentInteractable.Interact();
-                        isHoldingPickUpObject = true;
 
-                        Debug.Log("Picked up a painting.");
-
+                        setCanMove(false);
                         // Start stealing animation
-                        StartCoroutine(animationController.PlayStealingAnimation(
-                            () => setCanMove(false),  // Lock movement callback
-                            () => setCanMove(true)   // Unlock movement callback
-                        ));
+                        animationController.PlayStealingAnimation();
                     }
 
                     else if (!isHoldingPickUpObject && currentInteractable is MopSign)
@@ -263,7 +216,7 @@ namespace Intertables
 
         void HandleCarriedObject()
         {
-            if (currentPickup == null) return;
+            if (!currentPickup || !isHoldingPickUpObject) return;
 
             // Smoothly move the object towards the player's back
             Vector3 targetPosition = transform.position + offset;
@@ -281,7 +234,6 @@ namespace Intertables
             }
         }
 
-
         private void SpawnPuddle() {
             Vector3Int cellPosition = tilemap.WorldToCell(transform.position);
             TileBase tileAtPosition = tilemap.GetTile(cellPosition);
@@ -298,25 +250,11 @@ namespace Intertables
 
             Vector3 tileCenterPosition = tilemap.GetCellCenterWorld(cellPosition);
             CurrentPuddle = Instantiate(puddle, tileCenterPosition, Quaternion.identity);
-
-            // Start coroutine to play the animation and lock movement
-            StartCoroutine(PlayPuddleAnimationAndLockMovement());
-        }
-
-        private IEnumerator PlayPuddleAnimationAndLockMovement()
-        {
-            // Lock movement
             setCanMove(false);
-
-            // Play mopping animation
-            animationController.PlayMoppingAnimation(this, 1.1f); // Use 1.1 seconds for animation duration
-
-            // Wait for animation to finish
-            yield return new WaitForSeconds(1.1f);
-
-            // Unlock movement
-            setCanMove(true);
+            animationController.PlayMoppingAnimation();
         }
+
+        
 
 
         private void SpawnMopSign()
@@ -334,6 +272,11 @@ namespace Intertables
         public void setCanMove(bool value)
         {
             canMove = value;
+        }
+
+        public void getCaught()
+        {
+            runSpeed = 0f;
         }
     }
 }   

@@ -14,7 +14,6 @@ namespace Intertables
             // Optionally disable collider to avoid further interactions
             GetComponent<Collider2D>().enabled = false;
             this.gameObject.layer = 0;
-            Debug.Log("Picked up by player!");
         }
     }
 }

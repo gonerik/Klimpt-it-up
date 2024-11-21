@@ -1,16 +1,22 @@
 using UnityEngine;
 using System.Collections;
+using Cinemachine;
 
 namespace Intertables
 {
     public class PlayerAnimationController : MonoBehaviour
     {
+        [Header("Animation Settings")]
         private Animator animator;
-        private string currentAnimation = ""; // Tracks the current animation
-        private string lastDirection = "";   // Tracks the last direction for idle or stealing animations
-
         private string lastMovementDirection = "Front"; // Tracks the last movement direction for stealing animations
-
+        private const string _horizontal = "Horizontal";
+        private const string _vertical = "Vertical";
+        private const string _lastVertical  = "LastVertical";
+        private const string _lastHorizontal = "LastHorizontal";
+        
+        [Header("Camera Settings")]
+        [SerializeField] private CinemachineVirtualCamera EmojiCamera;
+        
         
         
         private void Awake()
@@ -22,160 +28,54 @@ namespace Intertables
             }
         }
 
-        // Handles walking animations
-        public void PlayWalkAnimation(float horizontal, float vertical, ref string lastDirection, bool canMove)
+        public void setLastAxis(float horizontal, float vertical)
         {
-            if (!canMove || (horizontal == 0 && vertical == 0))
-            {
-                // Play idle animation based on last direction
-                string idleAnimation = GetIdleAnimation(lastDirection);
-                if (currentAnimation != idleAnimation)
-                {
-                    animator.Play(idleAnimation);
-                    currentAnimation = idleAnimation; // Update current animation state
-                }
-                return;
-            }
+            Debug.Log("setting last axis");
+            animator.SetFloat(_lastHorizontal, horizontal);
+            animator.SetFloat(_lastVertical, vertical);
+        }
 
-            // Determine which walking animation to play
-            string targetAnimation = "";
-
-            if (horizontal < 0)
-            {
-                targetAnimation = "Player_walk_left";
-                lastDirection = "Left";
-                lastMovementDirection = "Left"; 
-            }
-            else if (horizontal > 0)
-            {
-                targetAnimation = "Player_walk_right";
-                lastDirection = "Right";
-                lastMovementDirection = "Right"; 
-            }
-            else if (vertical > 0)
-            {
-                targetAnimation = "Player_walk_back";
-                lastDirection = "Back";
-                lastMovementDirection = "Back"; 
-            }
-            else if (vertical < 0)
-            {
-                targetAnimation = "Walk_front_animation";
-                lastDirection = "Front";
-                lastMovementDirection = "Front"; 
-            }
-
-            // Only play the animation if it's not already playing
-            if (currentAnimation != targetAnimation)
-            {
-                animator.Play(targetAnimation);
-                currentAnimation = targetAnimation;
-            }
+        public void setAxis(float horizontal, float vertical)
+        {
+            Debug.Log("setting axis");
+            animator.SetFloat(_horizontal, horizontal);
+            animator.SetFloat(_vertical, vertical);
         }
         
-
-        // Determines idle animation based on the last direction
-        private string GetIdleAnimation(string lastDirection)
+        public void PlayGetCaughtAnimation()
         {
-            return lastDirection switch
-            {
-                "Left" => "Player_idle_left",
-                "Right" => "Player_idle_right",
-                "Back" => "Player_idle_back",
-                "Front" => "Walk_front_animation", // Front idle animation
-                _ => "Player_idle", // Default idle animation
-            };
+            EmojiCamera.m_Lens.OrthographicSize = 3.5f;
+            EmojiCamera.Priority = 15;
+            animator.SetTrigger("GetCaught");
         }
+
+        public void PlayLevelCompletionAnimation()
+        {
+            EmojiCamera.Priority = 15;
+            EmojiCamera.m_Lens.OrthographicSize = 2f;
+            animator.SetTrigger("Win");
+        }
+        public void PlayStealingAnimation()
+        {
+            animator.SetTrigger("Steal");
+
+        }
+        public void PlayMoppingAnimation()
+        {
+            animator.SetTrigger("Mop");
+        }
+
+        public void PlayHidingAnimation()
+        {
+            animator.SetTrigger("Hide");
+        }
+
+        public void DisableEmojiCamera()
+        {
+            EmojiCamera.Priority = 0;
+            
+        }
+
         
-        public IEnumerator PlayGetCaughtAnimation(System.Action lockMovementCallback, System.Action unlockMovementCallback)
-        {
-            // Lock player movement
-            lockMovementCallback?.Invoke();
-
-            Debug.Log("Playing Player_get_caught animation");
-
-            // Ensure the animation state exists
-            if (!animator.HasState(0, Animator.StringToHash("Player_get_caught")))
-            {
-                Debug.LogError("Animation state 'Player_get_caught' not found!");
-                yield break;
-            }
-
-            // Play the get caught animation
-            animator.Play("Player_get_caught");
-
-            // Wait for the animation to complete (adjust the duration to match your animation clip)
-            yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
-
-            // Unlock player movement
-            unlockMovementCallback?.Invoke();
-        }
-
-        public IEnumerator PlayLevelCompletionAnimation(System.Action lockMovementCallback, System.Action unlockMovementCallback)
-        {
-            // Lock player movement
-            lockMovementCallback?.Invoke();
-
-            Debug.Log("Playing level completion animation: no_no_last");
-
-            // Ensure the animation state exists
-            if (!animator.HasState(0, Animator.StringToHash("no_no_last")))
-            {
-                Debug.LogError("Animation state 'no_no_last' not found!");
-                yield break;
-            }
-
-            // Play the no_no_last animation
-            animator.Play("no_no_last");
-
-            // Wait for the animation to complete (adjust duration to match your clip)
-            yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
-
-            // Unlock player movement
-            unlockMovementCallback?.Invoke();
-        }
-        // Starts the stealing animation and locks movement for the duration
-        public IEnumerator PlayStealingAnimation(System.Action lockMovementCallback, System.Action unlockMovementCallback)
-        {
-            // Lock movement
-            lockMovementCallback?.Invoke();
-
-            // Determine which stealing animation to play
-            string stealingAnimation = GetStealingAnimation(lastMovementDirection);
-            Debug.Log("Playing stealing animation: " + stealingAnimation);
-            animator.Play(stealingAnimation);
-
-            yield return new WaitForSeconds(0.52f); // 52 milliseconds = 0.52 seconds
-
-            // Unlock movement
-            unlockMovementCallback?.Invoke();
-        }
-
-        // Determines stealing animation based on the last direction
-        private string GetStealingAnimation(string  lastMovementDirection)
-        {
-            Debug.Log("Determining stealing animation for lastMovementDirection: " + lastMovementDirection);
-            return lastMovementDirection switch
-            {
-                "Left" => "Stealing_left",
-                "Right" => "Stealing_right",
-                "Back" => "Stealing_back",
-                _ => "Stealing_back" // Default if undefined
-            };
-        }
-
-
-        // Plays a specific animation for a given duration
-        public IEnumerator PlayAnimationForDuration(string animationName, float duration)
-        {
-            animator.Play(animationName); // Play the specified animation
-            yield return new WaitForSeconds(duration); // Wait for the animation duration
-        }
-
-        // Handles mopping animation
-        public void PlayMoppingAnimation(MonoBehaviour caller, float duration)
-        {
-            caller.StartCoroutine(PlayAnimationForDuration("Player_mopping", duration));
-        }
     }
 }
