@@ -257,10 +257,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1376830516204920098, guid: 0a0381ea973f7fc41b367e583d64ea71, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.309375
+      objectReference: {fileID: 0}
+    - target: {fileID: 1376830516204920098, guid: 0a0381ea973f7fc41b367e583d64ea71, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.8953125
+      objectReference: {fileID: 0}
     - target: {fileID: 2364358674492288784, guid: 0a0381ea973f7fc41b367e583d64ea71, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 1662964993, guid: a0dcf5729901105499758a3c75c926b6, type: 3}
+    - target: {fileID: 6322797532633096120, guid: 0a0381ea973f7fc41b367e583d64ea71, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6322797532633096120, guid: 0a0381ea973f7fc41b367e583d64ea71, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1069086589
+      objectReference: {fileID: 0}
+    - target: {fileID: 7498356244960809601, guid: 0a0381ea973f7fc41b367e583d64ea71, type: 3}
+      propertyPath: InitialModule.gravitySource
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -956,6 +976,14 @@ PrefabInstance:
     - target: {fileID: 1346682290733493984, guid: 0a0381ea973f7fc41b367e583d64ea71, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1376830516204920098, guid: 0a0381ea973f7fc41b367e583d64ea71, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.69375
+      objectReference: {fileID: 0}
+    - target: {fileID: 1376830516204920098, guid: 0a0381ea973f7fc41b367e583d64ea71, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.128125
       objectReference: {fileID: 0}
     - target: {fileID: 2364358674492288784, guid: 0a0381ea973f7fc41b367e583d64ea71, type: 3}
       propertyPath: m_Sprite
@@ -7411,7 +7439,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1069086589
   m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.73899996, y: 0.5, z: 0}
   m_MaxChunkCount: 16

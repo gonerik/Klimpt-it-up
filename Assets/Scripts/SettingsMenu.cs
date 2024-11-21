@@ -60,4 +60,9 @@ public class SettingsMenu : MonoBehaviour
         // Time.timeScale = (!_paused ? 1 : 0);
         gameObject.SetActive(!gameObject.activeSelf);
     }
+
+    public void restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 }
