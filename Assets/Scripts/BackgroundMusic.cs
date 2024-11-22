@@ -12,8 +12,17 @@ public class BackgroundMusic : MonoBehaviour
     {
         // If an instance already exists, destroy this duplicate
         // Make this the singleton instance
-        instance = this;
-        DontDestroyOnLoad(gameObject); // Prevent destruction on scene load
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        
+        
     }
 
     private void Start()

@@ -30,7 +30,10 @@ public class Credits : MonoBehaviour
     // Update is called once per frame
     public void LoadMainMenu()
     {
-        BackgroundMusic.instance.destroy();
+        if (BackgroundMusic.instance != null)
+        {
+            BackgroundMusic.instance.destroy();
+        }
         SceneManager.LoadSceneAsync(0);
     }
 

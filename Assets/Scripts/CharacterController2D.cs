@@ -283,5 +283,10 @@ namespace Intertables
         {
             return tilemap;
         }
+
+        public GameObject getPuddle()
+        {
+            return puddle;
+        }
     }
 }   
