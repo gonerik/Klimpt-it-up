@@ -278,5 +278,10 @@ namespace Intertables
         {
             runSpeed = 0f;
         }
+
+        public Tilemap getTileMap()
+        {
+            return tilemap;
+        }
     }
 }   

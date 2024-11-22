@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Intertables;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -15,7 +16,8 @@ public class DialogueManager : MonoBehaviour
     [Header("Dialogue Data")]
     public List<DialogueLine> dialogueLines;
     private int currentLineIndex = 0;
-    private bool isDialogueActive = false;
+    private bool isDialogueActive = false; 
+    public Image currentSpeaker;
 
 
     [Header("Audio")]
@@ -41,6 +43,7 @@ public class DialogueManager : MonoBehaviour
 
     public void DisplayNextLine()
     {
+        
         // Stop any currently playing audio before proceeding
         if (audioSource.isPlaying)
         {
@@ -52,7 +55,7 @@ public class DialogueManager : MonoBehaviour
             DialogueLine line = dialogueLines[currentLineIndex];
             speakerNameText.text = line.speakerName;
             dialogueText.text = line.text;
-
+            
             // If there is an audio clip, play it
             if (line.voiceLine != null)
             {
@@ -60,6 +63,7 @@ public class DialogueManager : MonoBehaviour
                 audioSource.Play();
             }
 
+            currentSpeaker.sprite = line.speakerObject;
             currentLineIndex++;
         }
         else
@@ -97,4 +101,5 @@ public class DialogueLine
     public string speakerName;
     [TextArea] public string text;
     public AudioClip voiceLine;
+    public Sprite speakerObject;
 }

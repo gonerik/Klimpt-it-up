@@ -6,17 +6,11 @@ using UnityEngine;
 
 public class BackgroundMusic : MonoBehaviour
 {
-    private static BackgroundMusic instance;
+    public static BackgroundMusic instance;
 
     private void Awake()
     {
         // If an instance already exists, destroy this duplicate
-        if (instance != null && instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
         // Make this the singleton instance
         instance = this;
         DontDestroyOnLoad(gameObject); // Prevent destruction on scene load
@@ -30,5 +24,10 @@ public class BackgroundMusic : MonoBehaviour
         {
             audioSource.Play();
         }
+    }
+
+    public void destroy()
+    {
+        Destroy(gameObject);
     }
 }
