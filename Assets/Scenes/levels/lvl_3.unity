@@ -989,13 +989,13 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1069086589
   m_SortingLayer: 2
-  m_SortingOrder: -1
+  m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0.73899996, y: 0.5, z: 0}
+  m_ChunkCullingBounds: {x: 0.73899996, y: 1.5, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
-  m_Mode: 0
+  m_Mode: 1
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
 --- !u!1839735485 &776740225
@@ -14941,7 +14941,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 201214675240029042, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.9809079
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 201214675240029042, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
       propertyPath: m_LocalRotation.w
@@ -14974,42 +14974,6 @@ PrefabInstance:
     - target: {fileID: 202417314103658472, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 1437651424840234368, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1437651424840234368, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4343442868857496832, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4343442868857496832, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4343442868857496832, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4855092907060434077, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4855092907060434077, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5348419364701756737, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5348419364701756737, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8473556797588831192, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
       propertyPath: tilemap

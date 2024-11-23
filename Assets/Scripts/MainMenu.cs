@@ -16,6 +16,5 @@ public class MainMenu : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadSceneAsync(1);
-        SettingsMenu.instance.PlayClip(1);
     }
 }
