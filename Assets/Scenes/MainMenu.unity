@@ -323,9 +323,7 @@ GameObject:
   - component: {fileID: 45724059}
   - component: {fileID: 45724058}
   - component: {fileID: 45724057}
-  - component: {fileID: 45724060}
   - component: {fileID: 45724061}
-  - component: {fileID: 45724062}
   m_Layer: 5
   m_Name: StartGameButton
   m_TagString: Untagged
@@ -374,10 +372,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_NormalColor: {r: 0.22745098, g: 0.1764706, b: 0.24705882, a: 1}
+    m_HighlightedColor: {r: 0.9529412, g: 0.8627451, b: 0.44705883, a: 1}
+    m_PressedColor: {r: 0.9529412, g: 0.8627451, b: 0.29411766, a: 1}
+    m_SelectedColor: {r: 0.9529412, g: 0.8627451, b: 0.44705883, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -393,7 +391,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 45724058}
+  m_TargetGraphic: {fileID: 743960340}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -447,18 +445,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 45724055}
   m_CullTransparentMesh: 1
---- !u!114 &45724060
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 45724055}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dde15c21f283cf64ba6c2afcd7e633be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &45724061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -476,7 +462,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 45724060}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: ShineOnMouse, Assembly-CSharp
           m_MethodName: OnMouseEnter
           m_Mode: 1
@@ -492,7 +478,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 45724060}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: ShineOnMouse, Assembly-CSharp
           m_MethodName: OnMouseExit
           m_Mode: 1
@@ -504,51 +490,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 1
---- !u!61 &45724062
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 45724055}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!1 &111600517
 GameObject:
   m_ObjectHideFlags: 0
@@ -690,8 +631,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4282330426
-  m_fontColor: {r: 0.22745098, g: 0.1764706, b: 0.24705882, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1437,7 +1378,6 @@ GameObject:
   - component: {fileID: 561048103}
   - component: {fileID: 561048102}
   - component: {fileID: 561048106}
-  - component: {fileID: 561048105}
   m_Layer: 5
   m_Name: SettingsButton
   m_TagString: Untagged
@@ -1486,10 +1426,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_NormalColor: {r: 0.22745098, g: 0.1764706, b: 0.24705882, a: 1}
+    m_HighlightedColor: {r: 0.9529412, g: 0.8627451, b: 0.44705883, a: 1}
+    m_PressedColor: {r: 0.9529412, g: 0.8627451, b: 0.29411766, a: 1}
+    m_SelectedColor: {r: 0.9529412, g: 0.8627451, b: 0.44705883, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1505,7 +1445,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 561048103}
+  m_TargetGraphic: {fileID: 1483514316}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -1559,18 +1499,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 561048100}
   m_CullTransparentMesh: 1
---- !u!114 &561048105
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 561048100}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dde15c21f283cf64ba6c2afcd7e633be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &561048106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1588,7 +1516,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 561048105}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: ShineOnMouse, Assembly-CSharp
           m_MethodName: OnMouseEnter
           m_Mode: 1
@@ -1604,7 +1532,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 561048105}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: ShineOnMouse, Assembly-CSharp
           m_MethodName: OnMouseExit
           m_Mode: 1
@@ -1682,8 +1610,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4282330426
-  m_fontColor: {r: 0.22745098, g: 0.1764706, b: 0.24705882, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1779,7 +1707,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: 5131d88995968694fb8dbac4096a1d20, type: 2}
   m_audioClip: {fileID: 8300000, guid: 605b5459ff4840f4d9f9097cb3b5d782, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1946,8 +1874,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4282330426
-  m_fontColor: {r: 0.22745098, g: 0.1764706, b: 0.24705882, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2080,8 +2008,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4282330426
-  m_fontColor: {r: 0.22745098, g: 0.1764706, b: 0.24705882, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2309,7 +2237,6 @@ GameObject:
   - component: {fileID: 976598894}
   - component: {fileID: 976598893}
   - component: {fileID: 976598892}
-  - component: {fileID: 976598891}
   m_Layer: 5
   m_Name: BackButton
   m_TagString: Untagged
@@ -2337,18 +2264,6 @@ RectTransform:
   m_AnchoredPosition: {x: -200, y: -50}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &976598891
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 6869784489656218595, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
-  m_PrefabInstance: {fileID: 7439760792492945027}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 976598889}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dde15c21f283cf64ba6c2afcd7e633be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &976598892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2366,7 +2281,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 976598891}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: ShineOnMouse, Assembly-CSharp
           m_MethodName: OnMouseEnter
           m_Mode: 1
@@ -2382,7 +2297,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 976598891}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: ShineOnMouse, Assembly-CSharp
           m_MethodName: OnMouseExit
           m_Mode: 1
@@ -2415,10 +2330,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_NormalColor: {r: 0.22745098, g: 0.1764706, b: 0.24705882, a: 1}
+    m_HighlightedColor: {r: 0.9529412, g: 0.8627451, b: 0.44705883, a: 1}
+    m_PressedColor: {r: 0.9529412, g: 0.8627451, b: 0.29411766, a: 1}
+    m_SelectedColor: {r: 0.9529412, g: 0.8627451, b: 0.44705883, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -2434,7 +2349,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 976598894}
+  m_TargetGraphic: {fileID: 946489309}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -2501,7 +2416,6 @@ GameObject:
   - component: {fileID: 1041223689}
   - component: {fileID: 1041223688}
   - component: {fileID: 1041223687}
-  - component: {fileID: 1041223686}
   m_Layer: 5
   m_Name: RestartButton
   m_TagString: Untagged
@@ -2529,18 +2443,6 @@ RectTransform:
   m_AnchoredPosition: {x: -200, y: -100}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1041223686
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 6701169721142272003, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
-  m_PrefabInstance: {fileID: 7439760792492945027}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1041223684}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dde15c21f283cf64ba6c2afcd7e633be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1041223687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2558,7 +2460,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1041223686}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: ShineOnMouse, Assembly-CSharp
           m_MethodName: OnMouseEnter
           m_Mode: 1
@@ -2574,7 +2476,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1041223686}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: ShineOnMouse, Assembly-CSharp
           m_MethodName: OnMouseExit
           m_Mode: 1
@@ -2607,10 +2509,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_NormalColor: {r: 0.22745098, g: 0.1764706, b: 0.24705882, a: 1}
+    m_HighlightedColor: {r: 0.9529412, g: 0.8627451, b: 0.44705883, a: 1}
+    m_PressedColor: {r: 0.9529412, g: 0.8627451, b: 0.29411766, a: 1}
+    m_SelectedColor: {r: 0.9529412, g: 0.8627451, b: 0.44705883, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -2626,7 +2528,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1041223689}
+  m_TargetGraphic: {fileID: 131931247}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -2821,8 +2723,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4282330426
-  m_fontColor: {r: 0.22745098, g: 0.1764706, b: 0.24705882, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2902,7 +2804,6 @@ GameObject:
   - component: {fileID: 1321829018}
   - component: {fileID: 1321829017}
   - component: {fileID: 1321829016}
-  - component: {fileID: 1321829015}
   m_Layer: 5
   m_Name: QuitButton
   m_TagString: Untagged
@@ -2930,18 +2831,6 @@ RectTransform:
   m_AnchoredPosition: {x: -200, y: -150}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1321829015
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 849441046246752278, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
-  m_PrefabInstance: {fileID: 7439760792492945027}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1321829013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dde15c21f283cf64ba6c2afcd7e633be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1321829016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2959,7 +2848,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1321829015}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: ShineOnMouse, Assembly-CSharp
           m_MethodName: OnMouseEnter
           m_Mode: 1
@@ -2975,7 +2864,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1321829015}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: ShineOnMouse, Assembly-CSharp
           m_MethodName: OnMouseExit
           m_Mode: 1
@@ -3008,10 +2897,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_NormalColor: {r: 0.22745098, g: 0.1764706, b: 0.24705882, a: 1}
+    m_HighlightedColor: {r: 0.9529412, g: 0.8627451, b: 0.44705883, a: 1}
+    m_PressedColor: {r: 0.9529412, g: 0.8627451, b: 0.29411766, a: 1}
+    m_SelectedColor: {r: 0.9529412, g: 0.8627451, b: 0.44705883, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -3027,7 +2916,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1321829018}
+  m_TargetGraphic: {fileID: 1119390591}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -3423,8 +3312,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4282330426
-  m_fontColor: {r: 0.22745098, g: 0.1764706, b: 0.24705882, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3520,6 +3409,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44153f67e4365cf468bba4ba8b2b8488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioClips:
+  - {fileID: 8300000, guid: 605b5459ff4840f4d9f9097cb3b5d782, type: 3}
+  - {fileID: 8300000, guid: 8318658eaa403da4a8dd446d9d02532f, type: 3}
+  - {fileID: 8300000, guid: fefd99d8fc692274fa9f5acc2489f8f3, type: 3}
   audioMixer: {fileID: 24100000, guid: 5131d88995968694fb8dbac4096a1d20, type: 2}
 --- !u!4 &1537978737
 Transform:
@@ -3662,7 +3555,6 @@ GameObject:
   - component: {fileID: 1863854856}
   - component: {fileID: 1863854855}
   - component: {fileID: 1863854854}
-  - component: {fileID: 1863854858}
   - component: {fileID: 1863854857}
   m_Layer: 5
   m_Name: Exit
@@ -3712,10 +3604,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_NormalColor: {r: 0.22745098, g: 0.1764706, b: 0.24705882, a: 1}
+    m_HighlightedColor: {r: 0.9529412, g: 0.8627451, b: 0.44705883, a: 1}
+    m_PressedColor: {r: 0.9529412, g: 0.8627451, b: 0.29411766, a: 1}
+    m_SelectedColor: {r: 0.9529412, g: 0.8627451, b: 0.44705883, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -3731,7 +3623,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1863854855}
+  m_TargetGraphic: {fileID: 876032949}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -3802,7 +3694,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1863854858}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: ShineOnMouse, Assembly-CSharp
           m_MethodName: OnMouseEnter
           m_Mode: 1
@@ -3818,7 +3710,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1863854858}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: ShineOnMouse, Assembly-CSharp
           m_MethodName: OnMouseExit
           m_Mode: 1
@@ -3830,18 +3722,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 1
---- !u!114 &1863854858
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1863854852}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dde15c21f283cf64ba6c2afcd7e633be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2043199978
 GameObject:
   m_ObjectHideFlags: 0
@@ -4165,12 +4045,76 @@ PrefabInstance:
       value: SetVolume
       objectReference: {fileID: 0}
     - target: {fileID: 1495222874252179064, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_Colors.m_NormalColor.b
+      value: 0.24705882
+      objectReference: {fileID: 0}
+    - target: {fileID: 1495222874252179064, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_Colors.m_NormalColor.g
+      value: 0.1764706
+      objectReference: {fileID: 0}
+    - target: {fileID: 1495222874252179064, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_Colors.m_NormalColor.r
+      value: 0.22745098
+      objectReference: {fileID: 0}
+    - target: {fileID: 1495222874252179064, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_Colors.m_PressedColor.b
+      value: 0.29411766
+      objectReference: {fileID: 0}
+    - target: {fileID: 1495222874252179064, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_Colors.m_PressedColor.g
+      value: 0.8627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 1495222874252179064, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_Colors.m_PressedColor.r
+      value: 0.9529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 1495222874252179064, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.b
+      value: 0.44705883
+      objectReference: {fileID: 0}
+    - target: {fileID: 1495222874252179064, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.g
+      value: 0.8627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 1495222874252179064, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.r
+      value: 0.9529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 1495222874252179064, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0.44705883
+      objectReference: {fileID: 0}
+    - target: {fileID: 1495222874252179064, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0.8627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 1495222874252179064, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.9529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 1495222874252179064, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1537978736}
     - target: {fileID: 1495222874252179064, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ExitToMainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 1825550269831777278, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1825550269831777278, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1825550269831777278, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1825550269831777278, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 2715095215212681526, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
       propertyPath: m_Pivot.x
@@ -4253,6 +4197,54 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3604696848372124187, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_Colors.m_NormalColor.b
+      value: 0.24705882
+      objectReference: {fileID: 0}
+    - target: {fileID: 3604696848372124187, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_Colors.m_NormalColor.g
+      value: 0.1764706
+      objectReference: {fileID: 0}
+    - target: {fileID: 3604696848372124187, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_Colors.m_NormalColor.r
+      value: 0.22745098
+      objectReference: {fileID: 0}
+    - target: {fileID: 3604696848372124187, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_Colors.m_PressedColor.b
+      value: 0.29411766
+      objectReference: {fileID: 0}
+    - target: {fileID: 3604696848372124187, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_Colors.m_PressedColor.g
+      value: 0.8627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 3604696848372124187, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_Colors.m_PressedColor.r
+      value: 0.9529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 3604696848372124187, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.b
+      value: 0.44705883
+      objectReference: {fileID: 0}
+    - target: {fileID: 3604696848372124187, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.g
+      value: 0.8627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 3604696848372124187, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.r
+      value: 0.9529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 3604696848372124187, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0.44705883
+      objectReference: {fileID: 0}
+    - target: {fileID: 3604696848372124187, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0.8627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 3604696848372124187, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.9529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 3604696848372124187, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1537978736}
@@ -4271,6 +4263,86 @@ PrefabInstance:
     - target: {fileID: 5946244224955911114, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
       propertyPath: m_Name
       value: SettingsCanva
+      objectReference: {fileID: 0}
+    - target: {fileID: 6229430714917555477, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6229430714917555477, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6229430714917555477, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6229430714917555477, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6471768869548833185, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6471768869548833185, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6471768869548833185, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6471768869548833185, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799367991315005432, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_Colors.m_NormalColor.b
+      value: 0.24705882
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799367991315005432, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_Colors.m_NormalColor.g
+      value: 0.1764706
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799367991315005432, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_Colors.m_NormalColor.r
+      value: 0.22745098
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799367991315005432, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_Colors.m_PressedColor.b
+      value: 0.29411766
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799367991315005432, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_Colors.m_PressedColor.g
+      value: 0.8627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799367991315005432, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_Colors.m_PressedColor.r
+      value: 0.9529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799367991315005432, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.b
+      value: 0.44705883
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799367991315005432, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.g
+      value: 0.8627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799367991315005432, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.r
+      value: 0.9529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799367991315005432, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0.44705883
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799367991315005432, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0.8627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799367991315005432, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.9529412
       objectReference: {fileID: 0}
     - target: {fileID: 6799367991315005432, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -4302,6 +4374,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4433470824088222360, guid: 4a68419ceb1733749b06b431db4bc020, type: 3}
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
