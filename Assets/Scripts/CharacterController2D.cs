@@ -49,7 +49,6 @@ namespace Intertables
         public void SetIsHoldingPickUpObject(bool isHolding) => isHoldingPickUpObject = isHolding;
         [Header("Animation")]
         private SpriteRenderer spriteRenderer;
-        private string lastDirection = "Front"; // Keeps track of the last direction
         private static bool introPlayed = false;
         public PlayerAnimationController animationController;
         

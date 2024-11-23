@@ -30,11 +30,7 @@ public class Credits : MonoBehaviour
     // Update is called once per frame
     public void LoadMainMenu()
     {
-        if (BackgroundMusic.instance != null)
-        {
-            BackgroundMusic.instance.destroy();
-        }
-        SceneManager.LoadSceneAsync(0);
+        SettingsMenu.instance.ExitToMainMenu();
     }
 
     public void changeSprite()

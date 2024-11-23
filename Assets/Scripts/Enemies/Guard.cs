@@ -10,7 +10,7 @@ public class Guard : MonoBehaviour
     [SerializeField] private GameObject[] waypoints;
     [SerializeField] private float speed = 2f;
     [SerializeField] private float reachDistance = 0.1f;
-    [SerializeField] private float rotationSpeed = 1f;
+    // [SerializeField] private float rotationSpeed = 1f;
     [SerializeField] private Direction direction = Direction.Right;
     private int currentWaypointIndex = 0;
     private bool isReversing = false;

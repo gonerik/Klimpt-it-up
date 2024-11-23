@@ -10,23 +10,28 @@ using UnityEngine.UI;
 
 public class SettingsMenu : MonoBehaviour
 {
-    private bool _paused = false;
+    private bool _paused;
     public static SettingsMenu instance;
+    private Canvas _canvas;
+    private AudioSource _audio;
+    [SerializeField] private AudioClip[] audioClips;
     
     private void Start()
     {
-        gameObject.SetActive(false);
         if (instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
-            Destroy(instance);
-            instance = this;
-            Debug.LogError("More than one SettingsMenu in scene!");
+            Destroy(gameObject);
         }
-        
+
+        _canvas = GetComponentInChildren<Canvas>();
+        _canvas.gameObject.SetActive(false);
+        _audio = GetComponentInChildren<AudioSource>();
+
     }
     [SerializeField] private AudioMixer audioMixer;
     public void SetVolume(float volume)
@@ -38,31 +43,37 @@ public class SettingsMenu : MonoBehaviour
     {
         Screen.fullScreen = isFullScreen;
     }
-    public void StartGame()
-    {
-        SceneManager.LoadSceneAsync(1);
-    }
 
     public void ExitToMainMenu()
     {
-        SceneManager.LoadSceneAsync(0);
-    }
-    
-
-    public void exit()
-    {
-        Application.Quit();
+        if (SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            PlayClip(0);
+            SceneManager.LoadSceneAsync(0);
+        }
+        
+        Pause();
     }
 
     public void Pause()
     {
         _paused = !_paused;
         // Time.timeScale = (!_paused ? 1 : 0);
-        gameObject.SetActive(!gameObject.activeSelf);
+        _canvas.gameObject.SetActive( !_canvas.gameObject.activeSelf);
     }
 
-    public void restart()
+    public void Restart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        if (SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+        }
+        Pause();
+    }
+
+    public void PlayClip(int clipIndex)
+    {
+        _audio.clip = audioClips[clipIndex];
+        _audio.PlayDelayed(1);
     }
 }
