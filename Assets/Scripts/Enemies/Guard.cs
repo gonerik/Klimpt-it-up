@@ -8,8 +8,11 @@ using Random = UnityEngine.Random;
 public class Guard : MonoBehaviour
 {
     [SerializeField] private GameObject[] waypoints;
+    [SerializeField] private bool goInRounds;
     [SerializeField] private float speed = 2f;
     [SerializeField] private float reachDistance = 0.1f;
+
+    [SerializeField] private float sleepTime;
     // [SerializeField] private float rotationSpeed = 1f;
     [SerializeField] private Direction direction = Direction.Right;
     private int currentWaypointIndex = 0;
@@ -73,7 +76,7 @@ public class Guard : MonoBehaviour
 
     public void StopMovement() {
         isStopped = true;
-        puddleImmunityTimer = 10f;
+        puddleImmunityTimer = sleepTime + 3f;
         speed -= slowDifference;
         StartCoroutine("RestoreSpeed");
         animatorController.PlaySlipAnimation();
@@ -109,24 +112,36 @@ public class Guard : MonoBehaviour
         }
         if (Vector3.Distance(transform.position, targetPosition) <= reachDistance && waypoints.Length > 1)
         {
-            if (!isReversing)
+            if (goInRounds)
             {
                 currentWaypointIndex++;
                 if (currentWaypointIndex >= waypoints.Length)
                 {
-                    isReversing = true;
-                    currentWaypointIndex -=2;
+                    currentWaypointIndex =0;
                 }
             }
             else
             {
-                currentWaypointIndex--;
-                if (currentWaypointIndex < 0)
+                if (!isReversing)
                 {
-                    isReversing = false;
-                    currentWaypointIndex = 1;
+                    currentWaypointIndex++;
+                    if (currentWaypointIndex >= waypoints.Length)
+                    {
+                        isReversing = true;
+                        currentWaypointIndex -=2;
+                    }
+                }
+                else
+                {
+                    currentWaypointIndex--;
+                    if (currentWaypointIndex < 0)
+                    {
+                        isReversing = false;
+                        currentWaypointIndex = 1;
+                    }
                 }
             }
+            
         }
     }
 
@@ -167,7 +182,7 @@ public class Guard : MonoBehaviour
     }
 
     private IEnumerator RestoreSpeed() {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(sleepTime);
         speed += slowDifference;
     }
 
