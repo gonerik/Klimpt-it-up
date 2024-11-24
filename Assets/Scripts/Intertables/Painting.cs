@@ -3,17 +3,20 @@ using UnityEngine;
 
 public class Painting : PickUpObjects
 {
-    private ParticleSystem particleSystem;
+    private ParticleSystem[] particleSystem;
     private void Start()
     {
         Storage.addPainting();
-        particleSystem = GetComponent<ParticleSystem>();
+        particleSystem = GetComponentsInChildren<ParticleSystem>();
     }
 
     public override void Interact()
     {
         base.Interact();
-        particleSystem.Stop();
+        foreach (var i in particleSystem)
+        {
+            i.Stop();
+        }
         CharacterController2D.Instance.settoMinSpeed();
     }
 }

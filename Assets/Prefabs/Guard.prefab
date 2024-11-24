@@ -122,7 +122,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!114 &4697744443280265183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,7 +138,6 @@ MonoBehaviour:
   waypoints: []
   speed: 3
   reachDistance: 0.1
-  rotationSpeed: 1
   direction: 1
   isStopped: 0
   puddleImmunityTimer: 0

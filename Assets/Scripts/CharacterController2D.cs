@@ -66,7 +66,7 @@ namespace Intertables
             }
             body = GetComponent<Rigidbody2D>();
             runSpeed = maxRunSpeed;
-            if (SceneManager.GetActiveScene().buildIndex == 1)
+            if (SceneManager.GetActiveScene().buildIndex == 2)
             {
                 DialogueManager.Instance.StartDialogue(DialogueManager.Instance.dialogueLines);
             }
@@ -237,7 +237,7 @@ namespace Intertables
             Vector3Int cellPosition = tilemap.WorldToCell(transform.position);
             TileBase tileAtPosition = tilemap.GetTile(cellPosition);
 
-            if (tileAtPosition != null && tileAtPosition.name == "Carpet")
+            if (tileAtPosition != null && tileAtPosition.name == "carpet")
             {
                 return;
             }
@@ -258,8 +258,13 @@ namespace Intertables
 
         private void SpawnMopSign()
         {
-            if (currentPickup is not MopSign) return;
             Vector3Int cellPosition = tilemap.WorldToCell(transform.position);
+            TileBase tileAtPosition = tilemap.GetTile(cellPosition);
+            if (tileAtPosition != null && tileAtPosition.name == "carpet")
+            {
+                return;
+            }
+            if (currentPickup is not MopSign) return;
             Vector3 tileCenterPosition = tilemap.GetCellCenterWorld(cellPosition);
             currentPickup.GetComponent<Collider2D>().enabled = true;
             currentPickup.transform.position = tileCenterPosition;
