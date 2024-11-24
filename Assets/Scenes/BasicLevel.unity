@@ -698,6 +698,7 @@ Transform:
   m_Children:
   - {fileID: 1821542978}
   - {fileID: 386841250}
+  - {fileID: 2034921554}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &255982138
@@ -2766,7 +2767,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 94816961}
     m_Modifications:
     - target: {fileID: 2285595691668984112, guid: a2aaf1b555fae844baf416d118e4b5a5, type: 3}
       propertyPath: m_Name
@@ -2790,15 +2791,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5073243172062019878, guid: a2aaf1b555fae844baf416d118e4b5a5, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5073243172062019878, guid: a2aaf1b555fae844baf416d118e4b5a5, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5073243172062019878, guid: a2aaf1b555fae844baf416d118e4b5a5, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5073243172062019878, guid: a2aaf1b555fae844baf416d118e4b5a5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2817,6 +2818,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2aaf1b555fae844baf416d118e4b5a5, type: 3}
+--- !u!4 &2034921554 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5073243172062019878, guid: a2aaf1b555fae844baf416d118e4b5a5, type: 3}
+  m_PrefabInstance: {fileID: 2034921553}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2113187266 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5323039842125798897, guid: 74d7bc2362f71184b9ca94949567cdeb, type: 3}
@@ -2837,4 +2843,3 @@ SceneRoots:
   - {fileID: 94816961}
   - {fileID: 998878424}
   - {fileID: 39415477}
-  - {fileID: 2034921553}
