@@ -8,7 +8,6 @@ public class LevelSelection : MonoBehaviour
     [SerializeField] private GameObject buttonPrefab; // Prefab of the button to create
     [SerializeField] private Transform gridParent;    // Parent object with GridLayoutGroup
     [SerializeField] private Sprite defaultThumbnail; // Default thumbnail if none is set
-    private static int id=1;
 
     // Scenes to exclude
     [SerializeField] private string[] excludedScenes = { "MainMenu", "LevelSelection", "Credits" };
@@ -20,6 +19,7 @@ public class LevelSelection : MonoBehaviour
 
     private void GenerateLevelButtons()
     {
+        int id=1;
         // Loop through all scenes in the build settings
         for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
         {

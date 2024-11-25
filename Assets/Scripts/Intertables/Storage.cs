@@ -10,11 +10,17 @@ public class Storage : Interactable
     private static int paintingsCount = 0;
     private int paintingsCollected = 0;
     public static Action OnStorageFull;
+    private Transform particle;
     
     public void Awake()
     {
         paintingsCount = 0;
         
+    }
+
+    public void Start()
+    {
+        particle = GetComponentInChildren<Transform>();
     }
 
     public override void Interact()
@@ -29,6 +35,10 @@ public class Storage : Interactable
             {
                 CharacterController2D.Instance.animationController.PlayLevelCompletionAnimation();
                 CharacterController2D.Instance.setCanMove(false);
+                foreach (var i in particle.GetComponentsInChildren<ParticleSystem>())
+                {
+                    i.Stop();
+                }
             }
             // Make the painting disappear
             CharacterController2D.Instance.currentPickup.gameObject.SetActive(false);

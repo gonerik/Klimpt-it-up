@@ -236,8 +236,7 @@ namespace Intertables
         private void SpawnPuddle() {
             Vector3Int cellPosition = tilemap.WorldToCell(transform.position);
             TileBase tileAtPosition = tilemap.GetTile(cellPosition);
-
-            if (tileAtPosition != null && tileAtPosition.name == "carpet")
+            if ((tileAtPosition != null && tileAtPosition.name == "carpet")|| SceneManager.GetActiveScene().buildIndex <7)
             {
                 return;
             }

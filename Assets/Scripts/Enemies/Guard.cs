@@ -39,19 +39,19 @@ public class Guard : MonoBehaviour
         Vector2 directionVector = Vector2.right;
         switch (direction)
         {
-            case Direction.Right: directionVector = new Vector2(0, 1);
+            case Direction.Right: directionVector = new Vector2(1, 0);
                 break;
-            case Direction.Left: directionVector = new Vector2(0,-1);
+            case Direction.Left: directionVector = new Vector2(-1,0);
                 break;
-            case Direction.Front: directionVector = new Vector2(-1,0);
+            case Direction.Front: directionVector = new Vector2(0,-1);
                 break;
-            case Direction.Back: directionVector = new Vector2(1,0);
+            case Direction.Back: directionVector = new Vector2(0,1);
                 break;
             
         }
         animatorController.setLastAxis(directionVector.x,directionVector.y);
         float angle = Mathf.Atan2(directionVector.x, directionVector.y) * Mathf.Rad2Deg;
-        lightPivot.transform.rotation = Quaternion.Euler(0, 0, angle - 90f);
+        lightPivot.transform.rotation = Quaternion.Euler(0, 0, angle);
         
     }
 
