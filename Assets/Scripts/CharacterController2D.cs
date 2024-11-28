@@ -212,7 +212,6 @@ namespace Intertables
                     }
                     else if (!isHoldingPickUpObject && currentInteractable is PaintingFinal)
                     {
-                        Debug.Log(currentInteractable);
                         currentInteractable.Interact();
                     }
                 }

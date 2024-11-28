@@ -30,14 +30,12 @@ namespace Intertables
 
         public void setLastAxis(float horizontal, float vertical)
         {
-            Debug.Log("setting last axis");
             animator.SetFloat(_lastHorizontal, horizontal);
             animator.SetFloat(_lastVertical, vertical);
         }
 
         public void setAxis(float horizontal, float vertical)
         {
-            Debug.Log("setting axis");
             animator.SetFloat(_horizontal, horizontal);
             animator.SetFloat(_vertical, vertical);
         }

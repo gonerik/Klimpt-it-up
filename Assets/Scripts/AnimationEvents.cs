@@ -8,7 +8,6 @@ public class AnimationEvents : MonoBehaviour
 {
     public void enablePlayerMovement()
     {
-        Debug.Log("Enable player movement");
         CharacterController2D.Instance.setCanMove(true);
     }
 
