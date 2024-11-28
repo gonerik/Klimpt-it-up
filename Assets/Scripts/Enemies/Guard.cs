@@ -39,9 +39,9 @@ public class Guard : MonoBehaviour
         Vector2 directionVector = Vector2.right;
         switch (direction)
         {
-            case Direction.Right: directionVector = new Vector2(1, 0);
+            case Direction.Right: directionVector = new Vector2(-1, 0);
                 break;
-            case Direction.Left: directionVector = new Vector2(-1,0);
+            case Direction.Left: directionVector = new Vector2(1,0);
                 break;
             case Direction.Front: directionVector = new Vector2(0,-1);
                 break;
