@@ -1166,7 +1166,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 335418167}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -2598,8 +2598,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -110}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 0, y: -150}
+  m_SizeDelta: {x: 550, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1621758473
 GameObject:
@@ -2733,7 +2733,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -65}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 450, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1826552831
 GameObject:
@@ -3466,7 +3466,7 @@ Transform:
   m_GameObject: {fileID: 1833663360}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.17140594, y: 2.1703594, z: -0.030045528}
+  m_LocalPosition: {x: 0.17140594, y: 3.5, z: -0.030045528}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3501,13 +3501,13 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 1}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 2, y: 2}
     newSize: {x: 2, y: 2}
     adaptiveTilingThreshold: 0.5
@@ -3515,7 +3515,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.6, y: 2}
+  m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
 --- !u!212 &1833663363
 SpriteRenderer:
@@ -3558,7 +3558,7 @@ SpriteRenderer:
   m_SortingLayerID: -1069086589
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 36584b5744f8cc44fa97dcf5098359ab, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d4208122942204c469578634ca3fcf96, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3582,9 +3582,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickable: 0
-  Sprite: {fileID: -1306554885, guid: 736460850891ebd43b521a899a90bc49, type: 3}
-  Title: Kiss
-  Description: Test desc 1
+  Sprite: {fileID: 21300000, guid: d4208122942204c469578634ca3fcf96, type: 3}
+  Title: '"Adele Bloch-Bauer I"'
+  Description: "This painting blends realism and fantasy, with Adele\u2019s figure
+    merging into a gilded, ornamental background. The intricate patterns add depth
+    to the seemingly flat composition, while the gold and silver leaf reflect light,
+    creating a luminous, ethereal effect. The design enhances the painting\u2019s
+    elegance, transforming it into a radiant, otherworldly masterpiece.\r\nlike that
+    ?"
 --- !u!1 &2107382979
 GameObject:
   m_ObjectHideFlags: 0
