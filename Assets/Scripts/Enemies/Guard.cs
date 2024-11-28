@@ -29,6 +29,7 @@ public class Guard : MonoBehaviour
     [SerializeField] private AudioClip[] guardSoundsHuh;
     [SerializeField] private AudioClip[] guardSoundsStop;
     [SerializeField] private AudioClip[] guardSoundsSlip;
+    private int diffrence =1;
 
     private void Start()
     {
@@ -94,6 +95,16 @@ public class Guard : MonoBehaviour
             body.velocity = Vector2.zero;
             return;
         }
+
+        if (currentWaypointIndex < 0 )
+        {
+            currentWaypointIndex = waypoints.Length - 1;
+        }
+        else if (currentWaypointIndex >= waypoints.Length)
+        {
+            currentWaypointIndex = 0;
+        }
+        
         Vector3 targetPosition = waypoints[currentWaypointIndex].transform.position;
         Vector3 movementDirection = targetPosition - transform.position;
         body.velocity = movementDirection.normalized * (speed);
@@ -114,18 +125,27 @@ public class Guard : MonoBehaviour
         {
             if (goInRounds)
             {
-                currentWaypointIndex++;
-                if (currentWaypointIndex >= waypoints.Length)
+                currentWaypointIndex+=diffrence;
+                Debug.Log("Current waypoint: "+currentWaypointIndex);
+                if (isReversing)
                 {
-                    currentWaypointIndex =0;
+                    if (currentWaypointIndex == 0)
+                    {
+                        currentWaypointIndex =0;
+                    }
                 }
+                else if (currentWaypointIndex == waypoints.Length-1)
+                {
+                    currentWaypointIndex =waypoints.Length-1;
+                }
+                
             }
             else
             {
                 if (!isReversing)
                 {
                     currentWaypointIndex++;
-                    if (currentWaypointIndex >= waypoints.Length)
+                    if (currentWaypointIndex == waypoints.Length)
                     {
                         isReversing = true;
                         currentWaypointIndex -=2;
@@ -146,15 +166,25 @@ public class Guard : MonoBehaviour
     }
 
     public void ReversePath() {
-        isReversing = !isReversing;
-        if (waypoints.Length > 1) {
-            if (isReversing && currentWaypointIndex > 0 )
-            {
-                currentWaypointIndex--;
-            }
-            else
-            {
-                currentWaypointIndex++;
+        if (goInRounds)
+        {
+            
+            diffrence *= -1;
+            currentWaypointIndex += diffrence;
+            Debug.Log("Difference: "+diffrence +" Current waypoint"+currentWaypointIndex);
+        }
+        else
+        {
+            isReversing = !isReversing;
+            if (waypoints.Length > 1) {
+                if (isReversing && currentWaypointIndex > 0 )
+                {
+                    currentWaypointIndex--;
+                }
+                else
+                {
+                    currentWaypointIndex++;
+                }
             }
         }
         if (guardSoundsHuh.Length > 0 && audioSource != null && !seenSign)

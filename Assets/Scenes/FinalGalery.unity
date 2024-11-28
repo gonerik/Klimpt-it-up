@@ -1119,7 +1119,6 @@ MonoBehaviour:
   title: {fileID: 1621758474}
   text: {fileID: 1521517528}
   image: {fileID: 1075713906}
-  animator: {fileID: 0}
 --- !u!114 &335418169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2193,7 +2192,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickable: 0
-  particleSystem: []
   Sprite: {fileID: -1001895022, guid: df2b99fbd16ade4478e8c899dd4d6bdc, type: 3}
   Title: Kiss2
   Description: Test desc 2
@@ -2509,8 +2507,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ddc86ae9144a8444ea6744de83a02c78, type: 2}
+  m_sharedMaterial: {fileID: -5764972632263209223, guid: ddc86ae9144a8444ea6744de83a02c78, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3568,7 +3566,7 @@ SpriteRenderer:
   m_Size: {x: 2, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &1833663364
@@ -3584,7 +3582,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickable: 0
-  particleSystem: []
   Sprite: {fileID: 21300000, guid: d4208122942204c469578634ca3fcf96, type: 3}
   Title: '"Adele Bloch-Bauer I"'
   Description: "This painting blends realism and fantasy, with Adele\u2019s figure

@@ -42,11 +42,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2653424746148101937}
   - component: {fileID: 2057250324833639098}
-  - component: {fileID: 4697744443280265183}
   - component: {fileID: -30449546043969568}
   - component: {fileID: 3485912045345989530}
   - component: {fileID: 6084352068323768106}
   - component: {fileID: 3453126692648678799}
+  - component: {fileID: 5133563579922837496}
   m_Layer: 0
   m_Name: Guard
   m_TagString: Enemy
@@ -123,41 +123,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
---- !u!114 &4697744443280265183
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2703918716217202360}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10c071b80395c814384f8770bdc860ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waypoints: []
-  goInRounds: 0
-  speed: 2.2
-  reachDistance: 0.1
-  sleepTime: 0
-  direction: 1
-  isStopped: 0
-  puddleImmunityTimer: 0
-  slowDifference: 1.5
-  lightPivot: {fileID: 1026552005786326100}
-  audioSource: {fileID: 6003929754848362282}
-  guardSoundsHuh:
-  - {fileID: 8300000, guid: c712862a2517b0e47882b1eb24714357, type: 3}
-  - {fileID: 8300000, guid: dbb2f83683d983c4e8cc43cf30680896, type: 3}
-  guardSoundsStop:
-  - {fileID: 8300000, guid: bf5e3b55b2253b34e96b5c54f9d0c453, type: 3}
-  - {fileID: 8300000, guid: 2115025b45cac114aa9e778bef8131a5, type: 3}
-  - {fileID: 8300000, guid: 93570323f6e218f4bbd3c9e67e7aa7f3, type: 3}
-  - {fileID: 8300000, guid: 851ff06eea5fd2745bc9e115a8e8e815, type: 3}
-  - {fileID: 8300000, guid: c50ef991e47925c41b19b04b29208e8b, type: 3}
-  - {fileID: 8300000, guid: b5e0f7af64c04134fb83e0d1a5224fb6, type: 3}
-  guardSoundsSlip:
-  - {fileID: 8300000, guid: 0b107de9c9d0f514cb40a52a764a9633, type: 3}
 --- !u!50 &-30449546043969568
 Rigidbody2D:
   serializedVersion: 4
@@ -253,6 +218,41 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.5}
   m_Size: {x: 0.8, y: 0.8}
   m_Direction: 0
+--- !u!114 &5133563579922837496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2703918716217202360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 221476190d6efe14c92eebc3b85336d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waypoints: []
+  goInRounds: 0
+  speed: 2
+  reachDistance: 0.1
+  sleepTime: 0
+  direction: 1
+  isStopped: 0
+  puddleImmunityTimer: 0
+  slowDifference: 2
+  lightPivot: {fileID: 1026552005786326100}
+  audioSource: {fileID: 6003929754848362282}
+  guardSoundsHuh:
+  - {fileID: 8300000, guid: c712862a2517b0e47882b1eb24714357, type: 3}
+  - {fileID: 8300000, guid: dbb2f83683d983c4e8cc43cf30680896, type: 3}
+  guardSoundsStop:
+  - {fileID: 8300000, guid: bf5e3b55b2253b34e96b5c54f9d0c453, type: 3}
+  - {fileID: 8300000, guid: 2115025b45cac114aa9e778bef8131a5, type: 3}
+  - {fileID: 8300000, guid: 93570323f6e218f4bbd3c9e67e7aa7f3, type: 3}
+  - {fileID: 8300000, guid: 851ff06eea5fd2745bc9e115a8e8e815, type: 3}
+  - {fileID: 8300000, guid: c50ef991e47925c41b19b04b29208e8b, type: 3}
+  - {fileID: 8300000, guid: b5e0f7af64c04134fb83e0d1a5224fb6, type: 3}
+  guardSoundsSlip:
+  - {fileID: 8300000, guid: 0b107de9c9d0f514cb40a52a764a9633, type: 3}
 --- !u!1 &7237573303261798161
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,4 +536,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b49ac7d633b3a9642914bd233bd741e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guard: {fileID: 4697744443280265183}
+  guard: {fileID: 5133563579922837496}

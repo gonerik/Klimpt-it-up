@@ -2586,6 +2586,15 @@ MonoBehaviour:
     text: Ah-ah! Not at my watch!
     voiceLine: {fileID: 0}
     speakerObject: {fileID: 21300000, guid: b8fba322eceaec64b978bc8e14da75f4, type: 3}
+  ldialogueLines:
+  - speakerName: "Gertrude-Britney J\xE4ger"
+    text: Thank you for helping me.
+    voiceLine: {fileID: 0}
+    speakerObject: {fileID: 21300000, guid: 507c4a1e4a5d23b439426aabaaaed715, type: 3}
+  - speakerName: "Gertrude-Britney J\xE4ger"
+    text: Bye!
+    voiceLine: {fileID: 0}
+    speakerObject: {fileID: 21300000, guid: 507c4a1e4a5d23b439426aabaaaed715, type: 3}
   currentSpeaker: {fileID: 227963849}
   audioSource: {fileID: 1123825823}
 --- !u!82 &1123825823

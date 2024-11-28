@@ -68,7 +68,11 @@ namespace Intertables
             runSpeed = maxRunSpeed;
             if (SceneManager.GetActiveScene().buildIndex == 2)
             {
-                DialogueManager.Instance.StartDialogue(DialogueManager.Instance.dialogueLines);
+                DialogueManager.Instance.StartFirstSceneDialogue(DialogueManager.Instance.dialogueLines);
+            }
+            if (SceneManager.GetActiveScene().buildIndex == SceneManager.sceneCountInBuildSettings-2)
+            {
+                DialogueManager.Instance.StartFirstSceneDialogue(DialogueManager.Instance.ldialogueLines);
             }
         }
 
@@ -192,22 +196,23 @@ namespace Intertables
                         // Interact with storage to deposit or withdraw the painting
                         currentInteractable.Interact();
                     }
-                    else if (!isHoldingPickUpObject && currentInteractable is Painting)
-                    {
-                        // Pick up the painting
-                        currentPickup = currentInteractable.GetComponent<PickUpObjects>();
-                        currentInteractable.Interact();
-
-                        setCanMove(false);
-                        // Start stealing animation
-                        animationController.PlayStealingAnimation();
-                    }
 
                     else if (!isHoldingPickUpObject && currentInteractable is MopSign)
                     {
                         currentPickup = currentInteractable.GetComponent<MopSign>();
                         currentInteractable.Interact();
                         isHoldingPickUpObject = true;
+                    }
+                    else if (!isHoldingPickUpObject && currentInteractable is Painting )
+                    {
+                        // Pick up the painting
+                        currentPickup = currentInteractable.GetComponent<PickUpObjects>();
+                        currentInteractable.Interact();
+                        
+                    }
+                    else if (!isHoldingPickUpObject && currentInteractable is PaintingFinal)
+                    {
+                        currentInteractable.Interact();
                     }
                 }
             }

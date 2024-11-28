@@ -18,5 +18,7 @@ public class Painting : PickUpObjects
             i.Stop();
         }
         CharacterController2D.Instance.settoMinSpeed();
+        CharacterController2D.Instance.setCanMove(false);
+        CharacterController2D.Instance.animationController.PlayStealingAnimation();
     }
 }
