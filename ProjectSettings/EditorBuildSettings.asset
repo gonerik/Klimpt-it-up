@@ -27,26 +27,29 @@ EditorBuildSettings:
     path: Assets/Scenes/Ivan/Level4.unity
     guid: 5b2e2b59d98c42c4cb5085871a31950b
   - enabled: 1
-    path: Assets/Scenes/Ivan/Level7.unity
+    path: Assets/Scenes/Ivan/Level5.unity
     guid: 30a0ba3bf2866d5468e3ea0ce0353151
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/levels/lvl_1.unity
     guid: d551dc8c21155304caa4ddf4ba47d2d3
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/levels/lvl_2.unity
     guid: 79176930473ee1647aa07817019cc86b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/levels/lvl_3.unity
     guid: aafbca519e4222041babd4b54a37248c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/levels/lvl_4.unity
     guid: 041d4cbd9c3fb01479c401f7a467ad72
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/levels/lvl_5.unity
     guid: 0abbc9284b13f7442890ba072103e5bb
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/levels/lvl_yes.unity
     guid: 993974ccd82711942b5307d4ac51258e
+  - enabled: 1
+    path: Assets/Scenes/FinalGalery.unity
+    guid: e19256795d7e5fe428cd9dad76be80e6
   - enabled: 1
     path: Assets/Scenes/Credits.unity
     guid: 0d6d54fc9dcc0dc4ca82c8a0b89cb585

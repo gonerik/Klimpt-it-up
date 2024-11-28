@@ -15,9 +15,11 @@ public class DialogueManager : MonoBehaviour
 
     [Header("Dialogue Data")]
     public List<DialogueLine> dialogueLines;
+    public List<DialogueLine> ldialogueLines;
     private int currentLineIndex = 0;
-    private bool isDialogueActive = false; 
+    private bool isDialogueActive = false;
     public Image currentSpeaker;
+    
 
 
     [Header("Audio")]
@@ -27,19 +29,20 @@ public class DialogueManager : MonoBehaviour
     {
         Instance = this;
         dialoguePanel.SetActive(false); // Initially hide the dialogue panel
+        DontDestroyOnLoad(this);
     }
 
-    public void StartDialogue(List<DialogueLine> lines)
+    public void StartFirstSceneDialogue(List<DialogueLine> lines)
     {
+        Debug.Log("Starting first scene dialogue");
         dialogueLines = lines;
         currentLineIndex = 0;
         isDialogueActive = true;
         dialoguePanel.SetActive(true);
-        Debug.Log(dialogueLines[currentLineIndex].text);
         CharacterController2D.Instance.setCanMove(false); // Disable player movement during the cutscene
-
         DisplayNextLine();
     }
+    
 
     public void DisplayNextLine()
     {
