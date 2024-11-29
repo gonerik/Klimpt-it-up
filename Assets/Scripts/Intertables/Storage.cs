@@ -9,7 +9,6 @@ public class Storage : Interactable
 {
     private static int paintingsCount = 0;
     private int paintingsCollected = 0;
-    public static Action OnStorageFull;
     private Transform particle;
     
     public void Awake()

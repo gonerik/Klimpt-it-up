@@ -11,6 +11,7 @@ namespace Intertables
         private bool _containsPainting = false;
 
         private PickUpObjects _painting = null;
+        private Vector3 _originalScale = Vector3.one;
 
         void Start()
         {
@@ -20,6 +21,7 @@ namespace Intertables
         // Start is called before the first frame update
         public override void Interact()
         {
+            
             if (CharacterController2D.Instance.GetIsHoldingPickUpObject() && 
                 CharacterController2D.Instance.currentPickup is Painting && 
                 !_containsPainting)
@@ -27,6 +29,7 @@ namespace Intertables
                 _containsPainting = true;
                 CharacterController2D.Instance.animationController.PlayHidingAnimation();
                 _painting = CharacterController2D.Instance.currentPickup;
+                _originalScale = _painting.transform.localScale;
                 _painting.transform.localScale = new Vector3(0, 0, 0);
                 CharacterController2D.Instance.SetIsHoldingPickUpObject(false);
                 CharacterController2D.Instance.currentPickup = null;
@@ -37,7 +40,7 @@ namespace Intertables
             {
                 
                 _containsPainting = false;
-                _painting.transform.localScale = new Vector3(1, 1, 1);
+                _painting.transform.localScale = _originalScale;
                 CharacterController2D.Instance.currentPickup = _painting;
                 CharacterController2D.Instance.SetIsHoldingPickUpObject(true);
                 CharacterController2D.Instance.settoMinSpeed();
