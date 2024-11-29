@@ -77,7 +77,7 @@ public class Guard : MonoBehaviour
 
     public void StopMovement() {
         isStopped = true;
-        puddleImmunityTimer = sleepTime + 3f;
+        puddleImmunityTimer = 3f;
         speed -= slowDifference;
         StartCoroutine("RestoreSpeed");
         animatorController.PlaySlipAnimation();

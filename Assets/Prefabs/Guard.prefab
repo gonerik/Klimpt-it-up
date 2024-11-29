@@ -234,11 +234,11 @@ MonoBehaviour:
   goInRounds: 0
   speed: 2
   reachDistance: 0.1
-  sleepTime: 0
+  sleepTime: 9
   direction: 1
   isStopped: 0
   puddleImmunityTimer: 0
-  slowDifference: 2
+  slowDifference: 1.1
   lightPivot: {fileID: 1026552005786326100}
   audioSource: {fileID: 6003929754848362282}
   guardSoundsHuh:
