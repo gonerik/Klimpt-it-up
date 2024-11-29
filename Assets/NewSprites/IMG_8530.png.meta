@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3605e8517ce84394e85e8eb5892e3acd
+guid: 9a74c2f2d8f3daf4480e80c01222100c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -108,28 +108,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: IMG_8414_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 640
-        height: 480
-      alignment: 9
-      pivot: {x: 0.5, y: 0.325}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 446ab64484f48374d85ad9ca2352cf6b
-      internalID: -1216701121
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
@@ -140,8 +119,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      IMG_8414_0: -1216701121
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

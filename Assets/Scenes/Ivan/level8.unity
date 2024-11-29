@@ -3329,7 +3329,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4945000596344361880, guid: 4bb5d240e86e5e74989ce6d9294098ae, type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8119778220940433678, guid: 4bb5d240e86e5e74989ce6d9294098ae, type: 3}
       propertyPath: m_LocalPosition.x

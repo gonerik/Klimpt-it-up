@@ -2948,6 +2948,10 @@ PrefabInstance:
       propertyPath: tilemap
       value: 
       objectReference: {fileID: 13059621}
+    - target: {fileID: 8473556797588831192, guid: c2512b30c34ec594c8f536dd25609287, type: 3}
+      propertyPath: minRunSpeed
+      value: 1.75
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
