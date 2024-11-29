@@ -27,9 +27,16 @@ public class DialogueManager : MonoBehaviour
 
     void Awake()
     {
-        Instance = this;
-        dialoguePanel.SetActive(false); // Initially hide the dialogue panel
-        DontDestroyOnLoad(this);
+        if (Instance == null)
+        {
+            Instance = this;
+            dialoguePanel.SetActive(false); // Initially hide the dialogue panel
+            DontDestroyOnLoad(this);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void StartFirstSceneDialogue(List<DialogueLine> lines)

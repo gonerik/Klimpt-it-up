@@ -51,8 +51,11 @@ public class SettingsMenu : MonoBehaviour
             PlayClip(0);
             SceneManager.LoadSceneAsync(0);
         }
-        
-        Pause();
+
+        if (_paused)
+        {
+            Pause();
+        }
     }
 
     public void Pause()
@@ -64,11 +67,16 @@ public class SettingsMenu : MonoBehaviour
 
     public void Restart()
     {
+        if (_paused)
+        {
+            Pause();
+        }
         if (SceneManager.GetActiveScene().buildIndex != 0)
         {
             SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
         }
-        Pause();
+
+        
     }
 
     public void PlayClip(int clipIndex)

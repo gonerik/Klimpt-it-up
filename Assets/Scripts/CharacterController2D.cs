@@ -88,7 +88,7 @@ namespace Intertables
 
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name != "Credits")
             {
                 SettingsMenu.instance.Pause();
             }
@@ -203,15 +203,16 @@ namespace Intertables
                         currentInteractable.Interact();
                         isHoldingPickUpObject = true;
                     }
-                    else if (!isHoldingPickUpObject && currentInteractable is Painting )
+                    else if (!isHoldingPickUpObject && currentInteractable is Painting)
                     {
                         // Pick up the painting
                         currentPickup = currentInteractable.GetComponent<PickUpObjects>();
                         currentInteractable.Interact();
-                        
+
                     }
-                    else if (!isHoldingPickUpObject && currentInteractable is PaintingFinal)
-                    {
+                    else if (!isHoldingPickUpObject && (currentInteractable is PaintingFinal|| currentInteractable is ExitDoor))
+
+            {
                         currentInteractable.Interact();
                     }
                 }
