@@ -28,6 +28,7 @@ public class FinalCanva : MonoBehaviour
     private void Start()
     {
         animator = GetComponent<Animator>();
+        SettingsMenu.instance.PlayClip(2);
     }
 
     public void Display(PaintingFinal painting)
