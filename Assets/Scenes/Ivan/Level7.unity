@@ -5368,7 +5368,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 758964855078039560, guid: fe7bbccd8d7eaec4c83a1e2343f1ea1b, type: 3}
       propertyPath: m_text
-      value: You can not mop the carpet. Watch out!
+      value: You cannot mop the carpet. Watch out!
       objectReference: {fileID: 0}
     - target: {fileID: 4551017499584649586, guid: fe7bbccd8d7eaec4c83a1e2343f1ea1b, type: 3}
       propertyPath: m_LocalPosition.x
