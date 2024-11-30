@@ -70,7 +70,7 @@ namespace Intertables
             {
                 DialogueManager.Instance.StartFirstSceneDialogue(DialogueManager.Instance.dialogueLines);
             }
-            if (SceneManager.GetActiveScene().buildIndex == SceneManager.sceneCountInBuildSettings-2)
+            if (System.IO.Path.GetFileNameWithoutExtension(SceneManager.GetActiveScene().path) == "FinalGalery")
             {
                 DialogueManager.Instance.StartFirstSceneDialogue(DialogueManager.Instance.ldialogueLines);
             }
