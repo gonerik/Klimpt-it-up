@@ -25,11 +25,12 @@ public class LevelSelection : MonoBehaviour
         {
             string scenePath = SceneUtility.GetScenePathByBuildIndex(i);
             string sceneName = System.IO.Path.GetFileNameWithoutExtension(scenePath);
+            Debug.Log("Scene name: " + sceneName);
 
             // Skip excluded scenes
             if (System.Array.Exists(excludedScenes, name => name == sceneName))
                 continue;
-
+            
             // Create a button for the scene
             GameObject button = Instantiate(buttonPrefab, gridParent);
 
@@ -38,6 +39,15 @@ public class LevelSelection : MonoBehaviour
             if (buttonText != null)
             {
                 buttonText.text = id++.ToString();
+                if (sceneName == "HyperMode1")
+                {
+                    buttonText.text = "H1";
+                }
+
+                if (sceneName == "FinalGalery")
+                {
+                    buttonText.text = "F";
+                }
             }
 
             // Set a thumbnail if your button prefab supports it

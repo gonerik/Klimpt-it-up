@@ -71,4 +71,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Credits.unity
     guid: 0d6d54fc9dcc0dc4ca82c8a0b89cb585
+  - enabled: 1
+    path: Assets/Scenes/Ivan/HyperMode/HyperMode1.unity
+    guid: 1882e4eef899a774f86d5a5b464ca3a5
   m_configObjects: {}

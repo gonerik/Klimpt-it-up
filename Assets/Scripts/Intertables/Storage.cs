@@ -49,6 +49,5 @@ public class Storage : Interactable
     public static void addPainting()
     {
         paintingsCount++;
-        Debug.Log(paintingsCount);
     }
 }
