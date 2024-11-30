@@ -51,8 +51,12 @@ public class Guard : MonoBehaviour
             
         }
         animatorController.setLastAxis(directionVector.x,directionVector.y);
-        float angle = (Mathf.Atan2(directionVector.x, directionVector.y)) * Mathf.Rad2Deg-180;
-        lightPivot.transform.rotation = Quaternion.Euler(0, 0, angle);
+        if (direction == Direction.Back || direction == Direction.Front)
+        {
+            directionVector *= -1;
+        }
+        float angle = (Mathf.Atan2(directionVector.x, directionVector.y)) * Mathf.Rad2Deg;
+        lightPivot.transform.rotation = Quaternion.Euler(0, 0, angle-180f);
         
     }
 
