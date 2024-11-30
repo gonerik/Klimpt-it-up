@@ -32,7 +32,7 @@ public class GuardAnimatorController : MonoBehaviour
 
     public void PlaySlipAnimation()
     {
-        animator.SetFloat("VarietyID",Random.Range(0f,1f));
+        animator.SetFloat("VarietyID",Random.Range(0f,2f)-1f);
         animator.SetTrigger("Slip");
     }
     
